@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeProvider } from "@/components/layout/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode, useState } from "react";
 import { Toaster } from "sonner";
@@ -14,7 +15,14 @@ export default function ReactQueryProvider({
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </ThemeProvider>
       <Toaster />
     </QueryClientProvider>
   );

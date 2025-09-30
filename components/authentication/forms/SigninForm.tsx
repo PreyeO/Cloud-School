@@ -114,7 +114,7 @@ const SigninForm = () => {
         <div className="text-center pt-6">
           <AuthSpan>
             Forgot your Password?{" "}
-            <Link href="/auth/reset">
+            <Link href="/auth/reset-password">
               <span className="text-[#E51919] underline cursor-pointer">
                 Reset!
               </span>
