@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useSignin } from "@/hooks/useSignin"; // ✅ hook similar to useSignup
+import { useSignin } from "@/hooks/useSignin";
 import { signinSchema } from "@/lib/schemas/auth";
 import AuthTitle from "@/components/ui/typography/auth-title";
 import SubmitButton from "@/components/ui/btns/submit-button";

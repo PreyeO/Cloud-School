@@ -1,24 +1,41 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { signinUser } from "@/lib/api/auth";
 import { notify } from "@/lib/notify";
-import { useRouter } from "next/navigation";
-import { SigninFormValues } from "@/types/auth";
+
+import { SigninFormValues, SigninResponse } from "@/types/auth";
+import { AxiosError } from "axios";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export function useSignin() {
   const router = useRouter();
+  const setAuth = useAuthStore((state) => state.setAuth);
 
-  return useMutation({
-    mutationFn: (data: SigninFormValues) => signinUser(data),
+  return useMutation<
+    SigninResponse,
+    AxiosError<{ message?: string }>,
+    SigninFormValues
+  >({
+    mutationFn: signinUser,
     onSuccess: (data) => {
+      setAuth(data.data);
+
       notify.success(data.message || "Signin successful");
-      router.push("/dashboard");
+
+      if (!data.data.user.isEmailVerified) {
+        router.push("/auth/signup");
+      } else {
+        router.push("/dashboard");
+      }
     },
-    onError: (error: any) => {
-      notify.error(
-        error?.response?.data?.message || "Signin failed, please try again."
-      );
+    onError: (error) => {
+      const message =
+        error.response?.data?.message ||
+        error.message ||
+        "Signin failed, please try again.";
+      notify.error(message);
     },
   });
 }

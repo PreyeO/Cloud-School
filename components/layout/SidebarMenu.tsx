@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +8,6 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu as Menu,
   SidebarMenuItem,
@@ -17,7 +15,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { SidebarItem } from "@/types/route";
-import { adminRoutes, studentRoutes } from "@/app/data/routes";
+import { adminRoutes, studentRoutes } from "@/data/routes";
 import Logo from "../ui/logo";
 
 type SidebarMenuProps = {
@@ -29,7 +27,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
   const routes: SidebarItem[] = role === "admin" ? adminRoutes : studentRoutes;
 
   return (
-    <SidebarContent>
+    <SidebarContent className="overflow-hidden  ">
       {/* Sidebar Logo + Branding */}
       <SidebarHeader className="flex items-center">
         <Logo />
@@ -38,10 +36,6 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
       <SidebarSeparator />
 
       <SidebarGroup>
-        <SidebarGroupLabel>
-          {role === "admin" ? "Admin Menu" : "Student Menu"}
-        </SidebarGroupLabel>
-
         <SidebarGroupContent>
           <Menu>
             {routes.map((item) => {
@@ -49,7 +43,10 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
               const isActive = pathname === item.href;
 
               return (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem
+                  key={item.title}
+                  className="pb-1 cursor-pointer"
+                >
                   <Link href={item.href ?? "#"} passHref>
                     <SidebarMenuButton
                       isActive={isActive}

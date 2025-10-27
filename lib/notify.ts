@@ -9,4 +9,7 @@ export const notify = {
   error: (message: string) => {
     toast.error(message || "Something went wrong");
   },
+  info: (message: string) => {
+    toast.error(message || "Action processing");
+  },
 };

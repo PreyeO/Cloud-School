@@ -1,3 +1,4 @@
+// /src/components/SignupForm.tsx
 "use client";
 
 import { useState } from "react";
@@ -16,12 +17,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { signupSchema } from "@/lib/schemas/auth";
 import { useSignup } from "@/hooks/useSignup";
-import { Textarea } from "../../ui/textarea";
 import SubmitButton from "@/components/ui/btns/submit-button";
 import AuthTitle from "@/components/ui/typography/auth-title";
 import AuthSpan from "@/components/ui/typography/auth-span";
 import Link from "next/link";
 import { SignUpFormValues } from "@/types/auth";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { howDidYouHearAboutUsOptions } from "@/data/students";
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,18 +44,18 @@ const SignupForm = () => {
       phoneNumber: "",
       password: "",
       confirmPassword: "",
-      hearAboutUs: "",
+      howDidYouHearAboutUs: "",
     },
   });
 
   const { mutate, isPending } = useSignup();
 
   function onSubmit(values: SignUpFormValues) {
-    mutate(values); // ✅ no need for onError here
+    mutate(values);
   }
 
   return (
-    <div className="flex items-center justify-center  ">
+    <div className="flex items-center justify-center">
       <div className="w-full max-w-[588px]">
         <AuthTitle
           title="Sign Up"
@@ -192,29 +200,40 @@ const SignupForm = () => {
             {/* Referral */}
             <FormField
               control={form.control}
-              name="hearAboutUs"
+              name="howDidYouHearAboutUs"
               render={({ field }) => (
                 <FormItem className="md:col-span-2">
                   <FormLabel>How did you hear about us?</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Tell us how you found out about us..."
-                      rows={3}
-                      {...field}
-                    />
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select an option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {howDidYouHearAboutUsOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <div className="md:col-span-2">
               <AuthSpan>
                 By clicking signup, I agree to{" "}
                 <Link href="/auth/reset">
                   <span className="text-[#E51919] underline cursor-pointer">
                     Terms of use
-                  </span>{" "}
-                </Link>
+                  </span>
+                </Link>{" "}
                 and acknowledge that I have read the{" "}
                 <Link href="/auth/reset">
                   <span className="text-[#E51919] underline cursor-pointer">

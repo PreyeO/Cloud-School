@@ -21,7 +21,7 @@ const VerifyOtpForm = () => {
   const form = useForm<VerifyOtpFormValues>({
     resolver: zodResolver(verifyOtpSchema),
     defaultValues: {
-      otp: ["", "", "", ""], // 4-digit OTP
+      otp: ["", "", "", "", "", ""], // 6-digit OTP
     },
   });
 
@@ -36,7 +36,7 @@ const VerifyOtpForm = () => {
       <div className="w-full max-w-[588px] mx-auto">
         <AuthTitle
           title="Verify OTP"
-          subtitle="Enter the 4-digit code sent to your email or phone number"
+          subtitle="Enter the 6-digit code sent to your email or phone number"
           className="text-center"
         />
 
@@ -58,11 +58,11 @@ const VerifyOtpForm = () => {
                           type="text"
                           maxLength={1}
                           id={`otp-${index}`}
-                          className="w-12 h-12 text-center border rounded-md outline-none focus:ring-2 focus:ring-[#E51919] "
+                          className="w-12 h-12 text-center border rounded-md outline-none focus:ring-2 focus:ring-[#E51919] text-lg font-semibold"
                           value={char}
                           onChange={(e) => {
                             const newOtp = [...field.value];
-                            newOtp[index] = e.target.value.slice(-1); // only last char
+                            newOtp[index] = e.target.value.slice(-1);
                             field.onChange(newOtp);
 
                             // Auto focus next input
@@ -98,9 +98,9 @@ const VerifyOtpForm = () => {
               )}
             />
 
-            <div className="">
+            <div>
               <AuthSpan>
-                Didn't receive the code?{" "}
+                Didn’t receive the code?{" "}
                 <Link href="/auth/resend">
                   <span className="text-[#E51919] underline cursor-pointer">
                     Resend OTP

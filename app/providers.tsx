@@ -15,14 +15,14 @@ export default function ReactQueryProvider({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider
+      {/* <ThemeProvider
         attribute="class"
-        defaultTheme="dark"
+        defaultTheme="light"
         enableSystem
         disableTransitionOnChange
-      >
-        {children}
-      </ThemeProvider>
+      > */}
+      {children}
+      {/* </ThemeProvider> */}
       <Toaster />
     </QueryClientProvider>
   );

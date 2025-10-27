@@ -10,6 +10,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import SidebarMenu from "./SidebarMenu";
+import UpdateDetailsModal from "../modals/UpdateDetailsModal";
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
         {/* Sidebar */}
-        <Sidebar>
+        <Sidebar className=" ">
           <SidebarMenu role={role} />
           <SidebarRail />
         </Sidebar>
@@ -32,7 +33,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         {/* Main Content Area */}
         <SidebarInset>
           <Header />
-          <main className="p-6">{children}</main>
+          <UpdateDetailsModal />
+          <main className="p-6 bg-[#F8F8F8] dark:bg-[#0b0b0b]  ">
+            {children}
+          </main>
         </SidebarInset>
       </div>
     </SidebarProvider>

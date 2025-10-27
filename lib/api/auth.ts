@@ -1,24 +1,32 @@
+import { apiClient } from "./client";
 import {
+  SignUpFormValues,
+  SignupResponse,
+  SigninFormValues,
   ForgotPasswordFormValues,
   ResetPasswordFormValues,
-  SigninFormValues,
-  SignUpFormValues,
-  VerifyOtpFormValues,
+  UpdateDetailsFormValues,
 } from "@/types/auth";
-import { apiClient } from "./client";
+import { AxiosResponse } from "axios";
 
-export async function signupUser(data: SignUpFormValues) {
-  const response = await apiClient.post("/api/tenant-auth/register", data);
+// ✅ Explicitly type the AxiosResponse
+export async function signupUser(
+  data: SignUpFormValues
+): Promise<SignupResponse> {
+  const response: AxiosResponse<SignupResponse> = await apiClient.post(
+    "/api/v1/auth/register",
+    data
+  );
   return response.data;
 }
 
 export async function signinUser(data: SigninFormValues) {
-  const response = await apiClient.post("/api/tenant-auth/login", data);
+  const response = await apiClient.post("/api/v1/auth/login", data);
   return response.data;
 }
 
-export async function verifyOtp(data: VerifyOtpFormValues) {
-  const response = await apiClient.post("/api/tenant-auth/verify-otp", data);
+export async function verifyOtp(data: { token: string }) {
+  const response = await apiClient.post("/api/v1/auth/verify-email", data);
   return response.data;
 }
 
@@ -35,5 +43,9 @@ export async function resetPassword(data: ResetPasswordFormValues) {
     "/api/tenant-auth/reset-password",
     data
   );
+  return response.data;
+}
+export async function clearDb() {
+  const response = await apiClient.delete("/api/v1/admin/users/clear");
   return response.data;
 }
