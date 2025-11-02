@@ -8,14 +8,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import {
-  Mail,
-  Phone,
-  MessageCircle,
-  Headphones,
-  Monitor,
-  Clock,
-} from "lucide-react";
+import { Mail, Phone, MessageCircle } from "lucide-react";
 
 export default function SupportScreen() {
   const faqs = [

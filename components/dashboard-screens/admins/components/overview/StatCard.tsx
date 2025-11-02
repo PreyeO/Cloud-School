@@ -7,7 +7,7 @@ type StatCardProps = {
   label: string;
   value: string | number;
   sub?: string;
-  Icon?: React.ComponentType<any>;
+  Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 export function StatCard({ label, value, sub, Icon }: StatCardProps) {

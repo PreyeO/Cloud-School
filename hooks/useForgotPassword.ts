@@ -1,20 +1,30 @@
-import { forgotPassword } from "@/lib/api/auth";
-import { notify } from "@/lib/notify";
-import { ForgotPasswordFormValues } from "@/types/auth";
+"use client";
 
 import { useMutation } from "@tanstack/react-query";
+import { forgotPassword } from "@/lib/api/auth";
+import { notify } from "@/lib/notify";
 import { useRouter } from "next/navigation";
+import { ForgotPasswordFormValues, SigninResponse } from "@/types/auth";
 
-export const useForgotPassword = () => {
+import { AxiosError } from "axios";
+
+export function useForgotPassword() {
   const router = useRouter();
-  return useMutation({
-    mutationFn: (data: ForgotPasswordFormValues) => forgotPassword(data),
-    onSuccess: (data: any) => {
+
+  return useMutation<
+    SigninResponse,
+    AxiosError<{ message?: string }>,
+    ForgotPasswordFormValues
+  >({
+    mutationFn: forgotPassword,
+    onSuccess: (data) => {
       notify.success(data.message || "OTP sent to your email");
       router.push("/reset-password");
     },
-    onError: (error: any) => {
-      notify.error(error?.response?.data?.message || "Failed to send OTP");
+    onError: (error) => {
+      const message =
+        error.response?.data?.message || error.message || "Failed to send OTP";
+      notify.error(message);
     },
   });
-};
+}

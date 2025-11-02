@@ -11,7 +11,17 @@ import {
 } from "recharts";
 import { Button } from "@/components/ui/button";
 
-export function LineChartCard({ data }: { data: any[] }) {
+// Define the type for each data point in the chart
+type ChartDataPoint = {
+  week: string;
+  completed: number;
+};
+
+interface LineChartCardProps {
+  data: ChartDataPoint[];
+}
+
+export function LineChartCard({ data }: LineChartCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
