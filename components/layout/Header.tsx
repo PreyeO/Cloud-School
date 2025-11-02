@@ -36,7 +36,7 @@ const Header = () => {
 
     setTimeout(() => {
       notify.success("Logged out successfully");
-      router.push("/auth/signin");
+      router.push("/signin");
     }, 800);
   };
 
@@ -92,9 +92,7 @@ const Header = () => {
             <DropdownMenuItem className="hover:text-[#E51919]">
               Profile
             </DropdownMenuItem>
-            <DropdownMenuItem className="hover:text-[#E51919]">
-              Settings
-            </DropdownMenuItem>
+
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={handleLogout}

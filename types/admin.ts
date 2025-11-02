@@ -5,3 +5,9 @@ export type SummaryDataItem = {
   icon: LucideIcon;
   value: number;
 };
+
+export interface MarketingFunnelItem {
+  value: string;
+  label: string;
+  count: number;
+}

@@ -25,13 +25,6 @@ export const summaryData: SummaryDataItem[] = [
   },
 ];
 
-export const pieData = [
-  { name: "Pending Applications", value: 20 },
-  { name: "Application Fee Paid", value: 40 },
-  { name: "Assessments Completed", value: 30 },
-  { name: "Enrolled Students", value: 30 },
-];
-
 export const COLORS = ["#FFA500", "#E61A1A", "#4B0082", "#00BFFF"];
 
 export const chartData = [

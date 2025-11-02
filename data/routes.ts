@@ -5,10 +5,8 @@ import {
   BookOpen,
   ClipboardCheck,
   Settings,
-  BarChart3,
   BookUser,
   GraduationCap,
-  FolderOpen,
   UserCircle,
   MessageSquare,
   CheckCircle,
@@ -17,42 +15,42 @@ import {
 export const studentRoutes: SidebarItem[] = [
   {
     title: "Overview",
-    href: "/dashboard",
+    href: "/student",
     icon: LayoutDashboard,
   },
   {
     title: "Program",
-    href: "/dashboard/program",
+    href: "/student/program",
     icon: GraduationCap,
   },
   {
     title: "Payment History",
-    href: "/dashboard/payment-history",
+    href: "/student/payment-history",
     icon: CreditCard,
   },
   {
     title: "Study Kits",
-    href: "/dashboard/study-kits",
+    href: "/student/study-kits",
     icon: BookOpen,
   },
   {
     title: "Assessment",
-    href: "/dashboard/assessment",
+    href: "/student/assessment",
     icon: ClipboardCheck,
   },
   {
     title: "Enrollment",
-    href: "/dashboard/enrollment",
+    href: "/student/enrollment",
     icon: CheckCircle,
   },
   {
     title: "Support",
-    href: "/dashboard/support",
+    href: "/student/support",
     icon: MessageSquare,
   },
   {
     title: "Profile",
-    href: "/dashboard/profile",
+    href: "/student/profile",
     icon: UserCircle,
   },
 ];
@@ -68,14 +66,10 @@ export const adminRoutes: SidebarItem[] = [
     href: "/admin/directory",
     icon: BookUser,
   },
-  {
-    title: "Programs",
-    href: "/admin/programs",
-    icon: FolderOpen,
-  },
+
   {
     title: "Payments",
-    href: "/admin/payments",
+    href: "/admin/payment",
     icon: CreditCard,
   },
   {
@@ -83,11 +77,7 @@ export const adminRoutes: SidebarItem[] = [
     href: "/admin/assessments",
     icon: ClipboardCheck,
   },
-  {
-    title: "Reports",
-    href: "/admin/reports",
-    icon: BarChart3,
-  },
+
   {
     title: "Settings",
     href: "/admin/settings",

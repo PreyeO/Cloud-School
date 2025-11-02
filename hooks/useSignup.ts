@@ -18,7 +18,7 @@ export function useSignup() {
     mutationFn: signupUser,
     onSuccess: (data) => {
       notify.success(data.message || "Signup successful");
-      router.push("/auth/verify-otp");
+      router.push("/verify-otp");
     },
     onError: (error) => {
       const message =

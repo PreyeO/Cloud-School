@@ -16,7 +16,7 @@ import SchoolFees from "@/components/payments/SchoolFee";
 export default function EnrollmentScreen() {
   const plans = [
     {
-      title: "Early Bird Plan",
+      title: "Early Bird",
       price: "₦150,000 / deposit",
       total: "₦600,000 Total",
       duration: "4 Semesters (12 Months)",
@@ -28,12 +28,12 @@ export default function EnrollmentScreen() {
         "Access program after first payment",
       ],
       timeline: {
-        period: "🟢 Jan 1 – Feb 15",
+        period: "Jan 1 – Feb 15",
         label: "Early Bird Registration",
       },
     },
     {
-      title: "Mid (Post-Early Bird) Plan",
+      title: "Post-Early Bird",
       price: "₦300,000 / deposit",
       total: "₦600,000 Total",
       duration: "4 Semesters (12 Months)",
@@ -45,12 +45,12 @@ export default function EnrollmentScreen() {
         "Immediate program access",
       ],
       timeline: {
-        period: "🟡 Feb 16 – Mar 15",
+        period: "Feb 16 – Mar 15",
         label: "Mid Registration",
       },
     },
     {
-      title: "Normal (Late Bird) Plan",
+      title: "Late Bird",
       price: "₦600,000 Full Payment",
       total: "₦600,000 Total",
       duration: "4 Semesters (12 Months)",
@@ -62,7 +62,7 @@ export default function EnrollmentScreen() {
         "Best for late applicants",
       ],
       timeline: {
-        period: "🔴 After Mar 15",
+        period: "After Mar 15",
         label: "Late Registration",
       },
     },

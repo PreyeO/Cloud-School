@@ -5,7 +5,6 @@ import {
   SigninFormValues,
   ForgotPasswordFormValues,
   ResetPasswordFormValues,
-  UpdateDetailsFormValues,
 } from "@/types/auth";
 import { AxiosResponse } from "axios";
 
@@ -20,8 +19,11 @@ export async function signupUser(
   return response.data;
 }
 
-export async function signinUser(data: SigninFormValues) {
-  const response = await apiClient.post("/api/v1/auth/login", data);
+export async function signinUser(data: SigninFormValues & { role?: string }) {
+  const url =
+    data.role === "admin" ? "/api/v1/admin/auth/login" : "/api/v1/auth/login";
+
+  const response = await apiClient.post(url, data);
   return response.data;
 }
 
@@ -47,5 +49,10 @@ export async function resetPassword(data: ResetPasswordFormValues) {
 }
 export async function clearDb() {
   const response = await apiClient.delete("/api/v1/admin/users/clear");
+  return response.data;
+}
+
+export async function getMarketFunnels() {
+  const response = await apiClient.get("/api/v1/auth/options/how-did-you-hear");
   return response.data;
 }

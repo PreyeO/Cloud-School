@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
+import { useAuthStore } from "@/store/useAuthStore";
 import Header from "./Header";
-
 import {
   Sidebar,
   SidebarProvider,
@@ -12,31 +12,26 @@ import {
 import SidebarMenu from "./SidebarMenu";
 import UpdateDetailsModal from "../modals/UpdateDetailsModal";
 
-type DashboardLayoutProps = {
-  children: React.ReactNode;
-  role: "student" | "admin";
-};
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useAuthStore();
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({
-  children,
-  role,
-}) => {
+  const role =
+    user?.role === "admin" || user?.role === "super_admin"
+      ? "admin"
+      : "student";
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
-        {/* Sidebar */}
-        <Sidebar className=" ">
+        <Sidebar>
           <SidebarMenu role={role} />
           <SidebarRail />
         </Sidebar>
 
-        {/* Main Content Area */}
         <SidebarInset>
           <Header />
           <UpdateDetailsModal />
-          <main className="p-6 bg-[#F8F8F8] dark:bg-[#0b0b0b]  ">
-            {children}
-          </main>
+          <main className="p-6 bg-[#F8F8F8] dark:bg-[#0b0b0b]">{children}</main>
         </SidebarInset>
       </div>
     </SidebarProvider>

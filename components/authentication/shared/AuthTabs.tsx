@@ -14,7 +14,7 @@ export default function AuthTabs() {
       <div className="w-full max-w-[588px]">
         <Tabs
           value={isSignup ? "signup" : "signin"}
-          onValueChange={(val) => router.push(`/auth/${val}`)}
+          onValueChange={(val) => router.push(`/${val}`)}
         >
           <TabsList className="w-full h-[64px] rounded-full overflow-hidden">
             <TabsTrigger value="signup" className="">

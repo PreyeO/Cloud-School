@@ -24,6 +24,7 @@ import { SigninFormValues } from "@/types/auth";
 
 const SigninForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState<"student" | "admin">("student");
 
   const form = useForm<SigninFormValues>({
     resolver: zodResolver(signinSchema),
@@ -33,7 +34,7 @@ const SigninForm = () => {
     },
   });
 
-  const { mutate, isPending } = useSignin();
+  const { mutate, isPending } = useSignin(role);
 
   function onSubmit(values: SigninFormValues) {
     mutate(values);
@@ -46,6 +47,33 @@ const SigninForm = () => {
           title="Sign In"
           subtitle="Access your Cloud Top G dashboard and stay on track"
         />
+
+        {/* Role Switch */}
+        <div className="flex justify-center gap-4 mb-6">
+          <button
+            type="button"
+            onClick={() => setRole("student")}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              role === "student"
+                ? "bg-[#E51919] text-white"
+                : "bg-gray-100 text-gray-600"
+            }`}
+          >
+            Student
+          </button>
+          <button
+            type="button"
+            onClick={() => setRole("admin")}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              role === "admin"
+                ? "bg-[#E51919] text-white"
+                : "bg-gray-100 text-gray-600"
+            }`}
+          >
+            Admin
+          </button>
+        </div>
+
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -111,6 +139,7 @@ const SigninForm = () => {
             </div>
           </form>
         </Form>
+
         <div className="text-center pt-6">
           <AuthSpan>
             Forgot your Password?{" "}

@@ -22,3 +22,9 @@ export async function paySchoolFees(
   );
   return response.data;
 }
+export async function getMyTransactions() {
+  const response = await apiClient.get(
+    "/api/v1/subscriptions/transactions/my-transactions"
+  );
+  return response.data;
+}

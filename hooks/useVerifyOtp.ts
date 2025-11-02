@@ -26,7 +26,7 @@ export function useVerifyOtp() {
     },
     onSuccess: (data) => {
       notify.success(data.message || "Email verified successfully");
-      router.push("/auth/signin");
+      router.push("/signin");
     },
     onError: (error) => {
       const message =

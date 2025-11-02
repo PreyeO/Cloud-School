@@ -24,7 +24,7 @@ import {
 import SubmitButton from "@/components/ui/btns/submit-button";
 import { useEffect } from "react";
 
-const genders = ["Male", "Female", "Other"];
+const genders = ["Male", "Female"];
 const employmentStatuses = [
   "Employed",
   "Unemployed",

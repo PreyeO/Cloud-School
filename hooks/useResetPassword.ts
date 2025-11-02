@@ -10,7 +10,7 @@ export const useResetPassword = () => {
     mutationFn: (data: ResetPasswordFormValues) => resetPassword(data),
     onSuccess: (data: any) => {
       notify.success(data.message || "Password reset successfully");
-      router.push("/auth/signin");
+      router.push("/signin");
     },
     onError: (error: any) => {
       notify.error(

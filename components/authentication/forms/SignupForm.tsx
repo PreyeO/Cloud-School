@@ -21,7 +21,7 @@ import SubmitButton from "@/components/ui/btns/submit-button";
 import AuthTitle from "@/components/ui/typography/auth-title";
 import AuthSpan from "@/components/ui/typography/auth-span";
 import Link from "next/link";
-import { SignUpFormValues } from "@/types/auth";
+import { MarketOption, SignUpFormValues } from "@/types/auth";
 import {
   Select,
   SelectContent,
@@ -29,7 +29,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { howDidYouHearAboutUsOptions } from "@/data/students";
+
+import { useMarketFunnels } from "@/hooks/useMarketFunnels";
 
 const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -49,6 +50,8 @@ const SignupForm = () => {
   });
 
   const { mutate, isPending } = useSignup();
+  const { data: marketOptions = [], isLoading: optionsLoading } =
+    useMarketFunnels();
 
   function onSubmit(values: SignUpFormValues) {
     mutate(values);
@@ -179,15 +182,15 @@ const SignupForm = () => {
                       />
                       <button
                         type="button"
-                        className="absolute right-3 top-2 text-gray-500"
+                        className="absolute right-3 top-2 text-gray-500 cursor-pointer"
                         onClick={() =>
                           setShowConfirmPassword(!showConfirmPassword)
                         }
                       >
                         {showConfirmPassword ? (
-                          <EyeOff size={18} />
+                          <EyeOff size={18} className=" cursor-pointer" />
                         ) : (
-                          <Eye size={18} />
+                          <Eye size={18} className=" cursor-pointer" />
                         )}
                       </button>
                     </div>
@@ -197,7 +200,6 @@ const SignupForm = () => {
               )}
             />
 
-            {/* Referral */}
             <FormField
               control={form.control}
               name="howDidYouHearAboutUs"
@@ -208,12 +210,13 @@ const SignupForm = () => {
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
+                      disabled={optionsLoading} // optional: disable while loading
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
                       <SelectContent>
-                        {howDidYouHearAboutUsOptions.map((option) => (
+                        {marketOptions.map((option: MarketOption) => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}
                           </SelectItem>

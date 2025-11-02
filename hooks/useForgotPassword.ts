@@ -11,7 +11,7 @@ export const useForgotPassword = () => {
     mutationFn: (data: ForgotPasswordFormValues) => forgotPassword(data),
     onSuccess: (data: any) => {
       notify.success(data.message || "OTP sent to your email");
-      router.push("/auth/reset-password");
+      router.push("/reset-password");
     },
     onError: (error: any) => {
       notify.error(error?.response?.data?.message || "Failed to send OTP");

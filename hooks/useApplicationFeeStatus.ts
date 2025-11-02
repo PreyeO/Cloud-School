@@ -7,6 +7,5 @@ export function useApplicationFeeStatus() {
   return useQuery({
     queryKey: ["application-fee-status"],
     queryFn: getApplicationFeeStatus,
-    // refetchInterval: 10000,
   });
 }
