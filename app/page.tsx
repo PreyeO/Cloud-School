@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { clearDb } from "@/lib/api/auth";
 import { notify } from "@/lib/notify";
 import { useState } from "react";
+import { AxiosError } from "axios";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -18,8 +19,14 @@ export default function Home() {
       } else {
         notify.error("Something went wrong while clearing the database");
       }
-    } catch (error: any) {
-      notify.error(error.response?.data?.message || "Failed to clear DB");
+    } catch (error: unknown) {
+      // ✅ type-safe Axios error handling
+      if (error instanceof AxiosError) {
+        const message = error.response?.data?.message || "Failed to clear DB";
+        notify.error(message);
+      } else {
+        notify.error("An unexpected error occurred");
+      }
     } finally {
       setLoading(false);
     }

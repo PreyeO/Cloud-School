@@ -2,7 +2,6 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
 import {
   Table,
   TableBody,
@@ -22,12 +21,11 @@ import { Loader2 } from "lucide-react";
 import CreateAdminForm from "@/components/authentication/forms/CreateAdminForm";
 import { useAdmins } from "@/hooks/useAdmins";
 import { formatDate } from "@/lib/utils";
+import { User } from "@/types/auth"; // ✅ import the type
 
 export default function SuperAdminSettings() {
-  // ✅ Fetch admins from backend
   const { data, isLoading, isError } = useAdmins();
 
-  // ✅ Handle loading
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-40">
@@ -36,7 +34,6 @@ export default function SuperAdminSettings() {
     );
   }
 
-  // ✅ Handle error
   if (isError) {
     return (
       <div className="text-center text-red-500">
@@ -45,12 +42,11 @@ export default function SuperAdminSettings() {
     );
   }
 
-  // ✅ Extract admins correctly (no `.data` issue)
-  const admins = data?.data?.admins ?? [];
+  const admins: User[] = data?.data?.admins ?? [];
 
   return (
     <div className="space-y-6">
-      {/* ✅ Create Admin Section */}
+      {/* Create Admin Section */}
       <Card>
         <CardHeader>
           <CardTitle>Create New Admin</CardTitle>
@@ -60,7 +56,7 @@ export default function SuperAdminSettings() {
         </CardContent>
       </Card>
 
-      {/* ✅ Existing Admins Table */}
+      {/* Existing Admins Table */}
       <Card>
         <CardHeader>
           <CardTitle>Existing Admins</CardTitle>
@@ -82,7 +78,7 @@ export default function SuperAdminSettings() {
             </TableHeader>
             <TableBody>
               {admins.length > 0 ? (
-                admins.map((admin: any, index: number) => (
+                admins.map((admin, index) => (
                   <TableRow key={admin._id || index}>
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>
@@ -94,7 +90,7 @@ export default function SuperAdminSettings() {
                     <TableCell>
                       {admin.isEmailVerified ? "Yes" : "No"}
                     </TableCell>
-                    <TableCell>{formatDate(admin.createdAt)}</TableCell>
+                    <TableCell>{formatDate(admin.lastLogin)}</TableCell>
                     <TableCell>
                       <Switch checked={admin.status === "active"} />
                     </TableCell>
