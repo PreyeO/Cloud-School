@@ -1,13 +1,12 @@
 import UserProfileView from "@/components/dashboard-screens/admins/UserProfileView";
 
-// Correct type for App Router dynamic route params
 interface UserProfilePageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
-// No need to extend PageProps
-export default function UserProfilePage({ params }: UserProfilePageProps) {
-  return <UserProfileView id={params.id} />;
+export default async function UserProfilePage({
+  params,
+}: UserProfilePageProps) {
+  const { id } = await params; // ✅ Await the params to satisfy Next.js 15 typing
+  return <UserProfileView id={id} />;
 }

@@ -4,7 +4,7 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 // import { Separator } from "@/components/ui/separator";
-import { Loader2, Mail, Phone, MapPin, Calendar, User } from "lucide-react";
+import { Loader2, Phone, MapPin, Calendar, User } from "lucide-react";
 
 import { formatDate } from "@/lib/utils";
 import { useUser } from "@/hooks/useUser";
@@ -21,8 +21,6 @@ export default function UserProfileView({ id }: { id: string }) {
 
   if (isError || !user)
     return <p className="text-center text-red-500">Unable to load profile.</p>;
-
-  const subscription = user.subscription;
 
   return (
     <section className="p-6 md:p-10 bg-[#f9fafb] dark:bg-[#0b0b0b] min-h-screen">
