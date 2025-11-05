@@ -1,6 +1,8 @@
-"use client";
+import { Suspense } from "react";
 import VerifyOtpForm from "@/components/authentication/forms/VerifyOtpForm";
 import AuthLayout from "@/components/authentication/shared/AuthLayout";
+
+export const dynamic = "force-dynamic"; // optional safety line
 
 const VerifyOtpPage = () => {
   return (
@@ -10,7 +12,9 @@ const VerifyOtpPage = () => {
       imageAlt="Sign In Image"
       className="h-[500px]"
     >
-      <VerifyOtpForm />
+      <Suspense fallback={<div>Loading verification form...</div>}>
+        <VerifyOtpForm />
+      </Suspense>
     </AuthLayout>
   );
 };
