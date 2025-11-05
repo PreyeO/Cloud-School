@@ -4,7 +4,6 @@ import {
   SignupResponse,
   SigninFormValues,
   ForgotPasswordFormValues,
-  ResetPasswordFormValues,
 } from "@/types/auth";
 import { AxiosResponse } from "axios";
 
@@ -33,20 +32,26 @@ export async function verifyOtp(data: { token: string }) {
 }
 
 export async function forgotPassword(data: ForgotPasswordFormValues) {
+  const response = await apiClient.post("api/v1/auth/forgot-password", data);
+  return response.data;
+}
+
+export async function resetPassword(data: {
+  token: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}) {
+  const response = await apiClient.post("/api/v1/auth/reset-password", data);
+  return response.data;
+}
+export async function resendVerification(data: { email: string }) {
   const response = await apiClient.post(
-    "/api/tenant-auth/forgot-password",
+    "/api/v1/auth/resend-verification",
     data
   );
   return response.data;
 }
 
-export async function resetPassword(data: ResetPasswordFormValues) {
-  const response = await apiClient.post(
-    "/api/tenant-auth/reset-password",
-    data
-  );
-  return response.data;
-}
 export async function clearDb() {
   const response = await apiClient.delete("/api/v1/admin/users/clear");
   return response.data;

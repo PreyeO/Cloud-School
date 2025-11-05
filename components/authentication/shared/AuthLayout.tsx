@@ -22,8 +22,8 @@ export default function AuthLayout({
 
 AuthLayoutProps) {
   return (
-    <main className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-white py-[70px] px-[20px] md:px-[89px]">
-      <div className="hidden md:flex items-center justify-center">
+    <main className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white py-[70px] px-[20px]  gap-[20px]">
+      <div className="hidden lg:flex items-center justify-center">
         <Images
           src={imageSrc}
           alt={imageAlt}

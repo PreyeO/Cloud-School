@@ -55,3 +55,19 @@ export const useAuthStore = create<AuthState>()(
     }
   )
 );
+
+interface AuthFlowState {
+  email: string | null;
+  otp: string | null;
+  setEmail: (email: string) => void;
+  setOtp: (otp: string) => void;
+  clearFlow: () => void;
+}
+
+export const useAuthFlowStore = create<AuthFlowState>((set) => ({
+  email: null,
+  otp: null,
+  setEmail: (email) => set({ email }),
+  setOtp: (otp) => set({ otp }),
+  clearFlow: () => set({ email: null, otp: null }),
+}));

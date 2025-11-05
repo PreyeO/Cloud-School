@@ -31,7 +31,7 @@ const employmentStatuses = [
   "Self-employed",
   "Student",
 ];
-const academicLevels = ["Undergraduate", "Graduate", "Postgraduate", "Other"];
+const academicLevels = ["Undergraduate", "Graduate", "Postgraduate"];
 
 interface Props {
   onSuccessClose?: () => void;

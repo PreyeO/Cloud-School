@@ -125,7 +125,7 @@ const SignupForm = () => {
               name="phoneNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number (WhatsApp preferred)</FormLabel>
+                  <FormLabel>Number (WhatsApp preferred)</FormLabel>
                   <FormControl>
                     <Input placeholder="+234 801 234 5678" {...field} />
                   </FormControl>

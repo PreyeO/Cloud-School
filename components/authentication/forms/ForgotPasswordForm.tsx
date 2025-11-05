@@ -74,7 +74,7 @@ const ForgotPasswordForm = () => {
         <div className="text-center pt-6">
           <AuthSpan>
             Remember your password?{" "}
-            <Link href="/auth/signin">
+            <Link href="/signin">
               <span className="text-[#E51919] underline cursor-pointer">
                 Sign In
               </span>

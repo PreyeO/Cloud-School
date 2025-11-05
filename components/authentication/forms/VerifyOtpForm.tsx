@@ -1,11 +1,11 @@
+// components/forms/VerifyOtpForm.tsx
 "use client";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import AuthTitle from "@/components/ui/typography/auth-title";
-import AuthSpan from "@/components/ui/typography/auth-span";
-import SubmitButton from "@/components/ui/btns/submit-button";
+import { verifyOtpSchema } from "@/lib/schemas/auth";
+import { VerifyOtpFormValues } from "@/types/auth";
+import { useVerifyOtp } from "@/hooks/useVerifyOtp";
 import {
   Form,
   FormField,
@@ -13,37 +13,37 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { verifyOtpSchema } from "@/lib/schemas/auth";
-import { useVerifyOtp } from "@/hooks/useVerifyOtp";
-import { VerifyOtpFormValues } from "@/types/auth";
+import SubmitButton from "@/components/ui/btns/submit-button";
+import AuthTitle from "@/components/ui/typography/auth-title";
+import AuthSpan from "@/components/ui/typography/auth-span";
+import { useAuthFlowStore } from "@/store/useAuthStore";
+import { useResendVerification } from "@/hooks/useResendVerification";
+import { notify } from "@/lib/notify";
 
 const VerifyOtpForm = () => {
   const form = useForm<VerifyOtpFormValues>({
     resolver: zodResolver(verifyOtpSchema),
-    defaultValues: {
-      otp: ["", "", "", "", "", ""], // 6-digit OTP
-    },
+    defaultValues: { otp: ["", "", "", "", "", ""] },
   });
 
   const { mutate, isPending } = useVerifyOtp();
+  const { mutate: resend, isPending: isResending } = useResendVerification();
+  const { email } = useAuthFlowStore();
 
-  const onSubmit = (values: VerifyOtpFormValues) => {
-    mutate(values);
-  };
+  const onSubmit = (values: VerifyOtpFormValues) => mutate(values);
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full max-w-[588px] mx-auto">
+      <div className="w-full max-w-[588px]">
         <AuthTitle
           title="Verify OTP"
-          subtitle="Enter the 6-digit code sent to your email or phone number"
-          className="text-center"
+          subtitle="Enter the 6-digit code sent to your email"
         />
 
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-1 gap-6 mt-6"
+            className="grid gap-6 mt-6"
           >
             <FormField
               control={form.control}
@@ -58,35 +58,29 @@ const VerifyOtpForm = () => {
                           type="text"
                           maxLength={1}
                           id={`otp-${index}`}
-                          className="w-12 h-12 text-center border rounded-md outline-none focus:ring-2 focus:ring-[#E51919] text-lg font-semibold"
+                          className="w-10 md:h-12 h-12 text-center border rounded-md outline-none focus:ring-2 focus:ring-[#E51919] text-lg font-semibold"
                           value={char}
                           onChange={(e) => {
                             const newOtp = [...field.value];
                             newOtp[index] = e.target.value.slice(-1);
                             field.onChange(newOtp);
-
-                            // Auto focus next input
-                            if (
-                              e.target.value &&
-                              index < field.value.length - 1
-                            ) {
-                              const nextInput = document.getElementById(
+                            if (e.target.value && index < newOtp.length - 1) {
+                              const next = document.getElementById(
                                 `otp-${index + 1}`
                               ) as HTMLInputElement;
-                              nextInput?.focus();
+                              next?.focus();
                             }
                           }}
                           onKeyDown={(e) => {
-                            // Move to previous input on Backspace if empty
                             if (
                               e.key === "Backspace" &&
                               !field.value[index] &&
                               index > 0
                             ) {
-                              const prevInput = document.getElementById(
+                              const prev = document.getElementById(
                                 `otp-${index - 1}`
                               ) as HTMLInputElement;
-                              prevInput?.focus();
+                              prev?.focus();
                             }
                           }}
                         />
@@ -97,25 +91,30 @@ const VerifyOtpForm = () => {
                 </FormItem>
               )}
             />
-
-            <div>
-              <AuthSpan>
-                Didn’t receive the code?{" "}
-                <Link href="/auth/resend">
-                  <span className="text-[#E51919] underline cursor-pointer">
-                    Resend OTP
-                  </span>
-                </Link>
-              </AuthSpan>
-            </div>
-
-            <div className="mt-4">
-              <SubmitButton
-                label="Verify OTP"
-                loadingLabel="Verifying..."
-                isPending={isPending}
-              />
-            </div>
+            <AuthSpan>
+              Didn’t receive the code?{" "}
+              <button
+                type="button"
+                disabled={isResending}
+                onClick={() => {
+                  if (!email) {
+                    notify.error(
+                      "Email not found. Please restart the process."
+                    );
+                    return;
+                  }
+                  resend({ email });
+                }}
+                className="text-[#E51919] underline cursor-pointer disabled:opacity-60"
+              >
+                {isResending ? "Resending..." : "Resend OTP"}
+              </button>
+            </AuthSpan>
+            <SubmitButton
+              label="Verify OTP"
+              loadingLabel="Verifying..."
+              isPending={isPending}
+            />
           </form>
         </Form>
       </div>

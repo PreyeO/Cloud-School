@@ -21,7 +21,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       : "student";
 
   return (
-    <SidebarProvider>
+    <SidebarProvider className="">
       <div className="flex min-h-screen w-full">
         <Sidebar>
           <SidebarMenu role={role} />

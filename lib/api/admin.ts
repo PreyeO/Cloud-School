@@ -16,6 +16,11 @@ export async function getAllMarketingFunnel() {
   return response.data;
 }
 
+export async function getAllAdmissionFunnel() {
+  const response = await apiClient.get("/api/v1/admin/users/stats/status");
+  return response.data;
+}
+
 export async function createAdmin(data: CreateAdminFormValues) {
   const response = await apiClient.post<SignupResponse>("/api/v1/admin/", data);
   return response.data;

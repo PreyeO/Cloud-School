@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "./providers";
 
 const manrope = Manrope({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+const bricolage_grotesque = Bricolage_Grotesque({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
@@ -20,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} font-Manrope `}>
+      <body
+        className={`${manrope.variable} ${bricolage_grotesque.variable} font-Manrope text-[#595959]  `}
+      >
         <ReactQueryProvider> {children}</ReactQueryProvider>
       </body>
     </html>
