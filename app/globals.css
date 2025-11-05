@@ -121,3 +121,6 @@
 a {
   cursor: pointer;
 }
+html {
+  color-scheme: light !important;
+}
