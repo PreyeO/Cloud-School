@@ -18,7 +18,7 @@ export default function ReactQueryProvider({
       <ThemeProvider
         attribute="class"
         defaultTheme="light"
-        enableSystem
+        enableSystem={false}
         disableTransitionOnChange
       >
         {children}
