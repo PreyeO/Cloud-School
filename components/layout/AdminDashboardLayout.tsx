@@ -30,7 +30,7 @@ const AdminDashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <SidebarInset>
           <Header />
 
-          <main className="p-6 bg-[#F8F8F8]">{children}</main>
+          <main className="p-6 bg-[#F8F8F8] dark:bg-[#0b0b0b]">{children}</main>
         </SidebarInset>
       </div>
     </SidebarProvider>
