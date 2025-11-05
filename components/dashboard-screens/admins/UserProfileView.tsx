@@ -1,20 +1,12 @@
 "use client";
 
-import React, { useMemo } from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Loader2,
   Phone,
   MapPin,
   Calendar,
-  User,
   Mail,
   Wallet,
   Clock,
@@ -35,7 +27,6 @@ type Subscription = {
   nextPaymentAmount?: number;
   lastPaymentDate?: string;
   autoRenew?: boolean;
-  metadata?: Record<string, any>;
 };
 
 export default function UserProfileView({ id }: { id: string }) {
@@ -62,59 +53,6 @@ export default function UserProfileView({ id }: { id: string }) {
       : s === "withdrawn"
       ? "red"
       : "gray";
-
-  const timeline = useMemo(() => {
-    const events: { id: string; title: string; time?: string }[] = [];
-
-    events.push({
-      id: "reg",
-      title: `Registered — ${formatDate(user.createdAt)}`,
-    });
-    if (user.lastLogin)
-      events.push({
-        id: "login",
-        title: `Last login — ${formatDate(user.lastLogin)}`,
-      });
-    if (user.applicationFeePaid)
-      events.push({ id: "appfee", title: `Application fee paid` });
-    if (subscription?.lastPaymentDate)
-      events.push({
-        id: "lastpay",
-        title: `Last payment — ${formatDate(subscription.lastPaymentDate)}`,
-      });
-
-    return events;
-  }, [user, subscription]);
-
-  // Payment History: if you have a payments endpoint use that. Here we derive basic rows from subscription metadata.
-  const paymentHistory = useMemo(() => {
-    if (!subscription) return [];
-    // If subscription.metadata includes registration payment etc, show those; else show last payment only
-    const rows: { id: string; date: string; amount: number; note?: string }[] =
-      [];
-
-    if (
-      subscription?.metadata?.registrationDate &&
-      subscription.totalAmountPaid
-    ) {
-      rows.push({
-        id: "reg",
-        date: subscription.metadata.registrationDate,
-        amount: subscription.totalAmountPaid,
-        note: "Registration / first payment",
-      });
-    } else if (subscription?.lastPaymentDate && subscription.totalAmountPaid) {
-      rows.push({
-        id: "last",
-        date: subscription.lastPaymentDate,
-        amount: subscription.totalAmountPaid,
-        note: "Last payment",
-      });
-    }
-
-    // leave room for more rows if your backend returns a payments array later
-    return rows;
-  }, [subscription]);
 
   if (isLoading)
     return (
@@ -307,58 +245,6 @@ export default function UserProfileView({ id }: { id: string }) {
         </Card>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Left: Subscription & Payments */}
-          <div className="md:col-span-2 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Subscription & Payments</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead className="text-left text-xs text-gray-500">
-                      <tr>
-                        <th className="py-2">Date</th>
-                        <th className="py-2">Amount</th>
-                        <th className="py-2">Note</th>
-                        <th className="py-2">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {paymentHistory.length > 0 ? (
-                        paymentHistory.map((p) => (
-                          <tr key={p.id} className="border-t">
-                            <td className="py-3">{formatDate(p.date)}</td>
-                            <td className="py-3 font-medium">
-                              {formatCurrency(p.amount)}
-                            </td>
-                            <td className="py-3 text-xs text-gray-500">
-                              {p.note}
-                            </td>
-                            <td className="py-3">
-                              <Badge variant="outline" className="px-3 py-1">
-                                Completed
-                              </Badge>
-                            </td>
-                          </tr>
-                        ))
-                      ) : (
-                        <tr className="border-t">
-                          <td
-                            colSpan={4}
-                            className="py-6 text-center text-gray-500"
-                          >
-                            No payments recorded yet.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
           {/* Right: Personal / Contact */}
           <aside className="space-y-6">
             <Card>
