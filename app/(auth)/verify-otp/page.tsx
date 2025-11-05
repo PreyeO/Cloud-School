@@ -1,3 +1,4 @@
+"use client";
 import VerifyOtpForm from "@/components/authentication/forms/VerifyOtpForm";
 import AuthLayout from "@/components/authentication/shared/AuthLayout";
 
