@@ -16,11 +16,9 @@ const SchoolFees: React.FC<SchoolFeesProps> = ({ planTitle }) => {
   const handlePayment = () => {
     let planType: PaymentPlanType;
 
-    if (planTitle.includes("Early")) planType = PaymentPlanType.EARLY_BIRD;
-    else if (planTitle.includes("Mid")) planType = PaymentPlanType.MID;
+    if (planTitle.includes("Legacy")) planType = PaymentPlanType.EARLY_BIRD;
+    else if (planTitle.includes("Prime")) planType = PaymentPlanType.MID;
     else planType = PaymentPlanType.NORMAL;
-
-    console.log("Selected planType:", planType);
     handlePay(planType);
   };
 
@@ -32,9 +30,7 @@ const SchoolFees: React.FC<SchoolFeesProps> = ({ planTitle }) => {
         className="w-full bg-[#E51919] hover:bg-[#c91414] text-white rounded-xl font-medium py-5 transition-all duration-300 shadow-sm hover:shadow-md"
         size="lg"
       >
-        {isPending
-          ? `Processing ${planTitle}...`
-          : `Proceed to Payment (${planTitle})`}
+        {isPending ? `Processing ${planTitle}...` : `Activate ${planTitle}`}
       </Button>
     </div>
   );

@@ -45,7 +45,7 @@ const SigninForm = () => {
       <div className="w-full max-w-[588px]">
         <AuthTitle
           title="Sign In"
-          subtitle="Access your Cloud Top G dashboard and stay on track"
+          subtitle="Access your Cloud Top G Portal to manage your enrollment and progress."
         />
 
         {/* Role Switch */}

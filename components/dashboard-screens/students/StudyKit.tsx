@@ -3,64 +3,30 @@
 import { motion } from "framer-motion";
 import {
   FileText,
-  Video,
-  Star,
   Download,
   PlayCircle,
   CheckCircle2,
+  Headphones,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 
 export default function StudyKit() {
   const lessons = [
-    {
-      id: 1,
-      title: "Introduction to Cloud Engineering",
-      duration: "08:32",
-      rating: 4.8,
-      active: true,
-    },
-    {
-      id: 2,
-      title: "Understanding Cloud Models (IaaS, PaaS, SaaS)",
-      duration: "12:45",
-      rating: 4.9,
-    },
-    {
-      id: 3,
-      title: "Setting Up Your Cloud Environment",
-      duration: "10:14",
-      rating: 4.7,
-    },
-    {
-      id: 4,
-      title: "Deploying Your First Application",
-      duration: "14:20",
-      rating: 4.9,
-    },
+    { id: 1, title: "Introduction to Cloud Engineering", active: true },
+    { id: 2, title: "Understanding Cloud Models (IaaS, PaaS, SaaS)" },
+    { id: 3, title: "Setting Up Your Cloud Environment" },
+    { id: 4, title: "Deploying Your First Application" },
   ];
 
   const resources = [
-    {
-      type: "PDF",
-      name: "Cloud Basics Guide",
-      icon: FileText,
-    },
-    {
-      type: "Slides",
-      name: "Lesson 1 Presentation",
-      icon: FileText,
-    },
-    {
-      type: "Project File",
-      name: "AWS Setup Instructions",
-      icon: Download,
-    },
+    { type: "PDF", name: "Cloud Basics Guide", icon: FileText },
+    { type: "Slides", name: "Lesson 1 Presentation", icon: FileText },
+    { type: "Project File", name: "AWS Setup Instructions", icon: Download },
   ];
 
   return (
-    <section className="min-h-screen px-6 md:px-12 py-14  dark:from-[#0b0b0b] dark:to-[#101010]">
+    <section className="min-h-screen px-6 md:px-12 py-14 bg-[#fafafa] dark:bg-[#0b0b0b] text-[#111] dark:text-gray-100">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-12">
         {/* 🎥 Main Learning Area */}
         <div className="lg:col-span-2 space-y-10">
@@ -77,29 +43,6 @@ export default function StudyKit() {
               className="w-full aspect-video"
               allowFullScreen
             ></iframe>
-
-            {/* Overlay Info */}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-6 flex justify-between items-end">
-              <div>
-                <h2 className="text-lg md:text-2xl font-semibold text-white">
-                  Introduction to Cloud Engineering
-                </h2>
-                <div className="flex items-center gap-4 text-sm text-gray-200 mt-2">
-                  <span className="flex items-center gap-1">
-                    <Video className="w-4 h-4 text-[#E61A1A]" /> 08:32
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-[#FFD700]" /> 4.8
-                  </span>
-                </div>
-              </div>
-              <Button
-                className="bg-[#E61A1A] hover:bg-[#c81414] text-white rounded-full px-6 py-2 font-semibold"
-                size="sm"
-              >
-                Continue
-              </Button>
-            </div>
           </motion.div>
 
           {/* Tabs Section */}
@@ -107,9 +50,10 @@ export default function StudyKit() {
             <TabsList className="grid w-full grid-cols-3 bg-gray-100 dark:bg-[#161616] rounded-full p-1">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="resources">Resources</TabsTrigger>
-              <TabsTrigger value="notes">Notes</TabsTrigger>
+              <TabsTrigger value="notes">Q & A</TabsTrigger>
             </TabsList>
 
+            {/* Overview */}
             <TabsContent value="overview" className="mt-6 space-y-3">
               <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
                 In this lesson, you’ll explore the foundations of Cloud
@@ -119,6 +63,7 @@ export default function StudyKit() {
               </p>
             </TabsContent>
 
+            {/* Resources */}
             <TabsContent
               value="resources"
               className="mt-6 grid sm:grid-cols-2 gap-4"
@@ -140,10 +85,20 @@ export default function StudyKit() {
               ))}
             </TabsContent>
 
+            {/* Q&A / Contact Support */}
             <TabsContent value="notes" className="mt-6">
-              <div className="p-6 border rounded-2xl text-gray-600 dark:text-gray-300">
-                You don’t have any notes yet. Use the note feature to jot down
-                key insights as you learn.
+              <div className="p-6 rounded-2xl border border-gray-100 dark:border-[#1a1a1a] bg-white dark:bg-[#141414] shadow-sm space-y-4 text-gray-700 dark:text-gray-300">
+                <p className="leading-relaxed">
+                  Have a question about this lesson or something unclear? We’re
+                  here to help.
+                </p>
+                <Button
+                  onClick={() => (window.location.href = "/support")}
+                  className="bg-[#E61A1A] hover:bg-[#c71414] text-white rounded-full px-6 py-5 font-semibold flex items-center gap-2"
+                >
+                  <Headphones className="w-5 h-5" />
+                  Contact Support
+                </Button>
               </div>
             </TabsContent>
           </Tabs>
@@ -159,6 +114,7 @@ export default function StudyKit() {
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
             Lesson Breakdown
           </h3>
+
           <div className="space-y-4">
             {lessons.map((lesson) => (
               <motion.div
@@ -170,15 +126,9 @@ export default function StudyKit() {
                     : "border-gray-200 dark:border-[#1a1a1a] bg-white dark:bg-[#111]"
                 }`}
               >
-                <div>
-                  <h4 className="font-medium text-gray-900 dark:text-white text-sm">
-                    {lesson.title}
-                  </h4>
-                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
-                    <Video className="w-3 h-3 text-[#E61A1A]" />{" "}
-                    {lesson.duration}
-                  </p>
-                </div>
+                <h4 className="font-medium text-gray-900 dark:text-white text-sm">
+                  {lesson.title}
+                </h4>
                 {lesson.active ? (
                   <PlayCircle className="w-5 h-5 text-[#E61A1A]" />
                 ) : (

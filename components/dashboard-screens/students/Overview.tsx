@@ -38,11 +38,14 @@ export default function Overview() {
         {/* Header Section */}
         <div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-Bricolage_grotesque text-gray-900 dark:text-white leading-snug">
-            Welcome, <span className="text-[#E51919]">{user?.firstName}</span>
+            Welcome,{" "}
+            <span className="text-[#E51919]">{user?.firstName} 👋​</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm sm:text-base">
-            Here’s an overview of the steps you’ll take to complete your
-            enrollment and begin your learning journey.
+            Your journey to becoming a world-class cloud engineer starts here.
+            <br />
+            Follow these steps to complete your enrollment and get ready to
+            learn.
           </p>
         </div>
 

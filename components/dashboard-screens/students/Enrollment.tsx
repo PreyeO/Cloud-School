@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
   Calendar,
-  Clock,
   CreditCard,
   Layers,
   Wallet,
@@ -16,54 +15,57 @@ import SchoolFees from "@/components/payments/SchoolFee";
 export default function EnrollmentScreen() {
   const plans = [
     {
-      title: "Early Bird",
+      title: "Legacy Access Plan",
+      span: "(Best for early visionaries who move first)",
       price: "₦150,000 / deposit",
       total: "₦600,000 Total",
-      duration: "4 Semesters (12 Months)",
+      duration: "(4 Semesters, 12 Months)",
       icon: Wallet,
-      note: "Best value for early registrants — flexible semester payments.",
+      note: " Secure your advantage — the most flexible path to start your legacy.",
       highlights: [
-        "₦150,000 per semester",
-        "Spread over 4 semesters",
-        "Access program after first payment",
+        " ₦150,000 per semester — flexible and easy to manage.",
+        "Structured over 4 semesters with mentor-guided progress.",
+        "Full program access unlocked after first payment.",
       ],
       timeline: {
-        period: "Jan 1 – Feb 15",
-        label: "Early Bird Registration",
+        period: "Nov 1 – Dec 20",
+        label: "Legacy Access Window",
       },
     },
     {
-      title: "Post-Early Bird",
+      title: "Prime Access Plan",
+      span: "(Ideal for action-takers ready to accelerate)",
       price: "₦300,000 / deposit",
       total: "₦600,000 Total",
-      duration: "4 Semesters (12 Months)",
+      duration: "(4 Semesters, 12 Months)",
       icon: CreditCard,
-      note: "Balanced option for those joining after the early phase.",
+      note: "A balanced plan for those ready to gain momentum without delay.",
       highlights: [
-        "₦300,000 upfront for 2 semesters",
-        "Pay remaining ₦300,000 later",
-        "Immediate program access",
+        "₦300,000 up-front covers 2 semesters.",
+        "Remaining ₦300,000 due later in your journey.",
+        "Immediate program access and mentor integration.",
       ],
       timeline: {
-        period: "Feb 16 – Mar 15",
-        label: "Mid Registration",
+        period: " Nov 1 – Jan 20",
+        label: "Prime Access Window",
       },
     },
     {
-      title: "Late Bird",
+      title: "Elite Access Plan",
+      span: "(For those going all-in from day one)",
       price: "₦600,000 Full Payment",
       total: "₦600,000 Total",
-      duration: "4 Semesters (12 Months)",
+      duration: "(4 Semesters, 12 Months)",
       icon: Layers,
-      note: "Pay once and gain instant access to the full program.",
+      note: "Pay once — own your seat among the Top 1% instantly.",
       highlights: [
-        "One-time full payment",
-        "Full program access immediately",
-        "Best for late applicants",
+        " One-time full investment for the entire program.",
+        "Instant unrestricted access to all systems and resources.",
+        "Priority mentor support and lifetime network benefits.",
       ],
       timeline: {
-        period: "After Mar 15",
-        label: "Late Registration",
+        period: "Nov 1 – Feb 17",
+        label: " Elite Access Window",
       },
     },
   ];
@@ -76,11 +78,12 @@ export default function EnrollmentScreen() {
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight"
         >
-          Enrollment & Payment Options
+          Secure Your Seat in the Cloud Top G Program
         </motion.h1>
         <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-          Choose a payment plan that matches your timeline. Each plan grants
-          full access to the{" "}
+          Each Access Plan unlocks exclusive learning assets, mentorship
+          systems, and premium career tools designed to accelerate your path to
+          the Top 1%.
           <span className="text-[#E51919] font-semibold">
             Cloud Engineering Program
           </span>{" "}
@@ -107,16 +110,21 @@ export default function EnrollmentScreen() {
                   </CardTitle>
                   <plan.icon className="h-6 w-6 text-[#E51919]" />
                 </div>
+                <span className="text-[11px] text-gray-500 dark:text-gray-400">
+                  {plan.span}
+                </span>
 
                 <div className="mt-4 space-y-1">
                   <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">
                     {plan.price}
                   </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {plan.total}
-                  </p>
-                  <div className="flex items-center gap-2 mt-1 text-xs text-gray-500 dark:text-gray-400">
-                    <Clock className="w-4 h-4 text-[#E51919]" /> {plan.duration}
+                  <div className="flex gap-1">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {plan.total}
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {plan.duration}
+                    </p>
                   </div>
                 </div>
               </CardHeader>

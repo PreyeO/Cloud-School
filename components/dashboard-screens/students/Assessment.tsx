@@ -11,15 +11,15 @@ import {
 
 export default function AssessmentScreen() {
   const info = [
-    { icon: Timer, title: "Duration", value: "45 Minutes" },
-    { icon: FileQuestion, title: "Questions", value: "30 Multiple Choice" },
+    { icon: Timer, title: "Duration", value: "1 Hour" },
+    { icon: FileQuestion, title: "Questions", value: "100 Multiple Choice" },
     { icon: ClipboardCheck, title: "Passing Score", value: "70% Minimum" },
   ];
 
   const guidelines = [
-    "Ensure a strong internet connection before starting.",
+    "Ensure a stable internet connection before starting.",
     "Do not close or refresh the tab once the assessment begins.",
-    "You have only one attempt — make sure you're ready.",
+    "You have one attempt — make sure you’re fully prepared.",
     "Your progress is automatically saved during the test.",
     "Avoid switching tabs or opening new windows during the assessment.",
   ];
@@ -27,7 +27,7 @@ export default function AssessmentScreen() {
   return (
     <section className="min-h-screen bg-[#fafafa] dark:bg-[#0b0b0b] text-[#111] dark:text-gray-100 px-6 md:px-10 py-16">
       <div className="max-w-5xl mx-auto space-y-16">
-        {/* 🧠 Hero Section */}
+        {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,15 +35,17 @@ export default function AssessmentScreen() {
           className="text-center space-y-5"
         >
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-            Your <span className="text-[#E61A1A]">Assessment</span> Awaits
+            Your <span className="text-[#E61A1A]">Assessment</span> Awaits...
           </h1>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            You’ve completed your learning path — now it’s time to showcase your
-            mastery. Focus, breathe, and give it your best.
+            You’ve reached the moment that measures mastery.
+            <br />
+            Stay focused, stay calm, and give it your best — this is your chance
+            to prove your readiness for the Cloud Top G journey ahead.
           </p>
         </motion.div>
 
-        {/* 🧩 Assessment Details */}
+        {/* Assessment Details */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -69,30 +71,51 @@ export default function AssessmentScreen() {
           ))}
         </motion.div>
 
-        {/* ⚙️ Guidelines */}
+        {/* Transition Ending Line */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="w-full flex justify-center"
+        >
+          <div className="w-32 border-b-2 border-[#E61A1A]/50" />
+        </motion.div>
+        <p className="text-center text-gray-500 dark:text-gray-400">
+          You’ve got this… take a moment to steady yourself, then dive in when
+          you’re ready.
+        </p>
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="w-full flex justify-center"
+        >
+          <div className="w-32 border-b-2 border-[#E61A1A]/50" />
+        </motion.div>
+
+        {/* Guidelines */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.7 }}
           className="p-10 rounded-2xl bg-white dark:bg-[#111] border border-gray-200 dark:border-[#1a1a1a] shadow-md"
         >
-          <h2 className="text-2xl font-bold mb-3 ">Before You Begin</h2>
+          <h2 className="text-2xl font-bold mb-3">Before You Begin</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            Please review these guidelines carefully to ensure a smooth and fair
+            Please review these important guidelines to ensure a smooth and fair
             assessment experience.
           </p>
-
           <ul className="space-y-3 text-gray-700 dark:text-gray-300">
             {guidelines.map((rule, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-[#E61A1A]" />
+                <span className="mt-2 h-4 w-4 rounded-full bg-[#E61A1A]" />
                 {rule}
               </li>
             ))}
           </ul>
         </motion.div>
 
-        {/* 🚀 CTA */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}

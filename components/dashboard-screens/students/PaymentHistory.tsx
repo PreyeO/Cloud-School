@@ -6,6 +6,8 @@ import { CreditCard, CheckCircle2, XCircle, Clock } from "lucide-react";
 import { useTransactions } from "@/hooks/useTransactions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Transaction {
   _id: string;
@@ -123,7 +125,9 @@ export default function PaymentHistory() {
               Payment History
             </h1>
             <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 max-w-xl">
-              Review all your transactions in one place.
+              Track all your successful payments and transactions in one place.
+              For payment issues or discrepancies, reach out to Support for
+              quick assistance.
             </p>
           </div>
 
@@ -243,13 +247,13 @@ export default function PaymentHistory() {
             className="rounded-2xl bg-white dark:bg-[#0f1012] border border-gray-100 dark:border-[#232323] p-5 shadow-sm"
           >
             <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              Overview
+              Transactions Overview
             </h3>
 
             <div className="mt-4 grid grid-cols-2 gap-3">
               <div className="rounded-lg p-3 bg-gray-50 dark:bg-[#0b1113] border border-gray-100 dark:border-[#1b1b1b]">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Payments
+                  Total Payments
                 </p>
                 <p className="mt-1 font-semibold text-gray-900 dark:text-white">
                   {payments.length}
@@ -272,19 +276,17 @@ export default function PaymentHistory() {
             className="rounded-2xl bg-white dark:bg-[#0f1012] border border-gray-100 dark:border-[#232323] p-5 shadow-sm"
           >
             <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              Need help with a charge?
+              Need help with a payment?
             </h3>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-              If you don’t recognize an item, contact support and include the
-              date & amount.
+              If you notice any incorrect charge or missing record, contact our
+              support team with the transaction date and amount.
             </p>
-
-            <a
-              href="mailto:support@letscr8t.com"
-              className="mt-4 block text-center px-3 py-2 rounded-lg bg-[#E61A1A] hover:bg-[#c81818] text-white transition text-sm font-medium"
-            >
-              Contact Support
-            </a>
+            <Link href="/student/support">
+              <Button className="mt-4 block text-center px-3 py-2 rounded-lg bg-[#E61A1A] hover:bg-[#c81818] text-white transition text-sm font-medium">
+                Contact Support
+              </Button>
+            </Link>
           </motion.div>
         </aside>
       </main>

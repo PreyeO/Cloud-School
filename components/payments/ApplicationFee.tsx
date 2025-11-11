@@ -15,8 +15,8 @@ const ApplicationFee = () => {
           ₦20,000
         </h3>
         <p className=" text-sm sm:text-base leading-relaxed">
-          Secure your slot in the Cloud Engineering program by completing your
-          application payment today.
+          Confirm your place in the Cloud Engineering program and join Africa’s
+          fastest-growing community of future cloud leaders.
         </p>
       </div>
 

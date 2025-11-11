@@ -30,6 +30,8 @@ const employmentStatuses = [
   "Unemployed",
   "Self-employed",
   "Student",
+  "Retired",
+  "Other",
 ];
 const academicLevels = ["Undergraduate", "Graduate", "Postgraduate"];
 

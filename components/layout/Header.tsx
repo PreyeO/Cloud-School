@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useRouter } from "next/navigation";
 import { notify } from "@/lib/notify";
+import Link from "next/link";
 
 const Header = () => {
   const router = useRouter();
@@ -46,7 +47,7 @@ const Header = () => {
     <header className="sticky bg-sidebar top-0 z-50 w-full h-16  backdrop-blur-xl px-6 flex items-center justify-between shadow-sm">
       {/* Left Section */}
       <div className="flex items-center gap-3">
-        <SidebarTrigger />
+        <SidebarTrigger className="cursor-pointer" />
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,7 +76,7 @@ const Header = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <motion.div whileTap={{ scale: 0.9 }}>
-              <div className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 bg-[#E51919] text-white flex items-center justify-center font-semibold text-sm select-none cursor-pointer hover:opacity-90 transition-all duration-300">
+              <div className="w-10 h-10 rounded-full  bg-[#E51919] text-white flex items-center justify-center font-semibold text-sm select-none cursor-pointer hover:opacity-90 transition-all duration-300">
                 {initials || "U"}
               </div>
             </motion.div>
@@ -83,14 +84,14 @@ const Header = () => {
 
           <DropdownMenuContent
             align="end"
-            className="mt-2 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 bg-white/95 backdrop-blur-xl"
+            className=" mt-2 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 bg-white/95 backdrop-blur-xl"
           >
             <DropdownMenuLabel className="font-semibold text-[#000000]">
               {fullName || "My Account"}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="hover:text-[#E51919]">
-              Profile
+            <DropdownMenuItem className="hover:text-[#E51919] cursor-pointer">
+              <Link href="/student/profile">Profile</Link>
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />

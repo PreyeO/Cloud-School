@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
+import { usePayApplicationFee } from "@/hooks/usePayApplicationFee";
 
 interface EmptyStateProps {
   title?: string;
@@ -18,9 +19,9 @@ export default function EmptyState({
   description = "",
   icon: Icon = BookOpen,
   actionLabel = "",
-  onAction,
   showAction = true,
 }: EmptyStateProps) {
+  const { mutate: handlePay, isPending } = usePayApplicationFee();
   return (
     <section className="flex min-h-[calc(100vh-140px)] flex-col items-center justify-center px-6 py-20 bg-white dark:bg-[#0b0b0b] transition-colors duration-300">
       <motion.div
@@ -45,10 +46,11 @@ export default function EmptyState({
         {/* Action Button (optional) */}
         {showAction && (
           <Button
-            onClick={onAction}
-            className="bg-[#E51919] hover:bg-[#c91414] text-white dark:text-white rounded-2xl font-medium px-8 py-6 text-base shadow-sm hover:shadow-md transition-all duration-300"
+            onClick={() => handlePay()}
+            disabled={isPending}
+            className="mt-6 sm:mt-8 w-full bg-[#E51919] hover:bg-[#c91414] text-white rounded-2xl font-semibold text-base sm:text-lg py-4 sm:py-5 md:py-6 transition-all duration-300 shadow-md"
           >
-            {actionLabel}
+            {isPending ? "Processing..." : actionLabel}
           </Button>
         )}
       </motion.div>

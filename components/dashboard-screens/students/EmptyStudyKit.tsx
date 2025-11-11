@@ -6,11 +6,10 @@ import EmptyState from "../share-components/EmptyState";
 export default function StudyKitEmptyScreen() {
   return (
     <EmptyState
-      title="No Study Kits Yet"
-      description="You haven’t unlocked any study materials. Once your enrollment is confirmed, your lessons and resources will appear here."
+      title="No Study Kits Yet..."
+      description="Apply to the School of Cloud Engineering to unlock your full Study Kit and begin your journey."
       icon={BookOpen}
-      actionLabel="Pay Application Fee"
-      onAction={() => console.log("Redirect to application page")}
+      actionLabel="Apply Now to Unlock Your Study Kit"
     />
   );
 }

@@ -62,7 +62,7 @@ const SignupForm = () => {
       <div className="w-full max-w-[588px]">
         <AuthTitle
           title="Sign Up"
-          subtitle="Start your journey in becoming a world-class cloud engineer today!"
+          subtitle="Create your Cloud Top G account to begin your journey in cloud engineering."
         />
 
         <Form {...form}>
