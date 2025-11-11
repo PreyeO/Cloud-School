@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
-import Link from "next/link";
 
 import {
   Form,
@@ -19,12 +18,12 @@ import { useSignin } from "@/hooks/useSignin";
 import { signinSchema } from "@/lib/schemas/auth";
 import AuthTitle from "@/components/ui/typography/auth-title";
 import SubmitButton from "@/components/ui/btns/submit-button";
-import AuthSpan from "@/components/ui/typography/auth-span";
 import { SigninFormValues } from "@/types/auth";
 
-const SigninForm = () => {
+const AdminLoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
+  // Admin login only
   const form = useForm<SigninFormValues>({
     resolver: zodResolver(signinSchema),
     defaultValues: {
@@ -33,18 +32,18 @@ const SigninForm = () => {
     },
   });
 
-  const { mutate, isPending } = useSignin("student");
+  const { mutate, isPending } = useSignin("admin"); // force role to admin
 
-  function onSubmit(values: SigninFormValues) {
+  const onSubmit = (values: SigninFormValues) => {
     mutate(values);
-  }
+  };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-[588px]">
         <AuthTitle
-          title="Sign In"
-          subtitle="Access your Cloud Top G Portal to manage your enrollment and progress."
+          title="Admin Login"
+          subtitle="Sign in to manage the portal and access administrative features."
         />
 
         <Form {...form}>
@@ -62,7 +61,7 @@ const SigninForm = () => {
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder="admin@example.com"
                       {...field}
                     />
                   </FormControl>
@@ -112,19 +111,9 @@ const SigninForm = () => {
             </div>
           </form>
         </Form>
-
-        <div className="text-center pt-6">
-          <AuthSpan>
-            Forgot your Password?{" "}
-            <Link href="/forgot-password">
-              <span className="text-[#E51919] underline cursor-pointer">
-                Reset!
-              </span>
-            </Link>
-          </AuthSpan>
-        </div>
       </div>
     </div>
   );
 };
-export default SigninForm;
+
+export default AdminLoginForm;

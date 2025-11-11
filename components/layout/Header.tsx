@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SidebarTrigger } from "../ui/sidebar";
-// import { ModeToggle } from "../ui/mode-toggle";
 import { motion } from "framer-motion";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useRouter } from "next/navigation";
@@ -58,8 +57,6 @@ const Header = () => {
 
       {/* Right Section */}
       <div className="flex items-center gap-4">
-        {/* <ModeToggle /> */}
-
         {/* Notifications */}
         <motion.div whileTap={{ scale: 0.9 }}>
           <Button
@@ -77,7 +74,7 @@ const Header = () => {
           <DropdownMenuTrigger asChild>
             <motion.div whileTap={{ scale: 0.9 }}>
               <div className="w-10 h-10 rounded-full  bg-[#E51919] text-white flex items-center justify-center font-semibold text-sm select-none cursor-pointer hover:opacity-90 transition-all duration-300">
-                {initials || "U"}
+                {initials || "A"}
               </div>
             </motion.div>
           </DropdownMenuTrigger>

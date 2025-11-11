@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useCallback } from "react";
-import { Users, MoreHorizontal, Download, Delete, Loader2 } from "lucide-react";
+import { Users, Download, Loader2 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,12 +13,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 import { useUsers } from "@/hooks/useUsers";
 import { User } from "@/types/auth";
@@ -27,6 +21,7 @@ import StatusBadge from "./components/directory/StatusBadge";
 import { useRouter } from "next/navigation";
 import { PaginatedTable } from "@/components/dashboard-screens/share-components/PaginatedTable";
 import { TableCell, TableRow } from "@/components/ui/table";
+import { RowActions } from "../share-components/RowAction";
 
 function Directory() {
   // UI state
@@ -247,20 +242,9 @@ function Directory() {
                           {row.howDidYouHearAboutUs ?? row.source ?? "—"}
                         </TableCell>
                         <TableCell className="">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm">
-                                <MoreHorizontal className="w-4 h-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent side="left">
-                              <DropdownMenuItem
-                                onClick={() => alert(`Delete user ${id}`)}
-                              >
-                                <Delete className="w-4 h-4 mr-2" /> Delete
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                          <RowActions
+                            onRemove={() => alert(`Remove admin ${row.email}`)}
+                          />
                         </TableCell>
                       </TableRow>
                     );

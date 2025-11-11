@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Loader2 } from "lucide-react";
 import CreateAdminForm from "@/components/authentication/forms/CreateAdminForm";
@@ -9,34 +8,9 @@ import { useAdmins } from "@/hooks/useAdmins";
 import { formatDate } from "@/lib/utils";
 import { User } from "@/types/auth";
 import { PaginatedTable } from "@/components/dashboard-screens/share-components/PaginatedTable"; // your reusable component
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+
 import { TableCell, TableRow } from "@/components/ui/table";
-
-interface RowActionsProps {
-  onRemove: () => void;
-}
-
-function RowActions({ onRemove }: RowActionsProps) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm">
-          ⋮
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem className="text-red-600" onClick={onRemove}>
-          Remove
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
+import { RowActions } from "../share-components/RowAction";
 
 export default function SuperAdminSettings() {
   const { data, isLoading, isError } = useAdmins();
