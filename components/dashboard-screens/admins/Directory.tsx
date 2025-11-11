@@ -12,14 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
@@ -27,26 +19,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Separator } from "@/components/ui/separator";
+
 import { useUsers } from "@/hooks/useUsers";
 import { User } from "@/types/auth";
 import { getUserId, formatName, exportUsersCSV } from "@/lib/utils";
 import StatusBadge from "./components/directory/StatusBadge";
 import { useRouter } from "next/navigation";
+import { PaginatedTable } from "@/components/dashboard-screens/share-components/PaginatedTable";
+import { TableCell, TableRow } from "@/components/ui/table";
 
-// ---------- Component ----------
 function Directory() {
   // UI state
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [sourceFilter, setSourceFilter] = useState<string>("all");
   const [selected, setSelected] = useState<Record<string, boolean>>({});
-  const [page, setPage] = useState(1);
-  const perPage = 10;
+  const perPage = 7;
 
   const router = useRouter();
 
-  // Fetch users via hook
+  // Fetch users
   const {
     data: apiResponse,
     isLoading,
@@ -80,15 +72,8 @@ function Directory() {
     });
   }, [users, query]);
 
-  const total = filtered.length;
-  const pages = Math.max(1, Math.ceil(total / perPage));
-  const pageRows = useMemo(
-    () => filtered.slice((page - 1) * perPage, page * perPage),
-    [filtered, page, perPage]
-  );
-
   const allSelected =
-    pageRows.length > 0 && pageRows.every((r) => selected[getUserId(r)]);
+    filtered.length > 0 && filtered.every((r) => selected[getUserId(r)]);
   const selectedCount = Object.values(selected).filter(Boolean).length;
 
   // Handlers
@@ -100,17 +85,13 @@ function Directory() {
     setSelected((prev) => {
       const next = { ...prev };
       if (allSelected) {
-        pageRows.forEach((r) => {
-          delete next[getUserId(r)];
-        });
+        filtered.forEach((r) => delete next[getUserId(r)]);
       } else {
-        pageRows.forEach((r) => {
-          next[getUserId(r)] = true;
-        });
+        filtered.forEach((r) => (next[getUserId(r)] = true));
       }
       return next;
     });
-  }, [allSelected, pageRows]);
+  }, [allSelected, filtered]);
 
   const handleExport = useCallback(() => {
     exportUsersCSV(selected, users);
@@ -158,18 +139,12 @@ function Directory() {
             <Input
               placeholder="Search name, email or phone"
               value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                setPage(1);
-              }}
+              onChange={(e) => setQuery(e.target.value)}
               className="w-full md:w-64"
             />
 
             <Select
-              onValueChange={(v) => {
-                setStatusFilter(v);
-                setPage(1);
-              }}
+              onValueChange={(v) => setStatusFilter(v)}
               defaultValue="all"
             >
               <SelectTrigger className="w-48">
@@ -184,10 +159,7 @@ function Directory() {
             </Select>
 
             <Select
-              onValueChange={(v) => {
-                setSourceFilter(v);
-                setPage(1);
-              }}
+              onValueChange={(v) => setSourceFilter(v)}
               defaultValue="all"
             >
               <SelectTrigger className="w-48">
@@ -208,7 +180,9 @@ function Directory() {
         {/* Table */}
         <Card>
           <CardHeader className="flex justify-between">
-            <CardTitle className="text-lg">Candidates ({total})</CardTitle>
+            <CardTitle className="text-lg">
+              Candidates ({filtered.length})
+            </CardTitle>
             {selectedCount > 0 && (
               <p className="text-sm text-gray-500">{selectedCount} selected</p>
             )}
@@ -225,138 +199,73 @@ function Directory() {
               </p>
             ) : (
               <>
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="w-12">
+                <div className="mb-4 flex items-end gap-2">
+                  {selectedCount > 0 && (
+                    <Button size="sm" onClick={handleExport}>
+                      Export Selected
+                    </Button>
+                  )}
+                </div>
+
+                <PaginatedTable
+                  data={filtered}
+                  columns={[
+                    "Select",
+                    "Name",
+                    "Phone",
+                    "Status",
+                    "Source",
+                    "Actions",
+                  ]}
+                  perPage={perPage}
+                  renderRow={(row) => {
+                    const id = getUserId(row);
+                    return (
+                      <TableRow
+                        key={id}
+                        onClick={() => router.push(`/admin/directory/${id}`)}
+                      >
+                        <TableCell>
                           <Checkbox
-                            checked={allSelected}
-                            onCheckedChange={toggleSelectAll}
+                            checked={!!selected[id]}
+                            onCheckedChange={() => toggleRow(id)}
                           />
-                        </TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Phone</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Source</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        </TableCell>
+                        <TableCell>
+                          <div className="font-medium capitalize">
+                            {formatName(row)}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {row.email ?? "—"}
+                          </div>
+                        </TableCell>
+                        <TableCell>{row.phoneNumber ?? "—"}</TableCell>
+                        <TableCell>
+                          <StatusBadge status={row.status} />
+                        </TableCell>
+                        <TableCell>
+                          {row.howDidYouHearAboutUs ?? row.source ?? "—"}
+                        </TableCell>
+                        <TableCell className="">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm">
+                                <MoreHorizontal className="w-4 h-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent side="left">
+                              <DropdownMenuItem
+                                onClick={() => alert(`Delete user ${id}`)}
+                              >
+                                <Delete className="w-4 h-4 mr-2" /> Delete
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </TableCell>
                       </TableRow>
-                    </TableHeader>
-
-                    <TableBody>
-                      {pageRows.length ? (
-                        pageRows.map((row) => {
-                          const id = getUserId(row);
-                          return (
-                            <TableRow
-                              key={id}
-                              onClick={() =>
-                                router.push(`/admin/directory/${id}`)
-                              }
-                            >
-                              <TableCell>
-                                <Checkbox
-                                  checked={!!selected[id]}
-                                  onCheckedChange={() => toggleRow(id)}
-                                />
-                              </TableCell>
-
-                              <TableCell>
-                                <div className="font-medium capitalize">
-                                  {formatName(row)}
-                                </div>
-                                <div className="text-xs text-gray-500">
-                                  {row.email ?? "—"}
-                                </div>
-                              </TableCell>
-
-                              <TableCell>{row.phoneNumber ?? "—"}</TableCell>
-
-                              <TableCell>
-                                <StatusBadge status={row.status} />
-                              </TableCell>
-
-                              <TableCell>
-                                {row.howDidYouHearAboutUs ?? row.source ?? "—"}
-                              </TableCell>
-
-                              <TableCell className="text-right">
-                                <DropdownMenu>
-                                  <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" size="sm">
-                                      <MoreHorizontal className="w-4 h-4" />
-                                    </Button>
-                                  </DropdownMenuTrigger>
-                                  <DropdownMenuContent side="left">
-                                    <DropdownMenuItem
-                                      onClick={() => alert(`Delete user ${id}`)}
-                                    >
-                                      <Delete className="w-4 h-4 mr-2" /> Delete
-                                    </DropdownMenuItem>
-                                  </DropdownMenuContent>
-                                </DropdownMenu>
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })
-                      ) : (
-                        <TableRow>
-                          <TableCell
-                            colSpan={6}
-                            className="text-center py-8 text-gray-500"
-                          >
-                            No results found.
-                          </TableCell>
-                        </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </div>
-
-                <Separator className="my-4" />
-
-                {/* Pagination */}
-                <div className="flex justify-between items-center text-sm text-gray-600">
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setSelected({})}
-                    >
-                      Clear
-                    </Button>
-
-                    {selectedCount > 0 && (
-                      <Button size="sm" onClick={handleExport}>
-                        Export Selected
-                      </Button>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      disabled={page <= 1}
-                      onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    >
-                      Prev
-                    </Button>
-
-                    <span>
-                      Page {page} of {pages}
-                    </span>
-
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      disabled={page >= pages}
-                      onClick={() => setPage((p) => Math.min(pages, p + 1))}
-                    >
-                      Next
-                    </Button>
-                  </div>
-                </div>
+                    );
+                  }}
+                />
               </>
             )}
           </CardContent>

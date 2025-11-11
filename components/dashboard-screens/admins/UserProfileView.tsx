@@ -1,320 +1,222 @@
 "use client";
 
+import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Loader2,
-  Phone,
-  MapPin,
-  Calendar,
-  Mail,
-  Wallet,
-  Clock,
-  RefreshCw,
-  DollarSign,
-} from "lucide-react";
+import { Phone, MapPin, Calendar, Mail, Clock } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import { useUser } from "@/hooks/useUser";
 
-type Subscription = {
-  _id: string;
-  status: string;
-  startDate?: string;
-  endDate?: string;
-  totalAmountPaid?: number;
-  amountRemaining?: number;
-  nextPaymentDue?: string;
-  nextPaymentAmount?: number;
-  lastPaymentDate?: string;
-  autoRenew?: boolean;
-};
+export default function AdminStudentProfile({ id }: { id: string }) {
+  const { data: user, isLoading, isError, refetch } = useUser(id);
 
-export default function UserProfileView({ id }: { id: string }) {
-  const { data: user, isLoading, isError } = useUser(id);
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <span className="text-gray-500 animate-pulse text-lg">
+          Loading Profile...
+        </span>
+      </div>
+    );
+  }
 
-  const subscription: Subscription | null =
-    (user.subscription as Subscription) || null;
+  if (isError || !user) {
+    return (
+      <div className="p-8 text-center text-red-600">
+        Unable to load profile.{" "}
+        <button
+          onClick={() => refetch()}
+          className="ml-2 px-4 py-2 rounded bg-red-50 text-red-700 font-medium"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  const initials =
+    (user.firstName?.[0] ?? "U").toUpperCase() +
+    (user.lastName?.[0] ?? "").toUpperCase();
+
+  const APPLICATION_FEE = 20000;
+  const schoolFeesPaid = user.subscription?.totalAmountPaid ?? 0;
+  const totalPaid =
+    (user.applicationFeePaid ? APPLICATION_FEE : 0) + schoolFeesPaid;
 
   const formatCurrency = (val?: number) =>
     val == null ? "—" : `₦${Number(val).toLocaleString()}`;
 
-  const paymentTotal =
-    (subscription?.totalAmountPaid ?? 0) + (subscription?.amountRemaining ?? 0);
-  const paidPct =
-    paymentTotal > 0
-      ? Math.round(((subscription?.totalAmountPaid ?? 0) / paymentTotal) * 100)
-      : 0;
-
-  const statusColor = (s: string) =>
-    s === "applied"
-      ? "yellow"
-      : s === "admitted"
-      ? "green"
-      : s === "withdrawn"
-      ? "red"
-      : "gray";
-
-  if (isLoading)
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <Loader2 className="animate-spin w-6 h-6 text-gray-500" />
-      </div>
-    );
-
-  if (isError || !user)
-    return <p className="text-center text-red-500">Unable to load profile.</p>;
+  const handleEmailStudent = () => {
+    window.location.href = `mailto:${user.email}`;
+  };
 
   return (
-    <section className="p-6 md:p-10 bg-[#f9fafb] dark:bg-[#0b0b0b] min-h-screen">
-      <div className="max-w-6xl mx-auto space-y-8">
-        {/* Header */}
-        <Card>
-          <CardHeader className="flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gray-100 to-gray-50 dark:from-neutral-800 dark:to-black flex items-center justify-center text-white text-xl font-semibold">
-                {/* Simple initials avatar */}
-                <span className="text-2xl text-[#0b0b0b] dark:text-white">
-                  {(user.firstName?.[0] ?? "U") + (user.lastName?.[0] ?? "")}
-                </span>
-              </div>
+    <section className="bg-gray-50 min-h-screen">
+      {/* HEADER */}
 
-              <div>
-                <h1 className="text-2xl md:text-3xl font-semibold leading-tight">
-                  {user.firstName} {user.lastName}
-                </h1>
-                <p className="text-sm text-gray-500 flex items-center gap-2">
-                  <Mail className="w-4 h-4" /> {user.email}
-                </p>
-                <p className="text-sm text-gray-400 mt-1">
-                  ID: <span className="font-mono">{user.id ?? user._id}</span>
-                </p>
-              </div>
-            </div>
+      <div className="relative bg-black h-44 px-6 flex ">
+        <div className="max-w-6xl w-full mx-auto flex items-center justify-between ">
+          {/* Avatar */}
+          <div className="w-24 h-24 rounded-full bg-white shadow-xl flex items-center justify-center text-3xl font-bold text-[#F9BABA] flex-shrink-0">
+            {initials}
+          </div>
 
-            <div className="flex items-center gap-4">
-              <div className="text-right">
-                <Badge
-                  variant="outline"
-                  className={`capitalize px-4 py-1 text-sm border-${statusColor(
-                    user.status
-                  )}-400 text-${statusColor(user.status)}-600`}
-                >
-                  {user.status}
-                </Badge>
-                <div className="text-xs text-gray-500 mt-1">
-                  Role: <span className="capitalize">{user.role}</span>
-                </div>
-              </div>
+          {/* Name & Email */}
+          <div className="flex-1 ml-6 flex flex-col justify-center text-left">
+            <h1 className="text-3xl font-bold text-white leading-tight">
+              {user.firstName} {user.lastName}
+            </h1>
+            <p className="text-gray-300 mt-1">{user.email}</p>
+            <p className="text-gray-400 text-sm mt-1">
+              ID: <code>{user.id}</code>
+            </p>
+          </div>
 
-              {/* Quick Actions */}
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white dark:bg-neutral-900 border shadow-sm hover:shadow-md text-sm"
-                >
-                  <RefreshCw className="w-4 h-4" /> Refresh
-                </button>
+          {/* Email Button */}
+          <div className="flex-shrink-0">
+            <button
+              onClick={handleEmailStudent}
+              className="px-6 py-2 rounded-full bg-red-600 text-white font-medium hover:bg-red-700 transition"
+            >
+              Email {user.firstName}
+            </button>
+          </div>
+        </div>
+      </div>
 
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#0b84ff] text-white hover:bg-[#0566d1] text-sm"
-                >
-                  <Wallet className="w-4 h-4" /> Make Payment
-                </button>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent className="grid md:grid-cols-3 gap-6">
-            {/* Payment Summary (big) */}
-            <div className="md:col-span-2 space-y-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-sm text-gray-500">Payment Summary</h3>
-                  <p className="text-lg font-semibold">
-                    {subscription ? subscription.status : "No subscription"}
-                  </p>
-                </div>
+      <div className="max-w-6xl mx-auto pt-20 px-6 space-y-10">
+        {/* NAME & ACTION */}
 
-                <div className="text-right">
-                  <p className="text-xs text-gray-500">Total paid</p>
-                  <p className="text-lg font-semibold">
-                    {formatCurrency(subscription?.totalAmountPaid)}
-                  </p>
-                </div>
-              </div>
-
-              {/* progress */}
-              <div className="w-full">
-                <div className="w-full bg-gray-200 dark:bg-neutral-800 rounded-full h-3 overflow-hidden">
-                  <div
-                    className="h-3 rounded-full bg-gradient-to-r from-green-400 to-green-600"
-                    style={{ width: `${paidPct}%` }}
-                    aria-hidden
-                  />
-                </div>
-                <div className="flex items-center justify-between mt-2 text-xs text-gray-500">
-                  <span>{paidPct}% paid</span>
-                  <span>
-                    {formatCurrency(subscription?.totalAmountPaid)} paid •{" "}
-                    {formatCurrency(subscription?.amountRemaining)} remaining
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-3 mt-4">
-                <div className="rounded-md border p-3 bg-white dark:bg-neutral-900">
-                  <p className="text-xs text-gray-500">Next Due</p>
-                  <p className="font-medium">
-                    {subscription?.nextPaymentDue
-                      ? formatDate(subscription.nextPaymentDue)
-                      : "—"}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    {subscription?.nextPaymentAmount
-                      ? formatCurrency(subscription.nextPaymentAmount)
-                      : ""}
-                  </p>
-                </div>
-
-                <div className="rounded-md border p-3 bg-white dark:bg-neutral-900">
-                  <p className="text-xs text-gray-500">Auto renew</p>
-                  <p className="font-medium">
-                    {subscription?.autoRenew ? "On" : "Off"}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    {subscription?.status ?? ""}
-                  </p>
-                </div>
-
-                <div className="rounded-md border p-3 bg-white dark:bg-neutral-900">
-                  <p className="text-xs text-gray-500">Last payment</p>
-                  <p className="font-medium">
-                    {subscription?.lastPaymentDate
-                      ? formatDate(subscription.lastPaymentDate)
-                      : "—"}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    {subscription?.totalAmountPaid
-                      ? formatCurrency(subscription.totalAmountPaid)
-                      : ""}
-                  </p>
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="flex gap-2 mt-4">
-                <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border bg-white dark:bg-neutral-900">
-                  <DollarSign className="w-4 h-4" /> Record Payment
-                </button>
-
-                <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border bg-white dark:bg-neutral-900">
-                  <Clock className="w-4 h-4" /> Send Payment Reminder
-                </button>
-
-                <button className="inline-flex items-center gap-2 px-4 py-2 rounded-md border bg-white dark:bg-neutral-900">
-                  <Mail className="w-4 h-4" /> Email User
-                </button>
-              </div>
-            </div>
-
-            {/* Right column: small cards */}
-            <div className="space-y-4">
-              <div className="rounded-md border p-4 bg-white dark:bg-neutral-900">
-                <p className="text-xs text-gray-500">Application Fee</p>
-                <p className="font-medium mt-1">
-                  {user.applicationFeePaid ? "Paid" : "Not paid"}
-                </p>
-                <p className="text-xs text-gray-400 mt-2">
-                  Use this to quickly see application completion.
-                </p>
-              </div>
-
-              <div className="rounded-md border p-4 bg-white dark:bg-neutral-900">
-                <p className="text-xs text-gray-500">How they heard</p>
-                <p className="font-medium mt-1 capitalize">
-                  {user.howDidYouHearAboutUs ?? "—"}
-                </p>
-              </div>
-
-              <div className="rounded-md border p-4 bg-white dark:bg-neutral-900">
-                <p className="text-xs text-gray-500">Account created</p>
-                <p className="font-medium mt-1">{formatDate(user.createdAt)}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
+        {/* METRICS CARDS */}
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Right: Personal / Contact */}
-          <aside className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Contact</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-gray-400" />
-                  <div>
-                    <p className="text-xs text-gray-500">Phone</p>
-                    <p className="font-medium">{user.phoneNumber ?? "—"}</p>
-                  </div>
-                </div>
+          <Card className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center">
+            <p className="text-gray-500 text-sm">Total Paid</p>
+            <p className="text-2xl font-bold text-gray-900 mt-2">
+              {formatCurrency(totalPaid)}
+            </p>
+            <div className="w-full mt-3">
+              <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden mb-1">
+                <div
+                  className="h-2 bg-black rounded-full"
+                  style={{
+                    width: `${
+                      ((user.applicationFeePaid ? APPLICATION_FEE : 0) /
+                        totalPaid) *
+                      100
+                    }%`,
+                  }}
+                ></div>
+              </div>
+              <div className="flex justify-between text-gray-400 text-xs">
+                <span>
+                  Application Fee:{" "}
+                  {formatCurrency(
+                    user.applicationFeePaid ? APPLICATION_FEE : 0
+                  )}
+                </span>
+                <span>School Fees: {formatCurrency(schoolFeesPaid)}</span>
+              </div>
+            </div>
+          </Card>
 
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-gray-400" />
-                  <div>
-                    <p className="text-xs text-gray-500">Location</p>
-                    <p className="font-medium">
-                      {user.countryOfResidence ?? "—"},{" "}
-                      {user.stateOfResidence ?? "—"}
-                    </p>
-                  </div>
-                </div>
+          <Card className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center justify-center">
+            <p className="text-gray-500 text-sm">Status</p>
+            <p
+              className={`mt-2 font-semibold text-lg ${
+                user.status === "applied"
+                  ? "text-yellow-600"
+                  : user.status === "enrolled"
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
+              {user.status}
+            </p>
+          </Card>
 
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-gray-400" />
-                  <div>
-                    <p className="text-xs text-gray-500">DOB</p>
-                    <p className="font-medium">
-                      {user.dateOfBirth ? formatDate(user.dateOfBirth) : "—"}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <Card className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center justify-center">
+            <p className="text-gray-500 text-sm">Last Login</p>
+            <p className="mt-2 font-medium">
+              {user.lastLogin ? formatDate(user.lastLogin) : "—"}
+            </p>
+          </Card>
+        </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Profile Details</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm text-gray-500 space-y-2">
-                  <div>
-                    <p className="text-xs">Gender</p>
-                    <p className="font-medium capitalize">
-                      {user.gender ?? "—"}
-                    </p>
-                  </div>
+        {/* DETAILS GRID */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card className="shadow-md rounded-2xl p-6">
+            <CardHeader>
+              <CardTitle className="text-gray-900 font-semibold text-lg">
+                Contact Info
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 mt-2">
+              <InfoRow
+                icon={<Phone className="w-5 h-5 text-gray-400" />}
+                label="Phone"
+                value={user.phoneNumber ?? "—"}
+              />
+              <InfoRow
+                icon={<MapPin className="w-5 h-5 text-gray-400" />}
+                label="Location"
+                value={`${user.stateOfResidence ?? "—"}, ${
+                  user.countryOfResidence ?? "—"
+                }`}
+              />
+              <InfoRow
+                icon={<Calendar className="w-5 h-5 text-gray-400" />}
+                label="DOB"
+                value={user.dateOfBirth ? formatDate(user.dateOfBirth) : "—"}
+              />
+              <InfoRow
+                icon={<Clock className="w-5 h-5 text-gray-400" />}
+                label="Account Created"
+                value={formatDate(user.createdAt)}
+              />
+            </CardContent>
+          </Card>
 
-                  <div>
-                    <p className="text-xs">Employment</p>
-                    <p className="font-medium capitalize">
-                      {user.employmentStatus ?? "—"}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-xs">Academy Level</p>
-                    <p className="font-medium capitalize">
-                      {user.academyLevel ?? "—"}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </aside>
+          <Card className="shadow-md rounded-2xl p-6">
+            <CardHeader>
+              <CardTitle className="text-gray-900 font-semibold text-lg">
+                Profile & Enrollment
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 mt-2">
+              <InfoRow label="Gender" value={user.gender ?? "—"} />
+              <InfoRow
+                label="Employment Status"
+                value={user.employmentStatus ?? "—"}
+              />
+              <InfoRow label="Academy Level" value={user.academyLevel ?? "—"} />
+              <InfoRow
+                label="Heard About Us"
+                value={user.howDidYouHearAboutUs ?? "—"}
+              />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
+  );
+}
+
+// Helper Component for Info Rows
+function InfoRow({
+  icon,
+  label,
+  value,
+}: {
+  icon?: React.ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      {icon}
+      <div>
+        <p className="text-xs text-gray-500">{label}</p>
+        <p className="font-medium text-gray-900">{value}</p>
+      </div>
+    </div>
   );
 }

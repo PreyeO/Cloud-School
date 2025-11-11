@@ -13,6 +13,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarSeparator,
+  Sidebar,
 } from "@/components/ui/sidebar";
 import { SidebarItem } from "@/types/route";
 import { adminRoutes, studentRoutes } from "@/data/routes";
@@ -27,49 +28,48 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
   const routes: SidebarItem[] = role === "admin" ? adminRoutes : studentRoutes;
 
   return (
-    <SidebarContent className="overflow-hidden  ">
-      {/* Sidebar Logo + Branding */}
-      <SidebarHeader className="flex items-center">
-        <Logo />
-      </SidebarHeader>
+    <Sidebar className="cursor-ponter">
+      <SidebarContent className="overflow-hidden  ">
+        {/* Sidebar Logo + Branding */}
+        <SidebarHeader className="flex items-center">
+          <Logo />
+        </SidebarHeader>
 
-      <SidebarSeparator />
+        <SidebarSeparator />
 
-      <SidebarGroup>
-        <SidebarGroupContent>
-          <Menu>
-            {routes.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname === item.href;
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <Menu>
+              {routes.map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname === item.href;
 
-              return (
-                <SidebarMenuItem
-                  key={item.title}
-                  className="pb-1 cursor-pointer"
-                >
-                  <Link href={item.href ?? "#"} passHref>
-                    <SidebarMenuButton
-                      isActive={isActive}
-                      className={`
+                return (
+                  <SidebarMenuItem key={item.title} className="pb-1 ">
+                    <Link href={item.href ?? "#"} passHref>
+                      <SidebarMenuButton
+                        isActive={isActive}
+                        className={`
                         transition-colors
                         ${
                           isActive
-                            ? "bg-[#E61A1A] text-white"
-                            : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                            ? "bg-[#F9BABA] text-white"
+                            : "hover:bg-[#F9BABA]"
                         }
                       `}
-                    >
-                      <Icon className="size-4" />
-                      <span>{item.title}</span>
-                    </SidebarMenuButton>
-                  </Link>
-                </SidebarMenuItem>
-              );
-            })}
-          </Menu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-    </SidebarContent>
+                      >
+                        <Icon className="size-4" />
+                        <span>{item.title}</span>
+                      </SidebarMenuButton>
+                    </Link>
+                  </SidebarMenuItem>
+                );
+              })}
+            </Menu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
 };
 

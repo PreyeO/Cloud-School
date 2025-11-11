@@ -22,8 +22,8 @@ const StatusBadge: React.FC<Props> = React.memo(({ status }) => {
     <span
       className={`inline-flex items-center gap-2 px-2 py-0.5 rounded-full text-xs font-medium ${statusColor}`}
     >
-      {s === "admitted" && <CheckCircle2 className="w-3 h-3 text-green-600" />}
-      {s === "applied" && <XCircle className="w-3 h-3 text-yellow-600" />}
+      {s === "admitted"}
+      {s === "applied"}
       <span className="capitalize">{status ?? "N/A"}</span>
     </span>
   );

@@ -69,8 +69,7 @@ export default function AuthLayout({
             className="absolute inset-0 flex flex-col justify-center items-center text-center px-10"
           >
             <div className="flex">
-              <Quote className="" />
-
+              <Quote className="text-black" />
               <p className="text-xl text-black italic mb-8 max-w-[400px]">
                 {currentTestimonial.quote}
               </p>

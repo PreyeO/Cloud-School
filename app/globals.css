@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -70,11 +71,10 @@
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: #f9baba;
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  color-scheme: light;
 }
 
 .dark {
@@ -119,9 +119,16 @@
     @apply bg-background text-foreground;
   }
 }
-a {
+a,
+button {
   cursor: pointer;
 }
+
+:root {
+  color-scheme: light !important;
+}
+
 html {
   color-scheme: light !important;
+  background-color: #ffffff !important;
 }

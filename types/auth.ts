@@ -26,6 +26,7 @@ export interface User {
   status: string;
   isEmailVerified: boolean;
   lastLogin: string;
+  createdAt: string;
   phoneNumber?: string;
   howDidYouHearAboutUs?: string;
   gender?: string;

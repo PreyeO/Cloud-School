@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function StudyKit() {
   const lessons = [
@@ -92,13 +93,12 @@ export default function StudyKit() {
                   Have a question about this lesson or something unclear? We’re
                   here to help.
                 </p>
-                <Button
-                  onClick={() => (window.location.href = "/support")}
-                  className="bg-[#E61A1A] hover:bg-[#c71414] text-white rounded-full px-6 py-5 font-semibold flex items-center gap-2"
-                >
-                  <Headphones className="w-5 h-5" />
-                  Contact Support
-                </Button>
+                <Link href="/student/support">
+                  <Button className="bg-[#E61A1A] hover:bg-[#c71414] text-white rounded-full px-6 py-5 font-semibold flex items-center gap-2">
+                    <Headphones className="w-5 h-5" />
+                    Contact Support
+                  </Button>
+                </Link>
               </div>
             </TabsContent>
           </Tabs>
