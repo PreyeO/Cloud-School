@@ -20,8 +20,8 @@ export default function Overview() {
     { label: "Certificate", value: "Diploma", icon: Award },
     { label: "Duration", value: "12 Months (4 Semesters)", icon: Clock },
     { label: "Location", value: "Online", icon: MapPin },
-    { label: "Skill Level", value: "Beginner–Intermediate", icon: Layers },
-    { label: "Start Date", value: "January 26th 2026", icon: Layers },
+    { label: "Skill Level", value: "Beginner", icon: Layers },
+    { label: "Start Date", value: "February 17th 2026", icon: Layers },
   ];
 
   const steps = [
