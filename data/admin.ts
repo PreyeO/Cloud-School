@@ -93,3 +93,64 @@ export const directoryData = [
     signedUpOn: "2025-03-05",
   },
 ];
+
+export const recentActivities = [
+  { id: 1, text: "Sandra completed Module 2 Assessment.", time: "12m" },
+  { id: 2, text: "New application from John Doe.", time: "35m" },
+  { id: 3, text: "Payment received: ₦150,000 (Early Bird).", time: "2h" },
+  { id: 4, text: "Course 'DevOps' created by Admin.", time: "1d" },
+];
+export const completionData = [
+  { week: "W1", completed: 12 },
+  { week: "W2", completed: 22 },
+  { week: "W3", completed: 35 },
+  { week: "W4", completed: 48 },
+  { week: "W5", completed: 60 },
+  { week: "W6", completed: 75 },
+];
+export const allSources = [
+  "WhatsApp",
+  "Twitter",
+  "Instagram",
+  "LinkedIn",
+  "Facebook",
+  "Google_Search",
+  "Friend_Referral",
+  "Event_Conference",
+  "Blog_Article",
+  "Other",
+];
+export const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+export const payments = [
+  {
+    id: "1",
+    student: "John Doe",
+    plan: "Early Bird",
+    type: "Application Fee",
+    amount: "₦50,000",
+    status: "Successful",
+    date: "Oct 12, 2025",
+  },
+  {
+    id: "2",
+    student: "Sarah Ibrahim",
+    plan: "Regular",
+    type: "School Fees",
+    amount: "₦250,000",
+    status: "Successful",
+    date: "Oct 11, 2025",
+  },
+];

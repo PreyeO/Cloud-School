@@ -15,7 +15,7 @@ import Title from "@/components/ui/typography/title";
 
 const SupportScreen = () => {
   return (
-    <section className="min-h-screen p-4 sm:p-6 md:p-8">
+    <section className="min-h-screen md:px-10 pt-10">
       {/* Hero Section */}
       <div className="relative flex flex-col ">
         <motion.div

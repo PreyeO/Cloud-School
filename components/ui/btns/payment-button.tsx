@@ -29,7 +29,7 @@ const PaymentButton = ({
       onClick={onClick}
       disabled={isPending}
       className={cn(
-        "relative w-full flex items-center justify-center gap-2 bg-[#E61A1A] text-white hover:bg-red-700 py-4 text-base font-semibold rounded-[14px] transition-all duration-200 ease-in-out",
+        "relative w-full flex items-center justify-center gap-2 bg-[#E61A1A] text-white hover:bg-red-700 py-4 md:text-base text-sm font-semibold rounded-2xl transition-all duration-200 ease-in-out",
         isPending && "opacity-80 cursor-not-allowed",
         className
       )}

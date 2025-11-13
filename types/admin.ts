@@ -11,3 +11,9 @@ export interface MarketingFunnelItem {
   label: string;
   count: number;
 }
+export type StatCardProps = {
+  label: string;
+  value: string | number;
+  sub?: string;
+  Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+};

@@ -44,7 +44,7 @@ export default function ProfileScreen() {
   ];
 
   return (
-    <section className="p-4 sm:p-6 md:p-10 min-h-screen space-y-8">
+    <section className="min-h-screen md:px-10 pt-10">
       {/* Profile Header */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}

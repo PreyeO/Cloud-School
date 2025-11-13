@@ -29,7 +29,7 @@ const SchoolFees: React.FC<SchoolFeesProps> = ({ planTitle }) => {
         loadingLabel={`Processing ${planTitle}...`}
         isPending={isPending}
         onClick={handlePayment}
-        className="w-full text-[11px] text-base  rounded-2xl lg:py-4"
+        className="w-full lg:py-4"
       />
     </div>
   );

@@ -10,7 +10,7 @@ import PaymentButton from "@/components/ui/btns/payment-button";
 
 const AssessmentScreen = () => {
   return (
-    <section className="p-4 sm:p-6 md:p-10   min-h-screen">
+    <section className="min-h-screen md:px-10 pt-10">
       <div className="max-w-5xl mx-auto space-y-16">
         {/* Hero */}
         <motion.div

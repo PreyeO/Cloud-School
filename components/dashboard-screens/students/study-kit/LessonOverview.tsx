@@ -1,6 +1,6 @@
 import Paragraph from "@/components/ui/typography/paragraph";
 
-export default function LessonOverview() {
+const LessonOverview = () => {
   return (
     <div className="mt-6 space-y-3">
       <Paragraph>
@@ -10,4 +10,5 @@ export default function LessonOverview() {
       </Paragraph>
     </div>
   );
-}
+};
+export default LessonOverview;

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function StudyKit() {
   return (
-    <section className="p-4 sm:p-6 md:p-10   min-h-screen">
+    <section className="min-h-screen md:px-10 pt-10">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-10">
           <motion.div

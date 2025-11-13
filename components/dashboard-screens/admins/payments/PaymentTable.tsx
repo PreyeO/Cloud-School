@@ -48,8 +48,8 @@ export function PaymentTable({ payments }: { payments: Payment[] }) {
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-semibold ${
                       tx.status === "Successful"
-                        ? "bg-green-100 text-green-700 dark:bg-green-800/40 dark:text-green-300"
-                        : "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/40 dark:text-yellow-300"
+                        ? "bg-green-100 text-green-700 "
+                        : "bg-yellow-100 text-yellow-700 "
                     }`}
                   >
                     {tx.status}

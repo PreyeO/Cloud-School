@@ -47,7 +47,7 @@ const SupportOptionCard = ({
         label={buttonLabel}
         loadingLabel="Routing..."
         onClick={buttonAction}
-        className={`w-full md:w-[70%] px-6 py-2 ${buttonBg} ${buttonHoverBg} ${buttonTextColor} text-base font-medium rounded-xl`}
+        className={`w-full md:w-[70%] px-6 py-2 ${buttonBg} ${buttonHoverBg} ${buttonTextColor}`}
       />
     </motion.div>
   );

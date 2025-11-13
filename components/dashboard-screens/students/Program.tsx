@@ -14,6 +14,7 @@ import { bonuses, systems } from "@/data/students";
 import Title from "@/components/ui/typography/title";
 import Paragraph from "@/components/ui/typography/paragraph";
 import dynamic from "next/dynamic";
+import SubTitle from "@/components/ui/typography/sub-title";
 const PaymentButton = dynamic(
   () => import("@/components/ui/btns/payment-button"),
   { ssr: false }
@@ -23,8 +24,8 @@ export default function ProgramDetails() {
   const { mutate: handlePay, isPending } = usePayApplicationFee();
 
   return (
-    <section className="min-h-screen p-4 sm:p-8">
-      <div className="mx-auto space-y-12 relative z-10">
+    <section className="min-h-screen md:px-10 pt-10">
+      <div className="mx-auto space-y-12 relative z-10 ">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -164,7 +165,7 @@ export default function ProgramDetails() {
               loadingLabel="Applying..."
               isPending={isPending}
               onClick={() => handlePay()}
-              className="w-full text-[11px] text-base  rounded-2xl"
+              className="w-full "
             />
           </div>
         </motion.div>
@@ -261,9 +262,8 @@ export default function ProgramDetails() {
           className="md:p-8 p-4 rounded-2xl bg-white border border-gray-200 shadow-lg"
         >
           <div className="max-w-4xl mx-auto space-y-4 text-center">
-            <Title className="md:text-2xl text-xl">
-              Your Advantage Becomes Your Proof
-            </Title>
+            <SubTitle> Your Advantage Becomes Your Proof</SubTitle>
+
             <Paragraph>
               When you join <strong>Cloud Top G Cohort 2026</strong>, you’re not
               just getting training. You’re stepping into an ecosystem where
@@ -271,16 +271,16 @@ export default function ProgramDetails() {
               every effort leads to proof.
             </Paragraph>
 
-            <Paragraph className="text-gray-700 dark:text-gray-300 font-semibold">
+            <Paragraph className=" font-semibold">
               Next Cohort Begins February 2026 — Limited Slots Available.
             </Paragraph>
 
             <PaymentButton
-              label="Apply To Unlock ₦6M Worth of Free Bonuses"
+              label="Apply To Unlock"
               loadingLabel="Applying..."
               isPending={isPending}
               onClick={() => handlePay()}
-              className=" sm:w-auto mx-auto text-[11px] text-base  text-white rounded-2xl"
+              className=" sm:w-auto mx-auto"
             />
           </div>
         </motion.div>

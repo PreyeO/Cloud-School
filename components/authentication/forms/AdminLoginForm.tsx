@@ -32,15 +32,15 @@ const AdminLoginForm = () => {
     },
   });
 
-  const { mutate, isPending } = useSignin("admin"); // force role to admin
+  const { mutate, isPending } = useSignin("admin");
 
   const onSubmit = (values: SigninFormValues) => {
     mutate(values);
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-[588px]">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4 sm:px-6">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 sm:p-8">
         <AuthTitle
           title="Admin Login"
           subtitle="Sign in to manage the portal and access administrative features."
@@ -49,7 +49,7 @@ const AdminLoginForm = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-1 gap-6"
+            className="grid grid-cols-1 gap-5 mt-6"
           >
             {/* Email */}
             <FormField
@@ -57,12 +57,13 @@ const AdminLoginForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">Email</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
                       placeholder="admin@example.com"
                       {...field}
+                      className="text-sm sm:text-base"
                     />
                   </FormControl>
                   <FormMessage />
@@ -76,17 +77,20 @@ const AdminLoginForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">
+                    Password
+                  </FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
                         type={showPassword ? "text" : "password"}
                         placeholder="******"
                         {...field}
+                        className="text-sm sm:text-base pr-10"
                       />
                       <button
                         type="button"
-                        className="absolute right-3 top-2 text-gray-500"
+                        className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700 transition"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
@@ -102,6 +106,7 @@ const AdminLoginForm = () => {
               )}
             />
 
+            {/* Submit */}
             <div className="mt-4">
               <SubmitButton
                 label="Proceed to Dashboard"

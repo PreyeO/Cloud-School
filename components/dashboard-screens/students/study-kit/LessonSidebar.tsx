@@ -6,7 +6,7 @@ import LinkButton from "@/components/ui/btns/link-button";
 import SubTitle from "@/components/ui/typography/sub-title";
 import { lessons } from "@/data/students";
 
-export default function LessonSidebar() {
+const LessonSidebar = () => {
   return (
     <motion.aside
       initial={{ opacity: 0, x: 30 }}
@@ -48,4 +48,6 @@ export default function LessonSidebar() {
       </LinkButton>
     </motion.aside>
   );
-}
+};
+
+export default LessonSidebar;

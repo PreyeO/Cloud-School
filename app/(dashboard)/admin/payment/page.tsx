@@ -1,5 +1,12 @@
-import AdminPaymentScreen from "@/components/dashboard-screens/admins/AdminPaymentScreen";
+"use client";
+import dynamic from "next/dynamic";
+const AdminPaymentScreen = dynamic(
+  () =>
+    import("@/components/dashboard-screens/admins/payments/AdminPaymentScreen"),
+  { ssr: false }
+);
 
-export default function ApplicantsPage() {
+const AdminPaymentPage = () => {
   return <AdminPaymentScreen />;
-}
+};
+export default AdminPaymentPage;

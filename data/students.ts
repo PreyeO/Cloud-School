@@ -18,7 +18,7 @@ export const genders = ["Male", "Female"];
 export const employmentStatuses = [
   "Employed",
   "Unemployed",
-  "Self-employed",
+  "Self_employed",
   "Student",
   "Retired",
   "Other",

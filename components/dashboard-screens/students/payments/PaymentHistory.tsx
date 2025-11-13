@@ -56,7 +56,7 @@ const PaymentHistory = () => {
     );
 
   return (
-    <section className="min-h-screen p-4 sm:p-8  transition-colors">
+    <section className="min-h-screen md:px-10 pt-10">
       <motion.header
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}

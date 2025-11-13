@@ -1,14 +1,8 @@
 "use client";
 
+import { StatCardProps } from "@/types/admin";
 import { motion } from "framer-motion";
 import React from "react";
-
-type StatCardProps = {
-  label: string;
-  value: string | number;
-  sub?: string;
-  Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-};
 
 export function StatCard({ label, value, sub, Icon }: StatCardProps) {
   return (

@@ -11,7 +11,7 @@ import Paragraph from "@/components/ui/typography/paragraph";
 
 const EnrollmentScreen = () => {
   return (
-    <section className="min-h-screen p-4 sm:p-6 md:p-10">
+    <section className="min-h-screen md:px-10 pt-10">
       {/* Hero Section */}
       <div className="max-w-5xl mx-auto text-center mb-12 space-y-4">
         <motion.div

@@ -34,7 +34,7 @@ const TestimonialCarousel = () => {
   const scrollTo = (index: number) => emblaApi?.scrollTo(index);
 
   return (
-    <div className="relative flex flex-col justify-center items-center w-full overflow-hidden rounded-r-3xl bg-[#F9BABA] lg:flex">
+    <div className="relative flex-col justify-center items-center w-full overflow-hidden rounded-r-3xl bg-[#F9BABA] lg:flex hidden">
       <div ref={emblaRef} className="overflow-hidden w-full">
         <div className="flex">
           {testimonials.map((testimonial, idx) => (

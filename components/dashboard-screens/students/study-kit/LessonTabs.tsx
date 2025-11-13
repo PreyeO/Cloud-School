@@ -4,7 +4,7 @@ import LessonResources from "./LessonResources";
 import LessonQA from "./LessonQA";
 import LessonOverview from "./LessonOverview";
 
-export default function LessonTabs() {
+const LessonTabs = () => {
   return (
     <Tabs defaultValue="overview" className="w-full">
       <TabsList className="grid w-full grid-cols-3 bg-gray-100 rounded-full p-1">
@@ -30,4 +30,5 @@ export default function LessonTabs() {
       </TabsContent>
     </Tabs>
   );
-}
+};
+export default LessonTabs;

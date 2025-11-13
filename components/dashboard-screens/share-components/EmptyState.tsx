@@ -50,7 +50,7 @@ const EmptyState = ({
             loadingLabel="Processing..."
             isPending={isPending}
             onClick={() => handlePay()}
-            className="w-full text-[11px] text-base  rounded-2xl"
+            className="w-full"
           />
         )}
       </motion.div>

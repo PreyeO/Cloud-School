@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-export function FunnelCard({
+export const FunnelCard = ({
   title,
   data,
 }: {
   title: string;
   data: { stage: string; count: number; pct: number }[];
-}) {
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -20,6 +20,7 @@ export function FunnelCard({
       <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
         {title}
       </h3>
+
       <div className="space-y-3">
         {data.map((f) => (
           <div key={f.stage} className="flex items-center justify-between">
@@ -40,4 +41,4 @@ export function FunnelCard({
       </div>
     </motion.div>
   );
-}
+};

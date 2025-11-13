@@ -1,16 +1,18 @@
 "use client";
 
 import { CreditCard, Wallet, Users, CheckCircle2 } from "lucide-react";
-import { StatCard } from "./components/payments/StatCard";
-import { TrendCard } from "./components/payments/TrendCard";
-import { PaymentTable } from "./components/payments/PaymentTable";
+import { StatCard } from "./StatCard";
+import { TrendCard } from "./TrendCard";
+import { PaymentTable } from "./PaymentTable";
 import { useGetAllPayments } from "@/hooks/useGetAllPayment";
 import { useMemo } from "react";
+import { months, payments } from "@/data/admin";
+import Paragraph from "@/components/ui/typography/paragraph";
+import Title from "@/components/ui/typography/title";
 
-export default function AdminPaymentScreen() {
+const AdminPaymentScreen = () => {
   const { data, isLoading, isError } = useGetAllPayments();
 
-  // Memoize payment stats
   const paymentStats = useMemo(() => data?.data || {}, [data?.data]);
 
   const totalSubs = paymentStats.totalSubscriptions || 0;
@@ -49,25 +51,8 @@ export default function AdminPaymentScreen() {
     },
   ];
 
-  // Build chart data dynamically (currently 12 months)
   const chartData = useMemo(() => {
     if (!paymentStats) return [];
-
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-
     return months.map((month) => ({
       month,
       totalUsers: paymentStats.totalUsers || 0,
@@ -76,62 +61,44 @@ export default function AdminPaymentScreen() {
     }));
   }, [paymentStats]);
 
-  const payments = [
-    {
-      id: "1",
-      student: "John Doe",
-      plan: "Early Bird",
-      type: "Application Fee",
-      amount: "₦50,000",
-      status: "Successful",
-      date: "Oct 12, 2025",
-    },
-    {
-      id: "2",
-      student: "Sarah Ibrahim",
-      plan: "Regular",
-      type: "School Fees",
-      amount: "₦250,000",
-      status: "Successful",
-      date: "Oct 11, 2025",
-    },
-  ];
-
-  if (isError) {
+  if (isError)
     return (
-      <section className="p-10">
+      <section className="p-6">
         <p className="text-red-600 font-semibold">
           Unable to load payment statistics.
         </p>
       </section>
     );
-  }
 
   return (
-    <section className="p-6 md:p-10 bg-[#f9fafb] dark:bg-[#0B0B0B] min-h-screen">
+    <section className="min-h-screen px-4 md:px-10 pt-10">
       <div className="max-w-7xl mx-auto space-y-10">
         <header>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-            Payment Overview
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+          <Title>Payment Overview</Title>
+          <Paragraph className="mt-1 text-gray-600 dark:text-gray-400">
             Monitor all transactions, fees, signups, and admissions at a glance.
-          </p>
+          </Paragraph>
         </header>
 
         {/* STAT CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <StatCard key={stat.label} {...stat} delay={i * 0.1} />
           ))}
         </div>
 
         {/* TREND CHART */}
-        <TrendCard data={chartData} />
+        <div className="overflow-x-auto w-full">
+          <TrendCard data={chartData} />
+        </div>
 
         {/* RECENT PAYMENTS TABLE */}
-        <PaymentTable payments={payments} />
+        <div className="overflow-x-auto w-full">
+          <PaymentTable payments={payments} />
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default AdminPaymentScreen;
