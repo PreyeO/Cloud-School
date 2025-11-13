@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { usePaySchoolFees } from "@/hooks/usePaySchoolFees";
 import { PaymentPlanType } from "@/types/payment";
+import PaymentButton from "../ui/btns/payment-button";
 
 interface SchoolFeesProps {
   planTitle: string;
@@ -24,14 +24,13 @@ const SchoolFees: React.FC<SchoolFeesProps> = ({ planTitle }) => {
 
   return (
     <div className="space-y-3">
-      <Button
+      <PaymentButton
+        label={`Activate ${planTitle}`}
+        loadingLabel={`Processing ${planTitle}...`}
+        isPending={isPending}
         onClick={handlePayment}
-        disabled={isPending}
-        className="w-full bg-[#E51919] hover:bg-[#c91414] text-white rounded-xl font-medium py-5 transition-all duration-300 shadow-sm hover:shadow-md"
-        size="lg"
-      >
-        {isPending ? `Processing ${planTitle}...` : `Activate ${planTitle}`}
-      </Button>
+        className="w-full text-[11px] text-base  rounded-2xl lg:py-4"
+      />
     </div>
   );
 };

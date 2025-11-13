@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
 import { usePayApplicationFee } from "@/hooks/usePayApplicationFee";
+import PaymentButton from "@/components/ui/btns/payment-button";
 
 interface EmptyStateProps {
   title?: string;
@@ -14,16 +14,16 @@ interface EmptyStateProps {
   showAction?: boolean;
 }
 
-export default function EmptyState({
+const EmptyState = ({
   title = "",
   description = "",
   icon: Icon = BookOpen,
   actionLabel = "",
   showAction = true,
-}: EmptyStateProps) {
+}: EmptyStateProps) => {
   const { mutate: handlePay, isPending } = usePayApplicationFee();
   return (
-    <section className="flex min-h-[calc(100vh-140px)] flex-col items-center justify-center px-6 py-20 bg-white dark:bg-[#0b0b0b] transition-colors duration-300">
+    <section className="flex min-h-[calc(100vh-140px)] flex-col items-center justify-center ">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,15 +45,16 @@ export default function EmptyState({
 
         {/* Action Button (optional) */}
         {showAction && (
-          <Button
+          <PaymentButton
+            label={actionLabel}
+            loadingLabel="Processing..."
+            isPending={isPending}
             onClick={() => handlePay()}
-            disabled={isPending}
-            className="mt-6 sm:mt-8 w-full bg-[#E51919] hover:bg-[#c91414] text-white rounded-2xl font-semibold text-base sm:text-lg py-4 sm:py-5 md:py-6 transition-all duration-300 shadow-md"
-          >
-            {isPending ? "Processing..." : actionLabel}
-          </Button>
+            className="w-full text-[11px] text-base  rounded-2xl"
+          />
         )}
       </motion.div>
     </section>
   );
-}
+};
+export default EmptyState;

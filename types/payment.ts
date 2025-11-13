@@ -30,3 +30,15 @@ export enum PaymentPlanType {
   MID = "mid",
   NORMAL = "normal",
 }
+
+export interface Transaction {
+  _id: string;
+  amount: number;
+  currency: string;
+  status: string;
+  createdAt: string;
+  metadata?: {
+    paymentType?: string;
+    paymentMethod?: string;
+  };
+}

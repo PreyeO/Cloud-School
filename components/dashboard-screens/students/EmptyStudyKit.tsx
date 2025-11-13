@@ -3,7 +3,7 @@
 import { BookOpen } from "lucide-react";
 import EmptyState from "../share-components/EmptyState";
 
-export default function StudyKitEmptyScreen() {
+const StudyKitEmptyScreen = () => {
   return (
     <EmptyState
       title="No Study Kits Yet..."
@@ -12,4 +12,5 @@ export default function StudyKitEmptyScreen() {
       actionLabel="Apply Now to Unlock Your Study Kit"
     />
   );
-}
+};
+export default StudyKitEmptyScreen;

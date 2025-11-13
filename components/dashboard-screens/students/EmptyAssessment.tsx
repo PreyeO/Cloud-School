@@ -3,7 +3,7 @@
 import { ClipboardCheck } from "lucide-react";
 import EmptyState from "../share-components/EmptyState";
 
-export default function AssessmentEmptyScreen() {
+const AssessmentEmptyScreen = () => {
   return (
     <EmptyState
       icon={ClipboardCheck}
@@ -12,4 +12,5 @@ export default function AssessmentEmptyScreen() {
       actionLabel="Apply to Unlock Assessment"
     />
   );
-}
+};
+export default AssessmentEmptyScreen;

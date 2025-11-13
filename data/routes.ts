@@ -8,8 +8,8 @@ import {
   BookUser,
   GraduationCap,
   UserCircle,
-  MessageSquare,
   CheckCircle,
+  MessageSquareMore,
 } from "lucide-react";
 
 export const studentRoutes: SidebarItem[] = [
@@ -46,7 +46,7 @@ export const studentRoutes: SidebarItem[] = [
   {
     title: "Support",
     href: "/student/support",
-    icon: MessageSquare,
+    icon: MessageSquareMore,
   },
   {
     title: "Profile",

@@ -5,19 +5,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-// import {
-//   Select,
-//   SelectTrigger,
-//   SelectValue,
-//   SelectContent,
-//   SelectItem,
-// } from "@/components/ui/select";
 import SubmitButton from "@/components/ui/btns/submit-button";
 import { useCreateAdmin } from "@/hooks/useCreateAdmin";
 import { createAdminSchema } from "@/lib/schemas/auth";
 import { CreateAdminFormValues } from "@/types/auth";
 
-export default function CreateAdminForm() {
+const CreateAdminForm = () => {
   const { mutate, isPending } = useCreateAdmin();
 
   const {
@@ -70,19 +63,6 @@ export default function CreateAdminForm() {
             <p className="text-red-500">{errors.password.message}</p>
           )}
         </div>
-
-        {/* <div>
-          <Label>Role</Label>
-          <Select {...register("role")}>
-            <SelectTrigger className="w-[50%]">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="admin">Admin</SelectItem>
-              <SelectItem value="super_admin">Super Admin</SelectItem>
-            </SelectContent>
-          </Select>
-        </div> */}
       </div>
       <div className=" px-4 py-2 w-[20%]">
         <SubmitButton
@@ -93,4 +73,5 @@ export default function CreateAdminForm() {
       </div>
     </form>
   );
-}
+};
+export default CreateAdminForm;

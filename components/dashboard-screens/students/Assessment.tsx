@@ -1,31 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import {
-  Timer,
-  ClipboardCheck,
-  FileQuestion,
-  ExternalLink,
-} from "lucide-react";
+import { guidelines, info } from "@/data/students";
+import { ExternalLink } from "lucide-react";
+import Title from "@/components/ui/typography/title";
+import Paragraph from "@/components/ui/typography/paragraph";
+import SubTitle from "@/components/ui/typography/sub-title";
+import PaymentButton from "@/components/ui/btns/payment-button";
 
-export default function AssessmentScreen() {
-  const info = [
-    { icon: Timer, title: "Duration", value: "1 Hour" },
-    { icon: FileQuestion, title: "Questions", value: "100 Multiple Choice" },
-    { icon: ClipboardCheck, title: "Passing Score", value: "70% Minimum" },
-  ];
-
-  const guidelines = [
-    "Ensure a stable internet connection before starting.",
-    "Do not close or refresh the tab once the assessment begins.",
-    "You have one attempt — make sure you’re fully prepared.",
-    "Your progress is automatically saved during the test.",
-    "Avoid switching tabs or opening new windows during the assessment.",
-  ];
-
+const AssessmentScreen = () => {
   return (
-    <section className="min-h-screen bg-[#fafafa] dark:bg-[#0b0b0b] text-[#111] dark:text-gray-100 px-6 md:px-10 py-16">
+    <section className="p-4 sm:p-6 md:p-10   min-h-screen">
       <div className="max-w-5xl mx-auto space-y-16">
         {/* Hero */}
         <motion.div
@@ -34,15 +19,14 @@ export default function AssessmentScreen() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-5"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+          <Title className="">
             Your <span className="text-[#E61A1A]">Assessment</span> Awaits...
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            You’ve reached the moment that measures mastery.
-            <br />
+          </Title>
+          <Paragraph className="text-base sm:text-lg max-w-2xl mx-auto">
+            You’ve reached the moment that measures mastery. <br />
             Stay focused, stay calm, and give it your best — this is your chance
             to prove your readiness for the Cloud Top G journey ahead.
-          </p>
+          </Paragraph>
         </motion.div>
 
         {/* Assessment Details */}
@@ -50,7 +34,7 @@ export default function AssessmentScreen() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.7 }}
-          className="grid sm:grid-cols-3 gap-6"
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {info.map(({ icon: Icon, title, value }, i) => (
             <motion.div
@@ -62,16 +46,14 @@ export default function AssessmentScreen() {
                 <div className="h-12 w-12 flex items-center justify-center rounded-full bg-[#E61A1A]/10 text-[#E61A1A]">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="font-semibold text-lg">{title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  {value}
-                </p>
+                <SubTitle className="text-lg font-semibold">{title}</SubTitle>
+                <Paragraph className="text-sm">{value}</Paragraph>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Transition Ending Line */}
+        {/* Divider */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
@@ -80,36 +62,32 @@ export default function AssessmentScreen() {
         >
           <div className="w-32 border-b-2 border-[#E61A1A]/50" />
         </motion.div>
-        <p className="text-center text-gray-500 dark:text-gray-400">
+
+        <Paragraph className="text-center max-w-lg mx-auto text-sm sm:text-base">
           You’ve got this… take a moment to steady yourself, then dive in when
           you’re ready.
-        </p>
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="w-full flex justify-center"
-        >
-          <div className="w-32 border-b-2 border-[#E61A1A]/50" />
-        </motion.div>
+        </Paragraph>
 
         {/* Guidelines */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.7 }}
-          className="p-10 rounded-2xl bg-white dark:bg-[#111] border border-gray-200 dark:border-[#1a1a1a] shadow-md"
+          className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#111] border border-gray-200 dark:border-[#1a1a1a] shadow-md"
         >
-          <h2 className="text-2xl font-bold mb-3">Before You Begin</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <SubTitle className="mb-3">Before You Begin</SubTitle>
+          <Paragraph className="mb-6">
             Please review these important guidelines to ensure a smooth and fair
             assessment experience.
-          </p>
+          </Paragraph>
+
           <ul className="space-y-3 text-gray-700 dark:text-gray-300">
             {guidelines.map((rule, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="mt-2 h-4 w-4 rounded-full bg-[#E61A1A]" />
-                {rule}
+                <span className="mt-2 h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-[#E61A1A]" />
+                <Paragraph className="flex-1 text-sm sm:text-base">
+                  {rule}
+                </Paragraph>
               </li>
             ))}
           </ul>
@@ -122,21 +100,25 @@ export default function AssessmentScreen() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4"
         >
-          <Button
-            className="bg-[#E61A1A] hover:bg-[#c91414] text-white font-semibold py-6 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transition-all"
+          <PaymentButton
+            label="Begin Assessment"
+            loadingLabel="Routing..."
             onClick={() =>
               window.open("https://yourassessmentlink.com", "_blank")
             }
+            className="mx-auto w-full md:w-[70%] text-[11px] text-base  rounded-2xl"
           >
             Begin Assessment
             <ExternalLink className="ml-2 w-5 h-5" />
-          </Button>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          </PaymentButton>
+
+          <Paragraph className="text-[12px] max-w-md mx-auto mt-1">
             The assessment will open in a new tab — please avoid closing this
             page.
-          </p>
+          </Paragraph>
         </motion.div>
       </div>
     </section>
   );
-}
+};
+export default AssessmentScreen;

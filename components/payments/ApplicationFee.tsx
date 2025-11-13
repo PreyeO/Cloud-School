@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Button } from "../ui/button";
 import { usePayApplicationFee } from "@/hooks/usePayApplicationFee";
+import PaymentButton from "../ui/btns/payment-button";
 
 const ApplicationFee = () => {
   const { mutate: handlePay, isPending } = usePayApplicationFee();
@@ -20,13 +20,13 @@ const ApplicationFee = () => {
         </p>
       </div>
 
-      <Button
+      <PaymentButton
+        label="Pay Now"
+        loadingLabel="Processing..."
+        isPending={isPending}
         onClick={() => handlePay()}
-        disabled={isPending}
-        className="mt-6 sm:mt-8 w-full bg-[#E51919] hover:bg-[#c91414] text-white rounded-2xl font-semibold text-base sm:text-lg py-4 sm:py-5 md:py-6 transition-all duration-300 shadow-md"
-      >
-        {isPending ? "Processing..." : "Pay Now"}
-      </Button>
+        className="w-full text-[11px] text-base  rounded-2xl"
+      />
     </div>
   );
 };

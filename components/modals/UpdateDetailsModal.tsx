@@ -56,7 +56,7 @@ const UpdateDetailsModal = () => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 w-full max-w-lg relative"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 w-full max-w-lg relative max-h-[90vh] overflow-auto"
           >
             <h2 className="text-2xl font-semibold mb-3 text-center text-[#E51919]">
               Complete Your Profile

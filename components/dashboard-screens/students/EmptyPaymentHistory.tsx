@@ -3,7 +3,7 @@
 import { CreditCard } from "lucide-react";
 import EmptyState from "../share-components/EmptyState";
 
-export default function PaymentHistoryEmptyScreen() {
+const PaymentHistoryEmptyScreen = () => {
   return (
     <EmptyState
       icon={CreditCard}
@@ -12,4 +12,5 @@ export default function PaymentHistoryEmptyScreen() {
       actionLabel="Apply to See History"
     />
   );
-}
+};
+export default PaymentHistoryEmptyScreen;

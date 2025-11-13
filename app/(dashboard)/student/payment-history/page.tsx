@@ -1,10 +1,15 @@
 "use client";
 import PaymentHistoryEmptyScreen from "@/components/dashboard-screens/students/EmptyPaymentHistory";
 import SubscriptionWrapper from "@/components/dashboard-screens/share-components/SubscriptionWrapper";
-import PaymentHistory from "@/components/dashboard-screens/students/PaymentHistory";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
+import dynamic from "next/dynamic";
+const PaymentHistory = dynamic(
+  () =>
+    import("@/components/dashboard-screens/students/payments/PaymentHistory"),
+  { ssr: false }
+);
 
-export default function PaymentHistoryPage() {
+const PaymentHistoryPage = () => {
   const { hasPaid, isLoading } = useSubscriptionStatus();
   return (
     <SubscriptionWrapper
@@ -15,4 +20,5 @@ export default function PaymentHistoryPage() {
       <PaymentHistory />
     </SubscriptionWrapper>
   );
-}
+};
+export default PaymentHistoryPage;

@@ -2,10 +2,10 @@
 
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 import StudyKitEmptyScreen from "@/components/dashboard-screens/students/EmptyStudyKit";
-import StudyKit from "@/components/dashboard-screens/students/StudyKit";
+import StudyKit from "@/components/dashboard-screens/students/study-kit/StudyKit";
 import SubscriptionWrapper from "@/components/dashboard-screens/share-components/SubscriptionWrapper";
 
-export default function StudyKitPage() {
+const StudyKitPage = () => {
   const { hasPaid, isLoading } = useSubscriptionStatus();
 
   return (
@@ -17,4 +17,5 @@ export default function StudyKitPage() {
       <StudyKit />
     </SubscriptionWrapper>
   );
-}
+};
+export default StudyKitPage;

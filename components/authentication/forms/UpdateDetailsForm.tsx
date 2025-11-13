@@ -23,17 +23,7 @@ import {
 } from "@/components/ui/select";
 import SubmitButton from "@/components/ui/btns/submit-button";
 import { useEffect } from "react";
-
-const genders = ["Male", "Female"];
-const employmentStatuses = [
-  "Employed",
-  "Unemployed",
-  "Self-employed",
-  "Student",
-  "Retired",
-  "Other",
-];
-const academicLevels = ["Undergraduate", "Graduate", "Postgraduate"];
+import { academicLevels, employmentStatuses, genders } from "@/data/students";
 
 interface Props {
   onSuccessClose?: () => void;

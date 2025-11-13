@@ -1,10 +1,6 @@
-import SupportScreen from "@/components/dashboard-screens/students/Support";
-// import DashboardLayout from "@/components/layout/DashboardLayout";
+import SupportScreen from "@/components/dashboard-screens/students/supports/Support";
 
-export default function SupportPage() {
-  return (
-    // <DashboardLayout role="student">
-    <SupportScreen />
-    // </DashboardLayout>
-  );
-}
+const SupportPage = () => {
+  return <SupportScreen />;
+};
+export default SupportPage;

@@ -1,56 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  MapPin,
-  Clock,
-  Award,
-  School,
-  Layers,
-  CheckCircle2,
-} from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
-import ApplicationFee from "@/components/payments/ApplicationFee";
+import { steps, summary } from "@/data/students";
+import Title from "@/components/ui/typography/title";
+import Paragraph from "@/components/ui/typography/paragraph";
+import dynamic from "next/dynamic";
+const ApplicationFee = dynamic(
+  () => import("@/components/payments/ApplicationFee"),
+  { ssr: false }
+);
 
-export default function Overview() {
+const Overview = () => {
   const { user } = useAuthStore();
 
-  const summary = [
-    { label: "School", value: "School of Engineering", icon: School },
-    { label: "Certificate", value: "Diploma", icon: Award },
-    { label: "Duration", value: "12 Months (4 Semesters)", icon: Clock },
-    { label: "Location", value: "Online", icon: MapPin },
-    { label: "Skill Level", value: "Beginner", icon: Layers },
-    { label: "Start Date", value: "February 17th 2026", icon: Layers },
-  ];
-
-  const steps = [
-    { step: "1", title: "Pay Application Fee", icon: CheckCircle2 },
-    { step: "2", title: "Get Access to Study Kit", icon: Layers },
-    { step: "3", title: "Take the Assessment", icon: Award },
-    { step: "4", title: "Pay School Fees", icon: Clock },
-    { step: "5", title: "Start Learning", icon: School },
-  ];
-
   return (
-    <section className="p-4 sm:p-6 md:p-10 bg-[#f9fafb] dark:bg-[#0b0b0b] min-h-screen">
+    <section className="p-4 sm:p-6 md:p-10   min-h-screen">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Header Section */}
         <div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-Bricolage_grotesque text-gray-900 dark:text-white leading-snug">
+          <Title className="text-2xl sm:text-3xl md:text-4xl leading-snug">
             Welcome,{" "}
-            <span className="text-[#E51919]">{user?.firstName} 👋​</span>
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm sm:text-base">
+            <span className="text-[#E51919]">{user?.firstName} 👋</span>
+          </Title>
+          <Paragraph className="mt-2 text-sm sm:text-base">
             Your journey to becoming a world-class cloud engineer starts here.
             <br />
             Follow these steps to complete your enrollment and get ready to
             learn.
-          </p>
+          </Paragraph>
         </div>
 
         {/* Steps Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
           {steps.map(({ step, title, icon: Icon }) => (
             <motion.div
               key={step}
@@ -59,9 +41,9 @@ export default function Overview() {
             >
               <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                 <Icon className="h-5 w-5 text-[#E51919]" />
-                <p className="font-semibold text-[#E51919] text-sm sm:text-base">
+                <Paragraph className="font-semibold text-[#E51919] text-sm sm:text-base">
                   Step {step}
-                </p>
+                </Paragraph>
               </div>
               <h3 className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white leading-snug">
                 {title}
@@ -79,11 +61,11 @@ export default function Overview() {
         >
           {/* Summary Card */}
           <div className="flex-1 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="flex  justify-between mb-6 ">
+            <div className="flex  justify-between mb-6  ">
               <h2 className="text-lg sm:text-2xl font-semibold text-gray-900 dark:text-white">
                 Application Summary
               </h2>
-              <span className="self-start sm:self-auto bg-[#E51919]/10 text-[#E51919] text-[10px] font-semibold px-3 py-1 rounded-full whitespace-nowrap">
+              <span className=" items-center justify-center self-start sm:self-auto bg-[#E51919]/10 text-[#E51919] text-[10px] font-semibold h-5 px-2 flex lg:w-[35%]  xl:w-[18%] text-center rounded-md whitespace-nowrap">
                 Limited Slots
               </span>
             </div>
@@ -92,14 +74,14 @@ export default function Overview() {
               {summary.map(({ label, value, icon: Icon }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0b0b0b] border border-gray-100 dark:border-gray-800 hover:border-[#E51919]/40 hover:bg-[#fff5f5]/40 transition-colors"
+                  className="flex lg:flex-col xl:flex-row items-center gap-3 p-3 rounded-xl bg-white dark:bg-[#0b0b0b] border border-gray-100 dark:border-gray-800 hover:border-[#E51919]/40 hover:bg-[#fff5f5]/40 transition-colors"
                 >
                   <Icon className="h-5 w-5 text-[#E51919]" />
-                  <div>
-                    <p className="text-sm font-medium text-gray-900 ">
+                  <div className="">
+                    <Paragraph className="text-sm font-medium text-gray-900">
                       {label}
-                    </p>
-                    <p className="text-xs truncate">{value}</p>
+                    </Paragraph>
+                    <Paragraph className="text-xs ">{value}</Paragraph>
                   </div>
                 </div>
               ))}
@@ -114,4 +96,5 @@ export default function Overview() {
       </div>
     </section>
   );
-}
+};
+export default Overview;

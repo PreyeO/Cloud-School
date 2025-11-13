@@ -1,10 +1,12 @@
-import ProfileScreen from "@/components/dashboard-screens/students/Profile";
-// import DashboardLayout from "@/components/layout/DashboardLayout";
+"use client";
+import dynamic from "next/dynamic";
 
-export default function StudyKitPage() {
-  return (
-    // <DashboardLayout role="student">
-    <ProfileScreen />
-    // </DashboardLayout>
-  );
-}
+const ProfileScreen = dynamic(
+  () => import("@/components/dashboard-screens/students/Profile"),
+  { ssr: false }
+);
+
+const ProfilePage = () => {
+  return <ProfileScreen />;
+};
+export default ProfilePage;

@@ -3,7 +3,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter, usePathname } from "next/navigation";
 
-export default function AuthTabs() {
+const AuthTabs = () => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -28,4 +28,5 @@ export default function AuthTabs() {
       </div>
     </div>
   );
-}
+};
+export default AuthTabs;

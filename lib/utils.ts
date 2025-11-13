@@ -46,3 +46,23 @@ export const exportUsersCSV = (
   link.click();
   URL.revokeObjectURL(url);
 };
+
+export const formatCurrency = (n: number) =>
+  n.toLocaleString("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    maximumFractionDigits: 0,
+  });
+
+export const formatDates = (d: string) => {
+  try {
+    const dt = new Date(d);
+    return dt.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    return d;
+  }
+};

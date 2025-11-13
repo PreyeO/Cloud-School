@@ -1,5 +1,6 @@
 import Overview from "@/components/dashboard-screens/students/Overview";
 
-export default function StudentOverviewPage() {
+const StudentOverviewPage = () => {
   return <Overview />;
-}
+};
+export default StudentOverviewPage;
