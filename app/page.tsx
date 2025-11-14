@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen space-y-4">
-      <h1 className="text-2xl font-bold text-red-500">HELLO WORLD</h1>
+      <h1 className="text-2xl font-bold text-red-500">CLOUD TOP G</h1>
       <Button
         onClick={handleClearDb}
         disabled={loading}
