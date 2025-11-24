@@ -1,30 +1,44 @@
 "use client";
 
+import { useState } from "react";
+import { motion } from "framer-motion";
 import LessonSidebar from "./LessonSidebar";
 import LessonTabs from "./LessonTabs";
-import { motion } from "framer-motion";
+import { lessons } from "@/data/students";
 
 export default function StudyKit() {
+  const [activeLesson, setActiveLesson] = useState(lessons[0]);
+
   return (
     <section className="min-h-screen md:px-10 pt-10">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-12">
+        {/* LEFT: Video + Overview + Resources */}
         <div className="lg:col-span-2 space-y-10">
+          {/* VIDEO */}
           <motion.div
+            key={activeLesson.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden border border-gray-100 dark:border-[#1a1a1a] shadow-xl"
+            transition={{ duration: 0.4 }}
+            className="relative rounded-3xl overflow-hidden border border-gray-100 shadow-xl"
           >
             <iframe
-              src="https://www.youtube.com/embed/ScMzIvxBSi4"
-              title="Lesson Video"
+              src={activeLesson.video}
               className="w-full aspect-video"
               allowFullScreen
             ></iframe>
           </motion.div>
-          <LessonTabs />
+
+          {/* TABS (Overview, Resources, Q&A) */}
+          <LessonTabs lesson={activeLesson} />
         </div>
-        <LessonSidebar />
+
+        {/* RIGHT: Sidebar */}
+        <LessonSidebar
+          lessons={lessons}
+          activeLesson={activeLesson}
+          setActiveLesson={setActiveLesson}
+        />
       </div>
     </section>
   );

@@ -97,7 +97,7 @@ const Directory = () => {
     <section className="min-h-screen md:px-10 pt-10">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <div className="flex flex-col md:flex-row lg:justify-between md:items-center gap-4">
           <div className="flex items-center gap-4">
             <div className="rounded-lg bg-[#E51919] p-3 text-white">
               <Users className="w-6 h-6" />
@@ -113,13 +113,13 @@ const Directory = () => {
         </div>
 
         {/* Filters */}
-        <Card>
+        <Card className="">
           <CardContent className="flex flex-wrap gap-4 items-center">
             <Input
               placeholder="Search name, email or phone"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 min-w-[180px]"
+              className="flex-1 max-w-[180px]"
             />
             <Select
               onValueChange={(v) => setStatusFilter(v)}

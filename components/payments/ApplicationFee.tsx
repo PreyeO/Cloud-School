@@ -25,7 +25,7 @@ const ApplicationFee = () => {
         loadingLabel="Processing..."
         isPending={isPending}
         onClick={() => handlePay()}
-        className="w-full  rounded-2xl"
+        className="w-full  rounded-2xl mt-6"
       />
     </div>
   );

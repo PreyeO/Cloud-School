@@ -28,28 +28,27 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
   const routes: SidebarItem[] = role === "admin" ? adminRoutes : studentRoutes;
 
   return (
-    <Sidebar className="cursor-ponter">
-      <SidebarContent className="overflow-hidden  ">
-        {/* Sidebar Logo + Branding */}
-        <SidebarHeader className="flex items-center">
-          <Logo />
-        </SidebarHeader>
+    <SidebarContent className="overflow-hidden bg-[#F8F8F8] ">
+      {/* Sidebar Logo + Branding */}
+      <SidebarHeader className="flex items-center">
+        <Logo />
+      </SidebarHeader>
 
-        <SidebarSeparator />
+      <SidebarSeparator />
 
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <Menu>
-              {routes.map((item) => {
-                const Icon = item.icon;
-                const isActive = pathname === item.href;
+      <SidebarGroup>
+        <SidebarGroupContent>
+          <Menu>
+            {routes.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
 
-                return (
-                  <SidebarMenuItem key={item.title} className="pb-1 ">
-                    <Link href={item.href ?? "#"} passHref>
-                      <SidebarMenuButton
-                        isActive={isActive}
-                        className={`
+              return (
+                <SidebarMenuItem key={item.title} className="pb-1 ">
+                  <Link href={item.href ?? "#"} passHref>
+                    <SidebarMenuButton
+                      isActive={isActive}
+                      className={`
                         transition-colors
                         ${
                           isActive
@@ -57,19 +56,18 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
                             : "hover:bg-[#F9BABA]"
                         }
                       `}
-                      >
-                        <Icon className="size-4" />
-                        <span>{item.title}</span>
-                      </SidebarMenuButton>
-                    </Link>
-                  </SidebarMenuItem>
-                );
-              })}
-            </Menu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+                    >
+                      <Icon className="size-4" />
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  </Link>
+                </SidebarMenuItem>
+              );
+            })}
+          </Menu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+    </SidebarContent>
   );
 };
 

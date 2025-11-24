@@ -34,7 +34,7 @@ const ForgotPasswordForm = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full max-w-[588px]">
+      <div className="w-full min-w-[200px] md:min-w-[488px]">
         <AuthTitle
           title="Forgot Password"
           subtitle="Enter your email and we'll send you a reset link"

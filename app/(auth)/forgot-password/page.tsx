@@ -3,7 +3,10 @@ import AuthLayout from "@/components/authentication/shared/AuthLayout";
 
 const ForgotPasswordPage = () => {
   return (
-    <AuthLayout showTabs={false} className="h-[500px]">
+    <AuthLayout
+      showTabs={false}
+      className="flex flex-col items-center justify-center"
+    >
       <ForgotPasswordForm />
     </AuthLayout>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Quote } from "lucide-react";
@@ -8,30 +8,19 @@ import { testimonials } from "@/data/general";
 
 const TestimonialCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const displayTime = 12000;
 
-  // Auto-slide
+  // 30 minutes
+  const displayTime = 30 * 60 * 1000; // 1,800,000 ms
+
   useEffect(() => {
     if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), displayTime);
+
+    const interval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, displayTime);
+
     return () => clearInterval(interval);
-  }, [emblaApi]);
-
-  // Update dots
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const onSelect = () => setCurrentIndex(emblaApi.selectedScrollSnap());
-
-    emblaApi.on("select", onSelect);
-
-    return () => {
-      emblaApi.off("select", onSelect); // ✅ wrap in a function
-    };
-  }, [emblaApi]);
-
-  const scrollTo = (index: number) => emblaApi?.scrollTo(index);
+  }, [emblaApi, displayTime]);
 
   return (
     <div className="relative flex-col justify-center items-center w-full overflow-hidden rounded-r-3xl bg-[#F9BABA] lg:flex hidden">
@@ -44,7 +33,7 @@ const TestimonialCarousel = () => {
             >
               <div className="flex gap-2 mb-6">
                 <Quote className="text-black" />
-                <p className="text-xl text-black italic max-w-[400px]">
+                <p className="text-4xl text-black italic max-w-[500px]">
                   {testimonial.quote}
                 </p>
               </div>
@@ -64,22 +53,6 @@ const TestimonialCarousel = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Dots */}
-      <div className="flex space-x-2 mt-8">
-        {testimonials.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => scrollTo(idx)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              idx === currentIndex
-                ? "bg-[#E51919] w-5"
-                : "bg-white border border-gray-300"
-            }`}
-            aria-label={`Go to testimonial ${idx + 1}`}
-          />
-        ))}
       </div>
 
       {/* Decorations */}

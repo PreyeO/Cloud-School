@@ -63,7 +63,7 @@ const PaymentHistory = () => {
         transition={{ duration: 0.45 }}
         className="max-w-6xl mx-auto"
       >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row items-start  justify-between gap-4">
           <div>
             <Title>Payment History</Title>
             <Paragraph className="mt-1 max-w-xl">
@@ -79,7 +79,11 @@ const PaymentHistory = () => {
               </div>
               <div>
                 <Paragraph className="text-xs">Total paid</Paragraph>
-                <Title className="text-lg">{formatCurrency(totalPaid)}</Title>
+
+                <h3 className="text-2xl font-Bricolage_grotesque text-gray-900 font-bold">
+                  {" "}
+                  {formatCurrency(totalPaid)}
+                </h3>
               </div>
             </div>
           </div>
@@ -96,13 +100,13 @@ const PaymentHistory = () => {
             }
           >
             {" "}
-            <TabsList className="relative flex items-center justify-between bg-white dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-full p-1 shadow-sm">
+            <TabsList className=" relative flex items-center justify-between  dark:bg-[#111] border border-gray-200 dark:border-[#222] rounded-full p-1 shadow-sm">
               {" "}
               {(["all", "success", "failed"] as const).map((tab) => (
                 <TabsTrigger
                   key={tab}
                   value={tab}
-                  className="relative flex-1 text-sm font-medium px-5 py-2 rounded-full transition-all data-[state=active]:text-white data-[state=active]:font-semibold"
+                  className="relative flex-1 text-sm font-medium px-5 py-4 rounded-full transition-all data-[state=active]:text-white data-[state=active]:font-semibold"
                 >
                   {" "}
                   {activeTab === tab && (
@@ -151,11 +155,16 @@ const PaymentHistory = () => {
             <div className="mt-4 grid grid-cols-2 gap-3">
               <div className="rounded-lg p-3 bg-gray-50 dark:bg-[#0b1113] border border-gray-100 dark:border-[#1b1b1b]">
                 <Paragraph className="text-xs">Total Payments</Paragraph>
-                <Title className="text-lg">{payments.length}</Title>
+
+                <h3 className="text-2xl font-Bricolage_grotesque text-gray-900 font-bold">
+                  {payments.length}
+                </h3>
               </div>
               <div className="rounded-lg p-3 bg-gray-50 dark:bg-[#0b1113] border border-gray-100 dark:border-[#1b1b1b]">
                 <Paragraph className="text-xs">Successful</Paragraph>
-                <Title className="text-lg">{successfulPayments.length}</Title>
+                <h3 className="text-2xl font-Bricolage_grotesque text-gray-900 font-bold">
+                  {successfulPayments.length}
+                </h3>
               </div>
             </div>
           </motion.div>
@@ -165,7 +174,9 @@ const PaymentHistory = () => {
             animate={{ opacity: 1, y: 0 }}
             className="rounded-2xl bg-white dark:bg-[#0f1012] border border-gray-100 dark:border-[#232323] p-5 shadow-sm"
           >
-            <SubTitle className="">Need help with a payment?</SubTitle>
+            <h3 className="text-xl font-Bricolage_grotesque text-gray-900 font-bold">
+              Need help with a payment?
+            </h3>
             <Paragraph className="text-xs mt-2">
               If you notice any incorrect charge or missing record, contact our
               support team with the transaction date and amount.

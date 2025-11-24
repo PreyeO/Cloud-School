@@ -1,4 +1,3 @@
-// components/authentication/forms/CreateAdminForm.tsx
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -23,55 +22,70 @@ const CreateAdminForm = () => {
       firstName: "",
       email: "",
       password: "",
-      // role:"admin",
     },
   });
 
   const onSubmit = (data: CreateAdminFormValues) => mutate(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {/* Responsive Grid */}
+      <div className="grid grid-cols-1  lg:grid-cols-4 gap-4">
+        <div className="w-full">
           <Label>Name</Label>
-          <Input {...register("firstName")} placeholder="Enter name" />
+          <Input
+            {...register("firstName")}
+            placeholder="Enter name"
+            className="w-full"
+          />
           {errors.firstName && (
-            <p className="text-red-500">{errors.firstName.message}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.firstName.message}
+            </p>
           )}
         </div>
 
-        <div>
+        <div className="w-full">
           <Label>Email</Label>
           <Input
             {...register("email")}
             type="email"
             placeholder="Enter email"
+            className="w-full"
           />
           {errors.email && (
-            <p className="text-red-500">{errors.email.message}</p>
+            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
           )}
         </div>
 
-        <div>
+        <div className="w-full">
           <Label>Password</Label>
           <Input
             {...register("password")}
             type="password"
             placeholder="Enter password"
+            className="w-full"
           />
           {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.password.message}
+            </p>
           )}
         </div>
       </div>
-      <div className=" px-4 py-2 w-[20%]">
-        <SubmitButton
-          label="Create Admin"
-          loadingLabel="Creating..."
-          isPending={isPending}
-        />
+
+      {/* Button Section */}
+      <div className="w-full flex justify-start ">
+        <div className="w-full sm:w-auto">
+          <SubmitButton
+            label="Create Admin"
+            loadingLabel="Creating..."
+            isPending={isPending}
+          />
+        </div>
       </div>
     </form>
   );
 };
+
 export default CreateAdminForm;

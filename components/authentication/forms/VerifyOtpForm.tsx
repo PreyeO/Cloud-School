@@ -34,7 +34,7 @@ const VerifyOtpForm = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full max-w-[588px]">
+      <div className="w-full max-w-[588px] items-center flex flex-col">
         <AuthTitle
           title="Verify OTP"
           subtitle="Enter the 6-digit code sent to your email"

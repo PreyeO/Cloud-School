@@ -38,7 +38,7 @@ const ResetPasswordForm = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full max-w-[588px]">
+      <div className="w-full min-w-[200px] md:min-w-[488px]">
         <AuthTitle
           title="Reset Password"
           subtitle="Set a new password for your account"

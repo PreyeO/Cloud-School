@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import PaymentButton from "@/components/ui/btns/payment-button";
 import Paragraph from "@/components/ui/typography/paragraph";
-import SubTitle from "@/components/ui/typography/sub-title";
 import React from "react";
 
 interface SupportOptionCardProps {
@@ -12,12 +11,8 @@ interface SupportOptionCardProps {
   description: string;
   buttonLabel: string;
   buttonAction: () => void;
-  bgColor?: string;
-  textColor?: string;
   iconColor?: string;
-  buttonBg?: string;
-  buttonHoverBg?: string;
-  buttonTextColor?: string;
+  theme?: "solid" | "light";
 }
 
 const SupportOptionCard = ({
@@ -26,28 +21,38 @@ const SupportOptionCard = ({
   description,
   buttonLabel,
   buttonAction,
-  bgColor = "bg-white/10",
-  textColor = "text-gray-400",
   iconColor = "#E61A1A",
-  buttonBg = "bg-[#E61A1A]",
-  buttonHoverBg = "hover:bg-[#C81818]",
-  buttonTextColor = "text-white",
+  theme = "solid",
 }: SupportOptionCardProps) => {
+  const isSolid = theme === "solid";
+
   return (
     <motion.div
-      whileHover={{ y: -4, scale: 1.02 }}
-      className={`p-6 sm:p-10 ${bgColor} backdrop-blur-lg rounded-2xl border border-white/10 shadow-xl flex flex-col items-center text-center`}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.25 }}
+      className={`p-8 rounded-2xl border shadow-sm transition-all flex flex-col items-center text-center
+        ${isSolid ? "bg-[#F9FAFB]" : "bg-white"}
+      `}
     >
-      <Icon className={`w-8 h-8 mb-4`} style={{ color: iconColor }} />
-      <SubTitle className="mb-2 text-white">{title}</SubTitle>
-      <Paragraph className={`mb-6 text-white ${textColor}`}>
+      <Icon className="w-10 h-10 mb-4" style={{ color: iconColor }} />
+
+      <h3 className="text-lg font-semibold mb-1 text-gray-900">{title}</h3>
+
+      <Paragraph className="text-gray-600 text-sm mb-6 max-w-xs">
         {description}
       </Paragraph>
+
       <PaymentButton
         label={buttonLabel}
-        loadingLabel="Routing..."
+        loadingLabel="Loading..."
         onClick={buttonAction}
-        className={`w-full md:w-[70%] px-6 py-2 ${buttonBg} ${buttonHoverBg} ${buttonTextColor}`}
+        className={`w-full py-2 rounded-lg font-medium transition
+          ${
+            isSolid
+              ? "bg-gray-900 text-white hover:bg-black"
+              : "bg-white text-gray-900 border hover:bg-gray-100"
+          }
+        `}
       />
     </motion.div>
   );
