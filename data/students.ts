@@ -179,6 +179,12 @@ export const bonuses = [
   },
 ];
 
+export const info = [
+  { icon: Timer, title: "Duration", value: "1 Hour" },
+  { icon: FileQuestion, title: "Questions", value: "100 Multiple Choice" },
+  { icon: ClipboardCheck, title: "Passing Score", value: "70% Minimum" },
+];
+
 export const lessons = [
   {
     id: 1,
