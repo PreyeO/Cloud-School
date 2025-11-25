@@ -38,7 +38,10 @@ export function TrendCard({ funnel, className }: TrendCardProps) {
   ];
 
   return (
-    <div className={`w-full h-full flex flex-col ${className || ""}`}>
+    <div
+      className={`w-full flex flex-col ${className || ""}`}
+      style={{ minHeight: 350 }}
+    >
       <Card className="rounded-3xl border bg-white dark:bg-[#111] shadow-sm p-6 flex flex-col flex-1">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg font-semibold">
@@ -50,7 +53,7 @@ export function TrendCard({ funnel, className }: TrendCardProps) {
           </p>
         </CardHeader>
 
-        <CardContent className="h-72">
+        <CardContent className="flex-1 min-h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />

@@ -90,7 +90,7 @@ const AdminPaymentScreen = () => {
         </div>
 
         {/* TREND CHART */}
-        <div className="overflow-x-auto w-full">
+        <div className="h-72 w-full">
           <TrendCard funnel={funnel?.data} />
         </div>
       </div>

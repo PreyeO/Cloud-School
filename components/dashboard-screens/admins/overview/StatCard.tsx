@@ -8,7 +8,7 @@ export function StatCard({ label, value, sub, Icon }: StatCardProps) {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className="p-6 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm"
+      className="p-6 bg-white  border border-gray-200  rounded-2xl shadow-sm"
     >
       <div className="flex items-start justify-between">
         <div>

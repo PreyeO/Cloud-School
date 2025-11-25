@@ -78,12 +78,6 @@ const AdminOverview = () => {
         sub: "This term",
         Icon: Wallet,
       },
-      {
-        id: "assessment",
-        label: "Total Entry Assessment Completed",
-        value: 86,
-        Icon: BookOpen,
-      },
     ];
   }, [users, paymentStats]);
 
@@ -104,7 +98,7 @@ const AdminOverview = () => {
       ) : (
         <div className="max-w-7xl mx-auto space-y-8">
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {stats.map((stat) => (
               <StatCard key={stat.id} {...stat} />
             ))}

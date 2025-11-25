@@ -48,7 +48,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
               const isActive = pathname === item.href;
 
               return (
-                <SidebarMenuItem key={item.title} className="pb-1 ">
+                <SidebarMenuItem key={item.title} className="pb-4 ">
                   <Link href={item.href ?? "#"} passHref>
                     <SidebarMenuButton
                       onClick={handleMenuClick}

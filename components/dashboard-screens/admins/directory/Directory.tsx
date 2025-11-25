@@ -207,16 +207,10 @@ const Directory = () => {
                       <TableCell>
                         <RowActions
                           userId={id}
-                          onChangeStatus={(newStatus) => {
-                            updateStatus(
-                              { id, status: newStatus },
-                              {
-                                onSuccess: () => {
-                                  console.log("Status updated!");
-                                },
-                              }
-                            );
-                          }}
+                          isPending={isPending}
+                          onChangeStatus={(newStatus) =>
+                            updateStatus({ id, status: newStatus })
+                          }
                         />
                       </TableCell>
                     </TableRow>
