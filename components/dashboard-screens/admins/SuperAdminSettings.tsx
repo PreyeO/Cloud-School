@@ -60,7 +60,6 @@ export default function SuperAdminSettings() {
                 "Created At",
                 "Last Login",
                 "Active",
-                "Actions",
               ]}
               renderRow={(admin, index) => (
                 <TableRow key={admin._id || index} className="text-sm">
@@ -80,11 +79,6 @@ export default function SuperAdminSettings() {
                   </TableCell>
                   <TableCell>
                     <Switch checked={admin.status === "active"} />
-                  </TableCell>
-                  <TableCell>
-                    <RowActions
-                      onRemove={() => alert(`Remove admin ${admin.email}`)}
-                    />
                   </TableCell>
                 </TableRow>
               )}

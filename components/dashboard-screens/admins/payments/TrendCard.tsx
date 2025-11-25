@@ -3,8 +3,8 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { TrendingUp } from "lucide-react";
 import {
-  AreaChart,
-  Area,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -12,106 +12,63 @@ import {
   CartesianGrid,
 } from "recharts";
 
-type ChartProps = {
-  data: {
-    month: string;
-    totalUsers: number;
-    applicationFee: number;
-    subscriptions: number;
-  }[];
+type FunnelStats = {
+  applied: number;
+  admitted: number;
+  enrolled: number;
+  withdrawn: number;
 };
 
-export function TrendCard({ data }: ChartProps) {
+type TrendCardProps = {
+  funnel: FunnelStats;
+  className?: string;
+};
+
+export function TrendCard({ funnel, className }: TrendCardProps) {
+  // Convert your static funnel numbers into a fake trend timeline
+  const chartData = [
+    {
+      stage: "Signed Up",
+      value: funnel.applied + funnel.admitted + funnel.enrolled,
+    },
+    { stage: "Applied", value: funnel.applied },
+    { stage: "Admitted", value: funnel.admitted },
+    { stage: "Enrolled", value: funnel.enrolled },
+    { stage: "Withdrawn", value: funnel.withdrawn },
+  ];
+
   return (
-    <Card className="lg:col-span-3 rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111] shadow-sm p-6 transition-all duration-300 hover:shadow-md">
-      <CardHeader className="pb-4">
-        <CardTitle className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-          <TrendingUp className="h-5 w-5 text-[#E51919]" />
-          Monthly Conversion Trends
-        </CardTitle>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-          Track how users progress from signups → application fee → admissions
-          each month.
-        </p>
-      </CardHeader>
+    <div className={`w-full h-full flex flex-col ${className || ""}`}>
+      <Card className="rounded-3xl border bg-white dark:bg-[#111] shadow-sm p-6 flex flex-col flex-1">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-lg font-semibold">
+            <TrendingUp className="h-5 w-5 text-[#E51919]" />
+            Admission Funnel Trend
+          </CardTitle>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Visual breakdown of how users progress through each admission stage.
+          </p>
+        </CardHeader>
 
-      <CardContent className="h-80">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart
-            data={data}
-            margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
-          >
-            <defs>
-              <linearGradient id="usersGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#3B82F6" stopOpacity={0.6} />
-                <stop offset="100%" stopColor="#3B82F6" stopOpacity={0.1} />
-              </linearGradient>
-              <linearGradient id="appliedGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#E51919" stopOpacity={0.6} />
-                <stop offset="100%" stopColor="#E51919" stopOpacity={0.1} />
-              </linearGradient>
-              <linearGradient id="admittedGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#22C55E" stopOpacity={0.6} />
-                <stop offset="100%" stopColor="#22C55E" stopOpacity={0.1} />
-              </linearGradient>
-            </defs>
+        <CardContent className="h-72">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={chartData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis dataKey="stage" stroke="#9CA3AF" />
+              <YAxis stroke="#9CA3AF" />
+              <Tooltip />
 
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-            <XAxis
-              dataKey="month"
-              stroke="#9CA3AF"
-              tick={{ fontSize: 12 }}
-              tickLine={false}
-              axisLine={false}
-            />
-            <YAxis
-              stroke="#9CA3AF"
-              tick={{ fontSize: 12 }}
-              tickLine={false}
-              axisLine={false}
-            />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#fff",
-                borderRadius: "12px",
-                border: "1px solid #e5e7eb",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-              }}
-              labelStyle={{ color: "#111", fontWeight: 500 }}
-            />
-
-            {/* Signed Up */}
-            <Area
-              type="monotone"
-              dataKey="totalUsers"
-              stroke="#3B82F6"
-              fill="url(#usersGradient)"
-              strokeWidth={2}
-              name="Total Signed Up"
-            />
-
-            {/* Applied */}
-            <Area
-              type="monotone"
-              dataKey="applicationFee"
-              stroke="#E51919"
-              fill="url(#appliedGradient)"
-              strokeWidth={2}
-              name="Total Applied"
-            />
-
-            {/* Admitted */}
-            <Area
-              type="monotone"
-              dataKey="subscriptions"
-              stroke="#22C55E"
-              fill="url(#admittedGradient)"
-              strokeWidth={2}
-              name="Total Admitted"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#E51919"
+                strokeWidth={3}
+                dot={{ r: 4 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

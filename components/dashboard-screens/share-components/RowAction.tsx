@@ -5,13 +5,14 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { Trash2 } from "lucide-react";
+import { RotateCw } from "lucide-react";
 
 interface RowActionsProps {
-  onRemove: () => void;
+  userId: string;
+  onChangeStatus: (status: string) => void;
 }
 
-export function RowActions({ onRemove }: RowActionsProps) {
+export function RowActions({ userId, onChangeStatus }: RowActionsProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -19,12 +20,16 @@ export function RowActions({ onRemove }: RowActionsProps) {
           ⋮
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem
-          className="flex items-center justify-center p-2 cursor-pointer"
-          onClick={onRemove}
-        >
-          Delete <Trash2 className="text-red-600" />
+
+      <DropdownMenuContent className="w-40">
+        <DropdownMenuItem onClick={() => onChangeStatus("applied")}>
+          Applied
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onChangeStatus("enrolled")}>
+          Enrolled
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onChangeStatus("admitted")}>
+          Admitted
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

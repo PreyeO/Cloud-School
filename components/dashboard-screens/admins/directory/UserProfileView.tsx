@@ -69,8 +69,8 @@ const AdminStudentProfile = ({ id }: Props) => {
             <Title className="text-white text-xl md:text-2xl">
               {user.firstName} {user.lastName}
             </Title>
-            <Paragraph className="text-gray-300 mt-1">{user.email}</Paragraph>
-            <Paragraph className="text-gray-400 text-sm mt-1">
+            <Paragraph className="text-white mt-1">{user.email}</Paragraph>
+            <Paragraph className="text-white text-sm mt-1">
               ID: <code>{user.id}</code>
             </Paragraph>
           </div>

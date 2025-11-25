@@ -10,7 +10,7 @@ const LessonQA = () => {
 
       <LinkButton
         href="/student/support"
-        className="bg-[#E61A1A] hover:bg-[#c81818]"
+        className="bg-[#E61A1A] hover:bg-[#c81818] max-w-[400px]"
       >
         <Headphones className="w-5 h-5" />
         Contact Support

@@ -55,17 +55,22 @@ export const systems = [
 
     subtitle: "Build Top 1 % Consistency in 90 Days",
     description:
-      "The A-Player Accountability System™ gives you the structure, mentorship, and push to stay consistent. It combines a personal accountability concierge, gamified progress tracking, and weekly mentor syncs that keep your focus sharp and your goals visible every single week.",
+      "Most learners start strong but quickly lose rhythm when motivation dips.The A-Player Accountability System™ gives you the structure, mentorship, and push to stay consistent no matter what life throws your way.",
     cta: "₦600,000 Value",
+    span: "It combines a personal accountability concierge, gamified progress tracking, and weekly mentor syncs that keep your focus sharp and your goals visible every single week.",
+    span2:
+      "You’ll never feel lost or alone in your learning again — instead of trying to stay disciplined, you’ll become the kind of person who simply follows through.",
   },
   {
     id: "unstuck",
     title: "The Unstuck Mentor Line™",
-
     subtitle: "Get Expert Help in 60 Minutes or Less",
     description:
       "Instant access to expert help whenever confusion strikes — from live mentor calls to quick voice notes and video walkthroughs. Direct 1:1 mentor access, SOS support and a 24/7 AI assistant trained on real mentor responses.",
     cta: "₦599,990 Value",
+    span: "You’ll have direct 1:1 mentor access, SOS support when you need urgent help, and a 24/7 AI assistant trained on real mentor responses — so you never spend another day feeling lost or frustrated.",
+    span2:
+      "With this system, clarity is always one message away, and progress becomes your default mode",
   },
   {
     id: "focus",
@@ -73,8 +78,11 @@ export const systems = [
 
     subtitle: "Design Your Perfect Study System in 7 Days",
     description:
-      "A mentor-guided time audit, a custom week-by-week study plan, and fail-safe reset calls that help you bounce back anytime life interrupts your flow.",
+      "Most people don’t fail because they’re lazy — they fail because life gets in the way. The Focus Blueprint™ helps you build a personalized learning rhythm that fits your lifestyle, job, and energy, so consistency becomes effortless….",
     cta: "₦450,000 Value",
+    span: "You’ll get a mentor-guided time audit, a custom week-by-week study plan, and fail-safe reset calls that help you bounce back anytime life interrupts your flow.",
+    span2:
+      "By the end, you won’t be trying to find time to learn — you’ll have a study system that works naturally around your life.",
   },
   {
     id: "bounce-back",
@@ -82,8 +90,11 @@ export const systems = [
     value: "",
     subtitle: "Get Back on Track in 7 Days",
     description:
-      "A personalized recap brief, a one-on-one catch-up call, and a custom 7-day comeback plan built with your mentor — plus a buddy system that keeps you accountable until you’re fully back in rhythm.",
+      "Everyone hits rough patches — missed classes, lost focus, or life just getting in the way. The Bounce-Back Blueprint™ is your personal restart system that helps you regain momentum fast.",
     cta: "₦500,000 Value",
+    span: "It includes a personalized recap brief, a one-on-one catch-up call, and a custom 7-day comeback plan built with your mentor — plus a buddy system that keeps you accountable until you’re fully back in rhythm.",
+    span2:
+      "With this safety net in place, setbacks never turn into failure — you’ll always know exactly how to recover and keep moving forward.",
   },
   {
     id: "wildcard",
@@ -91,8 +102,11 @@ export const systems = [
     value: "",
     subtitle: "The Always-On Backup That Turns Setbacks Into Stepping Stones",
     description:
-      "Rapid project rescue sessions, mindset resets, 24/7 tech support, and new evolving mini-systems designed to handle anything that could slow you down.",
+      "Even with structure and support, life happens — burnout, tech issues, confusion, or just unexpected setbacks. The Wildcard System™ is your invisible safety net that activates when things don’t go as planned.",
     cta: "₦2,250,000 Value",
+    span: "It combines rapid project rescue sessions, mindset resets, 24/7 tech support, and new evolving mini-systems designed to handle anything that could slow you down.",
+    span2:
+      "So no matter what happens, you’re never stuck or left behind — there’s always a system ready to help you bounce back stronger.",
   },
 ];
 
@@ -100,82 +114,115 @@ export const bonuses = [
   {
     id: "career-roi",
     title: "Career & ROI Transformation Suite™",
+    subtitle:
+      "The All-in-One Career Success Bundle That Shows You Exactly How to Earn Back Your Investment — and Keep Growing",
     value: "₦850,000 Value",
     description:
-      "A 90-day roadmap that helps you launch your career, track income goals, and stay guided until you win. Your post-program safety net so you never have to guess what comes next.",
+      "Many learners worry about what happens after the program — how to find a job, earn back their investment, or stay mentored once classes end…",
     cta: "Activate My Career Transformation Suite",
+    span: "The Career & ROI Transformation Suite™ removes that uncertainty with a clear 90-day roadmap that helps you launch your career, track your income goals, and stay guided until you win.",
+    span2:
+      "It’s your post-program safety net — so you never have to guess what comes next, and you’ll see your effort turn into measurable results.",
   },
   {
     id: "cert-fast",
     title: "60-Minute Cloud Certification Fast-Track System™",
     value: "₦650,000 Value",
+    subtitle:"Get Your Personalized Plan to Pass AWS, Azure, or GCP Without Wasting Time or Money.",
     description:
-      "Personalized certification plan, mock exams, and 1:1 mentor guidance that fast-tracks your prep for AWS, Azure, or GCP.",
+      "Most learners waste months trying to prepare for AWS, Azure, or GCP certifications without a clear direction.",
     cta: "Fast-Track My Certification Plan",
+    span: "This bonus gives you a personalized certification plan, mock exams, and 1:1 mentor guidance that fast-tracks your prep and keeps you accountable…",
+    span2: "which means you’ll pass your exam with confidence and clarity, without wasting time or effort.",
   },
   {
     id: "mastery-proof",
     title: "Cloud Mastery & Proof Accelerator™",
     value: "₦700,000 Value",
+    subtitle:"Master Advanced Cloud Skills & Build a Portfolio That Proves Your Expertise.",
     description:
-      "Work on mentor-led projects and architecture challenges that mirror real company systems. Walk away with a verified portfolio of work.",
+      "A lot of people learn cloud skills but have nothing solid to show for it — no proof, no credibility… With the Cloud Mastery & Proof Accelerator™, you’ll work on real mentor-led projects and architecture challenges that mirror what real companies build…",
     cta: "Build My Cloud Mastery Portfolio",
+    span: "You’ll walk away with a verified portfolio of work that shows your skill, confidence, and readiness — so when recruiters look at you, they see results, not potential.",
+    span2: "",
   },
   {
     id: "job-14",
     title: "14-Day Job Placement Blueprint™",
     value: "₦600,000 Value",
+    subtitle:"Land Interviews, Build Confidence & Position Yourself for Remote Cloud Roles — Fast.",
     description:
-      "A clear, mentor-guided plan to package your portfolio, polish LinkedIn, and apply the right way so you move from learning to earning fast.",
+      "After learning the skills, many people get stuck on the next step — how to actually land that first remote job.",
     cta: "Activate My Job Placement Blueprint",
+    span: "The 14-Day Job Placement Blueprint™ gives you a clear, mentor-guided plan to package your portfolio, polish your LinkedIn, and apply the right way.",
+    span2: "You’ll know what to say, where to apply, and how to stand out — so you can move from learning to earning in record time.",
   },
   {
     id: "90-role",
     title: "90-Day Role Mastery Mentorship™",
     value: "₦600,000 Value",
+    subtitle:"Learn, Lead, and Thrive in Your First Cloud Job with Expert Guidance Every Step of the Way.",
     description:
-      "Paired with a seasoned engineer who guides you through your first 90 days, helping you solve real challenges and build confidence on the job.",
+      "Starting your first cloud role can feel overwhelming — new systems, new expectations, and a steep learning curve.",
     cta: "Activate My Role Mastery Mentorship",
+    span: "That’s why this mentorship pairs you with a seasoned engineer who guides you through your first 90 days, helps you solve real challenges, and builds your confidence on the job…",
+    span2: "You’ll learn faster, make fewer mistakes, and stand out in your team — so instead of just surviving your first role, you’ll be thriving in it.",
   },
   {
     id: "path-navigator",
     title: "60-Minute Career Path Navigator™",
     value: "₦500,000 Value",
+    subtitle:"Uncover Your Perfect Cloud Career in Under an Hour — and Start Building Toward It Fast.",
     description:
-      "A focused session where a mentor helps you analyze strengths, review progress, and map the exact specialization that matches your goals.",
+      "After learning so many tools, it’s easy to feel unsure about which cloud path fits you best.",
     cta: "Find My Cloud Career Path",
+    span: "In one focused session, a mentor helps you analyze your strengths, review your progress, and map out the exact specialization that matches your goals — whether that’s DevOps, SRE, Security, or Architecture…",
+    span2: "You’ll leave with a clear, personalized roadmap and the confidence to move forward — so you’re not just learning randomly, you’re building toward a career that truly fits you.",
   },
   {
     id: "mastermind",
     title: "Lifetime Mastermind Access™",
     value: "₦700,000 Value",
+    subtitle:"Join the Exclusive Network Where Cloud Top G Graduates Collaborate, Grow, and Open Doors for Each Othe",
     description:
-      "A private network of mentors, engineers, and alumni who share job leads, collaborate on projects, and grow together long after graduation.",
+      "Most programs end when the classes stop — and so does the support.",
     cta: "Join the Mastermind Network",
+    span: "The Lifetime Mastermind Access™ keeps you plugged into a private network of mentors, engineers, and alumni who share job leads, collaborate on projects, and grow together long after graduation.",
+    span2: "You’ll always have people in your corner — so your career never stops moving forward, even years after the program ends.",
   },
   {
     id: "interview-bootcamp",
     title: "4-Week Cloud Interview Mastery Bootcamp™",
     value: "₦500,000 Value",
+    subtitle:"Learn to Communicate Like a Pro, Handle Pressure Effortlessly & Turn Every Interview Into an Offer.",
     description:
-      "Mock interviews, feedback sessions, and mentor-led coaching that sharpen how you speak, think, and perform under pressure.",
+      "You can know everything about the cloud and still lose opportunities if you can’t communicate your value in an interview.",
     cta: "Start My Interview Mastery Bootcamp",
+    span: "This bootcamp trains you through mock interviews, feedback sessions, and mentor-led coaching that sharpen how you speak, think, and perform under pressure…",
+    span2: "By the end, you’ll walk into any interview calm, confident, and prepared — so you can stop hoping for offers and start choosing them.",
   },
+
   {
     id: "legacy-builder",
     title: "Legacy Builder System™",
     value: "₦600,000 Value",
+    subtitle:"Turn Your Cloud Career Into a Lasting Personal Brand and Become Recognized as a Top 1% Engineer.",
     description:
-      "Build a personal brand that showcases expertise, authority, and results with mentor guidance on storytelling, profile optimization, and content creation.",
+      "Most engineers stay hidden behind their skills — talented, but invisible.",
     cta: "Build My Cloud Legacy",
+    span: "The Legacy Builder System™ helps you change that by building a personal brand that showcases your expertise, authority, and results. You’ll get mentor guidance on storytelling, profile optimization, and content creation that position you as a standout professional in your field.",
+    span2: "By the end, you won’t just have a job — you’ll have a name that opens doors and builds long-term credibility.",
   },
   {
     id: "shadow-pro",
     title: "Shadow-the-Pro Experience™",
     value: "₦600,000 Value",
+    subtitle:"Watch How Top Engineers Think, Decide & Deliver Under Pressure — and Learn to Do the Same.",
     description:
-      "Sit front-row as senior engineers build and troubleshoot live systems, explaining every move and decision so you learn to think like a pro.",
+      "Most learners only see tutorials — not how real engineers solve problems in the wild.",
     cta: "Join the Shadow-the-Pro Experience",
+    span: "With the Shadow-the-Pro Experience™, you’ll sit front-row as senior engineers build and troubleshoot live systems, explaining every move and decision.",
+    span2: "You’ll see how experts think under pressure and learn to apply those same patterns in your own projects — so you don’t just follow steps, you start thinking like a pro.",
   },
 ];
 

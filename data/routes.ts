@@ -72,11 +72,6 @@ export const adminRoutes: SidebarItem[] = [
     href: "/admin/payment",
     icon: CreditCard,
   },
-  {
-    title: "Assessments",
-    href: "/admin/assessments",
-    icon: ClipboardCheck,
-  },
 
   {
     title: "Settings",

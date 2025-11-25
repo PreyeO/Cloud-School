@@ -31,21 +31,6 @@ export async function getAllAdmins() {
   return response.data;
 }
 
-// export async function toggleAdminStatus(
-//   adminId: string,
-//   status: "active" | "inactive"
-// ) {
-//   const response = await apiClient.patch(`/api/v1/admin/${adminId}/status`, {
-//     status,
-//   });
-//   return response.data;
-// }
-
-// export async function removeAdmin(adminId: string) {
-//   const response = await apiClient.delete(`/api/v1/admin/${adminId}`);
-//   return response.data;
-// }
-
 export async function getAllUsersDetails(filters?: {
   status?: string;
   howDidYouHearAboutUs?: string;
@@ -70,5 +55,11 @@ export async function getAllUsersDetails(filters?: {
 
 export async function getUserById(id: string) {
   const response = await apiClient.get(`/api/v1/admin/users/${id}`);
+  return response.data;
+}
+export async function changeUserStatus(id: string, status: string) {
+  const response = await apiClient.patch(`/api/v1/admin/users/${id}/status`, {
+    status,
+  });
   return response.data;
 }

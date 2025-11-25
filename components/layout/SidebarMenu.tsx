@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarSeparator,
-  Sidebar,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { SidebarItem } from "@/types/route";
 import { adminRoutes, studentRoutes } from "@/data/routes";
@@ -24,8 +24,12 @@ type SidebarMenuProps = {
 };
 
 const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
+  const { isMobile, setOpenMobile } = useSidebar();
   const pathname = usePathname();
   const routes: SidebarItem[] = role === "admin" ? adminRoutes : studentRoutes;
+  const handleMenuClick = () => {
+    if (isMobile) setOpenMobile(false);
+  };
 
   return (
     <SidebarContent className="overflow-hidden bg-[#F8F8F8] ">
@@ -47,6 +51,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
                 <SidebarMenuItem key={item.title} className="pb-1 ">
                   <Link href={item.href ?? "#"} passHref>
                     <SidebarMenuButton
+                      onClick={handleMenuClick}
                       isActive={isActive}
                       className={`
                         transition-colors

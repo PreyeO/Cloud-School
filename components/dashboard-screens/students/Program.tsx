@@ -34,7 +34,7 @@ export default function ProgramDetails() {
           transition={{ duration: 0.6 }}
           className="space-y-6 text-center max-w-3xl mx-auto"
         >
-          <Title className="leading-tight text-3xl md:text-4xl">
+          <Title className="leading-tight  md:text-4xl text-2xl">
             Cloud Top G Cohort 2026 — The Next Generation
           </Title>
 
@@ -60,7 +60,7 @@ export default function ProgramDetails() {
         >
           {/* ABOUT */}
           <div className="space-y-4">
-            <Title className="text-2xl sm:text-3xl mb-3">
+            <Title className="text-xl sm:text-3xl mb-3">
               Program Overview (What you’ll experience)
             </Title>
 
@@ -129,7 +129,7 @@ export default function ProgramDetails() {
 
         {/* SYSTEMS ACCORDION */}
         <div className="space-y-4 max-w-5xl mx-auto">
-          <Title className="text-2xl sm:text-3xl">
+          <Title className="text-xl sm:text-3xl">
             Here’s What You Get Inside — Valued at Over ₦4.9 Million
           </Title>
           <SubTitle> The Legacy Career Accelerator™</SubTitle>
@@ -143,29 +143,37 @@ export default function ProgramDetails() {
             learners into disciplined, top-1 % cloud engineers.
           </Paragraph>
 
-          <Accordion type="single" collapsible className="space-y-3">
+          <Accordion
+            type="single"
+            collapsible
+            className="space-y-3 w-full max-w-full"
+          >
             {systems.map((s) => (
               <AccordionItem
                 key={s.id}
                 value={s.id}
                 className="rounded-2xl border bg-white dark:bg-[#0b0b0b] border-gray-200 dark:border-gray-800"
               >
-                <AccordionTrigger className="text-base p-5 flex flex-row justify-between items-center gap-3">
-                  {/* Text side with fixed width or flex-grow */}
-                  <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <Award className="w-6 h-6 text-[#E51919]" />
+                <AccordionTrigger className="p-4 sm:p-5 text-base flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-3 overflow-hidden">
+                  {/* Left Section (icon + text) */}
+                  <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
+                    <Award className="w-6 h-6 text-[#E51919] flex-shrink-0 hidden" />
+
                     <div className="min-w-0">
-                      <div className="font-semibold truncate  ">{s.title}</div>
-                      <div className="text-sm text-gray-500 truncate">
+                      <h4 className="font-semibold truncate text-sm sm:text-base md:text-lg">
+                        {s.title}
+                      </h4>
+
+                      <p className="text-xs sm:text-sm md:text-base text-gray-500 truncate font-medium">
                         • {s.subtitle}
-                      </div>
+                      </p>
                     </div>
                   </div>
 
-                  {/* CTA button */}
+                  {/* CTA Button (moves under text on small screens) */}
                   <Button
                     size="sm"
-                    className="rounded-xl text-base whitespace-nowrap flex-shrink-0"
+                    className="rounded-xl text-sm sm:text-base whitespace-nowrap flex-shrink-0 self-stretch sm:self-auto"
                   >
                     {s.cta}
                   </Button>
@@ -173,11 +181,40 @@ export default function ProgramDetails() {
 
                 <AccordionContent className="text-base px-5 pb-5 text-gray-600 dark:text-gray-400">
                   {s.description}
+                  <br />
+                  <br />
+                  {s.span}
+                  <br />
+                  <br />
+                  {s.span2}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
+        <div className="border w-full " />
+        <SubTitle> But That’s Just the Foundation…</SubTitle>
+        <Paragraph className="md:pt-2 pt-0">
+          Everything you’ve seen so far — the Core Offers and The Wildcard
+          System™ — forms the backbone of your transformation inside Cloud Top
+          G.
+          <br />
+          <br />
+          They’re what make consistency, clarity, and results inevitable.
+          <br />
+          <br />
+          But we didn’t stop there.
+          <br />
+          <br />
+          Because true success in tech doesn’t just come from learning, it comes
+          from having the extra edge that most people never get.
+          <br />
+          <br />
+          That’s why we built <strong>The Cloud Top G Advantage</strong> — over
+          ₦6 million worth of exclusive bonuses designed to remove every barrier
+          between you and your dream career.
+        </Paragraph>
+        <div className="border w-full" />
 
         {/* BONUSES */}
         <div className="space-y-6 max-w-6xl mx-auto">
@@ -254,33 +291,40 @@ export default function ProgramDetails() {
             </strong>
           </Paragraph>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {bonuses.map((b) => (
-              <Accordion
-                key={b.id}
-                type="single"
-                collapsible
-                className="space-y-3"
-              >
+          <div className="flex flex-col w-full px-3 sm:px-0">
+            <Accordion type="single" collapsible className="w-full max-w-full">
+              {bonuses.map((b) => (
                 <AccordionItem
+                  key={b.id}
                   value={b.id}
-                  className="text-base rounded-2xl border bg-white dark:bg-[#0b0b0b] border-gray-200 dark:border-gray-800"
+                  className="mb-2 rounded-2xl border bg-white border-gray-200"
                 >
-                  <AccordionTrigger className="p-5 flex flex-row justify-between items-center gap-3">
+                  <AccordionTrigger className="p-4 sm:p-5 flex items-center gap-3 overflow-hidden">
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold truncate">{b.title}</h4>
-                      <p className="text-sm text-gray-500 truncate">
+                      <h4 className="font-semibold truncate text-sm sm:text-base md:text-lg">
+                        {b.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm md:text-base text-gray-500 truncate font-medium">
                         {b.value}
                       </p>
                     </div>
                   </AccordionTrigger>
 
-                  <AccordionContent className="text-base px-5 pb-5 text-gray-600 dark:text-gray-400">
-                    {b.description}
+                  <AccordionContent className="text-xs sm:text-sm md:text-base px-4 sm:px-5 pb-5 text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <p className="font-medium pb-2">{b.subtitle}</p>
+                    <p>
+                      {b.description}
+                      <br />
+                      <br />
+                      {b.span}
+                      <br />
+                      <br />
+                      {b.span2}
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
-              </Accordion>
-            ))}
+              ))}
+            </Accordion>
           </div>
         </div>
 
@@ -295,13 +339,32 @@ export default function ProgramDetails() {
             <SubTitle>Your Advantage Becomes Your Proof</SubTitle>
 
             <Paragraph>
-              Join <strong>Cloud Top G Cohort 2026</strong> and step into an
-              ecosystem where every question has an answer, every obstacle has a
-              system, and every effort produces proof.
-            </Paragraph>
-
-            <Paragraph className="font-semibold">
-              Next Cohort Begins February 2026 — Limited Slots Available.
+              Everything you’ve seen so far — the systems, mentorship, and
+              bonuses — was designed for one purpose:
+              <br /> <br />
+              <strong>to make your success inevitable.</strong>
+              <br />
+              <br />
+              When you join <strong>Cloud Top G Cohort 2026</strong>, you’re not
+              just getting training.
+              <br />
+              <br />
+              You’re stepping into an ecosystem where every obstacle has a
+              system, every question has an answer, and every effort leads to
+              proof.
+              <br />
+              <br />
+              That’s why Cloud Top G graduates don’t just learn — they win.
+              <br />
+              <br />
+              And right now, you can still join before bonuses worth over
+              <strong> ₦6 million</strong> disappear when registration closes.
+              <br />
+              <br />
+              <strong>
+                {" "}
+                Next Cohort Begins February 2026 — Limited Slots Available.
+              </strong>
             </Paragraph>
 
             <PaymentButton
@@ -309,7 +372,7 @@ export default function ProgramDetails() {
               loadingLabel="Applying..."
               isPending={isPending}
               onClick={() => handlePay()}
-              className="mx-auto"
+              className="mx-auto mt-10 max-w-[400px]"
             />
           </div>
         </motion.div>

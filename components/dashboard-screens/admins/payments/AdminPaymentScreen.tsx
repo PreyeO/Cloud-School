@@ -3,15 +3,17 @@
 import { CreditCard, Wallet, Users, CheckCircle2 } from "lucide-react";
 import { StatCard } from "./StatCard";
 import { TrendCard } from "./TrendCard";
-import { PaymentTable } from "./PaymentTable";
+
 import { useGetAllPayments } from "@/hooks/useGetAllPayment";
 import { useMemo } from "react";
-import { months, payments } from "@/data/admin";
+import { months } from "@/data/admin";
 import Paragraph from "@/components/ui/typography/paragraph";
 import Title from "@/components/ui/typography/title";
+import { useGetAllAdmissionFunnel } from "@/hooks/useGetAllAdmissionFunnel";
 
 const AdminPaymentScreen = () => {
   const { data, isLoading, isError } = useGetAllPayments();
+  const { data: funnel } = useGetAllAdmissionFunnel();
 
   const paymentStats = useMemo(() => data?.data || {}, [data?.data]);
 
@@ -89,12 +91,7 @@ const AdminPaymentScreen = () => {
 
         {/* TREND CHART */}
         <div className="overflow-x-auto w-full">
-          <TrendCard data={chartData} />
-        </div>
-
-        {/* RECENT PAYMENTS TABLE */}
-        <div className="overflow-x-auto w-full">
-          <PaymentTable payments={payments} />
+          <TrendCard funnel={funnel?.data} />
         </div>
       </div>
     </section>

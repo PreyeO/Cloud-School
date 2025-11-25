@@ -12,6 +12,7 @@ import { useGetAllAdmissionFunnel } from "@/hooks/useGetAllAdmissionFunnel";
 import { MarketingFunnelItem } from "@/types/admin";
 import { completionData, recentActivities } from "@/data/admin";
 import LoadingState from "@/components/ui/loaders/loading-state";
+import { TrendCard } from "../payments/TrendCard";
 
 const AdminOverview = () => {
   // ✅ Hooks
@@ -19,6 +20,7 @@ const AdminOverview = () => {
   const { data: paymentsData } = useGetAllPayments();
   const { data: marketingFunnelData } = useGetAllMarketingFunnel();
   const { data: admissionFunnelData } = useGetAllAdmissionFunnel();
+  const { data: funnel } = useGetAllAdmissionFunnel();
 
   // Loading flag
   const isPageLoading =
@@ -110,9 +112,8 @@ const AdminOverview = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT SIDE */}
-            <div className="lg:col-span-2 space-y-6">
-              <LineChartCard data={completionData} />
-              <RecentActivityCard activities={recentActivities} />
+            <div className="lg:col-span-2 flex flex-col h-full">
+              <TrendCard funnel={funnel?.data} className="w-full flex-1" />
             </div>
 
             {/* RIGHT SIDE */}

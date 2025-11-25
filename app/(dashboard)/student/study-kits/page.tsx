@@ -11,7 +11,7 @@ const StudyKitPage = () => {
   return (
     <SubscriptionWrapper
       isLoading={isLoading}
-      isPending={!hasPaid} // 🔁 if not paid, show empty screen
+      isPending={!hasPaid}
       emptyStateComponent={<StudyKitEmptyScreen />}
     >
       <StudyKit />

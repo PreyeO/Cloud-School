@@ -25,6 +25,7 @@ import { allSources } from "@/data/admin";
 import Title from "@/components/ui/typography/title";
 import Paragraph from "@/components/ui/typography/paragraph";
 import LoadingState from "@/components/ui/loaders/loading-state";
+import { useChangeStatus } from "@/hooks/useChangeStatus";
 
 const PER_PAGE = 7;
 
@@ -34,6 +35,7 @@ const Directory = () => {
   const [sourceFilter, setSourceFilter] = useState<string>("all");
   const [allSelected, setAllSelected] = useState(false);
   const router = useRouter();
+  const { mutate: updateStatus, isPending } = useChangeStatus();
 
   // Fetch users
   const {
@@ -204,7 +206,17 @@ const Directory = () => {
                       </TableCell>
                       <TableCell>
                         <RowActions
-                          onRemove={() => alert(`Remove admin ${row.email}`)}
+                          userId={id}
+                          onChangeStatus={(newStatus) => {
+                            updateStatus(
+                              { id, status: newStatus },
+                              {
+                                onSuccess: () => {
+                                  console.log("Status updated!");
+                                },
+                              }
+                            );
+                          }}
                         />
                       </TableCell>
                     </TableRow>
