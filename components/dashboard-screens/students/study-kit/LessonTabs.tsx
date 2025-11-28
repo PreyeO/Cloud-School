@@ -14,13 +14,15 @@ interface LessonTabsProps {
 const LessonTabs: FC<LessonTabsProps> = ({ lesson }) => {
   return (
     <Tabs defaultValue="overview" className="w-full">
-      <TabsList className="grid grid-cols-3 bg-gray-100 p-1 rounded-full">
-        <TabsTrigger value="overview">Overview</TabsTrigger>
+      <TabsList className="grid grid-cols-3  h-12 w-full rounded-full">
+        <TabsTrigger value="overview" className="">
+          Overview
+        </TabsTrigger>
         <TabsTrigger value="resources">Resources</TabsTrigger>
         <TabsTrigger value="qa">Q & A</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="overview">
+      <TabsContent value="overview" className="">
         <LessonOverview
           title={lesson.title}
           duration={lesson.duration}

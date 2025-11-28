@@ -26,7 +26,7 @@ const ForgotPasswordForm = () => {
     defaultValues: { email: "" },
   });
 
-  const { mutate, isPending } = useForgotPassword();
+  const { mutate, isProcessing } = useForgotPassword();
 
   const onSubmit = (values: ForgotPasswordFormValues) => {
     mutate(values);
@@ -65,7 +65,7 @@ const ForgotPasswordForm = () => {
               <SubmitButton
                 label="Send Reset Link"
                 loadingLabel="Sending..."
-                isPending={isPending}
+                isPending={isProcessing}
               />
             </div>
           </form>

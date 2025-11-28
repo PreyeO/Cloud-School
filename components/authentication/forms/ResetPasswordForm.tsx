@@ -30,7 +30,7 @@ const ResetPasswordForm = () => {
     defaultValues: { password: "", confirmPassword: "" },
   });
 
-  const { mutate, isPending } = useResetPassword();
+  const { mutate, isProcessing } = useResetPassword();
 
   const onSubmit = (values: ResetPasswordFormValues) => {
     mutate(values);
@@ -116,7 +116,7 @@ const ResetPasswordForm = () => {
               <SubmitButton
                 label="Reset Password"
                 loadingLabel="Resetting..."
-                isPending={isPending}
+                isPending={isProcessing}
               />
             </div>
           </form>

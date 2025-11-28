@@ -32,7 +32,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ role }) => {
   };
 
   return (
-    <SidebarContent className="overflow-hidden bg-[#F8F8F8] ">
+    <SidebarContent className="overflow-hidden bg-white ">
       {/* Sidebar Logo + Branding */}
       <SidebarHeader className="flex items-center">
         <Logo />

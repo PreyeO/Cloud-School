@@ -128,18 +128,21 @@ export const bonuses = [
     id: "cert-fast",
     title: "60-Minute Cloud Certification Fast-Track System™",
     value: "₦650,000 Value",
-    subtitle:"Get Your Personalized Plan to Pass AWS, Azure, or GCP Without Wasting Time or Money.",
+    subtitle:
+      "Get Your Personalized Plan to Pass AWS, Azure, or GCP Without Wasting Time or Money.",
     description:
       "Most learners waste months trying to prepare for AWS, Azure, or GCP certifications without a clear direction.",
     cta: "Fast-Track My Certification Plan",
     span: "This bonus gives you a personalized certification plan, mock exams, and 1:1 mentor guidance that fast-tracks your prep and keeps you accountable…",
-    span2: "which means you’ll pass your exam with confidence and clarity, without wasting time or effort.",
+    span2:
+      "which means you’ll pass your exam with confidence and clarity, without wasting time or effort.",
   },
   {
     id: "mastery-proof",
     title: "Cloud Mastery & Proof Accelerator™",
     value: "₦700,000 Value",
-    subtitle:"Master Advanced Cloud Skills & Build a Portfolio That Proves Your Expertise.",
+    subtitle:
+      "Master Advanced Cloud Skills & Build a Portfolio That Proves Your Expertise.",
     description:
       "A lot of people learn cloud skills but have nothing solid to show for it — no proof, no credibility… With the Cloud Mastery & Proof Accelerator™, you’ll work on real mentor-led projects and architecture challenges that mirror what real companies build…",
     cta: "Build My Cloud Mastery Portfolio",
@@ -150,79 +153,93 @@ export const bonuses = [
     id: "job-14",
     title: "14-Day Job Placement Blueprint™",
     value: "₦600,000 Value",
-    subtitle:"Land Interviews, Build Confidence & Position Yourself for Remote Cloud Roles — Fast.",
+    subtitle:
+      "Land Interviews, Build Confidence & Position Yourself for Remote Cloud Roles — Fast.",
     description:
       "After learning the skills, many people get stuck on the next step — how to actually land that first remote job.",
     cta: "Activate My Job Placement Blueprint",
     span: "The 14-Day Job Placement Blueprint™ gives you a clear, mentor-guided plan to package your portfolio, polish your LinkedIn, and apply the right way.",
-    span2: "You’ll know what to say, where to apply, and how to stand out — so you can move from learning to earning in record time.",
+    span2:
+      "You’ll know what to say, where to apply, and how to stand out — so you can move from learning to earning in record time.",
   },
   {
     id: "90-role",
     title: "90-Day Role Mastery Mentorship™",
     value: "₦600,000 Value",
-    subtitle:"Learn, Lead, and Thrive in Your First Cloud Job with Expert Guidance Every Step of the Way.",
+    subtitle:
+      "Learn, Lead, and Thrive in Your First Cloud Job with Expert Guidance Every Step of the Way.",
     description:
       "Starting your first cloud role can feel overwhelming — new systems, new expectations, and a steep learning curve.",
     cta: "Activate My Role Mastery Mentorship",
     span: "That’s why this mentorship pairs you with a seasoned engineer who guides you through your first 90 days, helps you solve real challenges, and builds your confidence on the job…",
-    span2: "You’ll learn faster, make fewer mistakes, and stand out in your team — so instead of just surviving your first role, you’ll be thriving in it.",
+    span2:
+      "You’ll learn faster, make fewer mistakes, and stand out in your team — so instead of just surviving your first role, you’ll be thriving in it.",
   },
   {
     id: "path-navigator",
     title: "60-Minute Career Path Navigator™",
     value: "₦500,000 Value",
-    subtitle:"Uncover Your Perfect Cloud Career in Under an Hour — and Start Building Toward It Fast.",
+    subtitle:
+      "Uncover Your Perfect Cloud Career in Under an Hour — and Start Building Toward It Fast.",
     description:
       "After learning so many tools, it’s easy to feel unsure about which cloud path fits you best.",
     cta: "Find My Cloud Career Path",
     span: "In one focused session, a mentor helps you analyze your strengths, review your progress, and map out the exact specialization that matches your goals — whether that’s DevOps, SRE, Security, or Architecture…",
-    span2: "You’ll leave with a clear, personalized roadmap and the confidence to move forward — so you’re not just learning randomly, you’re building toward a career that truly fits you.",
+    span2:
+      "You’ll leave with a clear, personalized roadmap and the confidence to move forward — so you’re not just learning randomly, you’re building toward a career that truly fits you.",
   },
   {
     id: "mastermind",
     title: "Lifetime Mastermind Access™",
     value: "₦700,000 Value",
-    subtitle:"Join the Exclusive Network Where Cloud Top G Graduates Collaborate, Grow, and Open Doors for Each Othe",
+    subtitle:
+      "Join the Exclusive Network Where Cloud Top G Graduates Collaborate, Grow, and Open Doors for Each Othe",
     description:
       "Most programs end when the classes stop — and so does the support.",
     cta: "Join the Mastermind Network",
     span: "The Lifetime Mastermind Access™ keeps you plugged into a private network of mentors, engineers, and alumni who share job leads, collaborate on projects, and grow together long after graduation.",
-    span2: "You’ll always have people in your corner — so your career never stops moving forward, even years after the program ends.",
+    span2:
+      "You’ll always have people in your corner — so your career never stops moving forward, even years after the program ends.",
   },
   {
     id: "interview-bootcamp",
     title: "4-Week Cloud Interview Mastery Bootcamp™",
     value: "₦500,000 Value",
-    subtitle:"Learn to Communicate Like a Pro, Handle Pressure Effortlessly & Turn Every Interview Into an Offer.",
+    subtitle:
+      "Learn to Communicate Like a Pro, Handle Pressure Effortlessly & Turn Every Interview Into an Offer.",
     description:
       "You can know everything about the cloud and still lose opportunities if you can’t communicate your value in an interview.",
     cta: "Start My Interview Mastery Bootcamp",
     span: "This bootcamp trains you through mock interviews, feedback sessions, and mentor-led coaching that sharpen how you speak, think, and perform under pressure…",
-    span2: "By the end, you’ll walk into any interview calm, confident, and prepared — so you can stop hoping for offers and start choosing them.",
+    span2:
+      "By the end, you’ll walk into any interview calm, confident, and prepared — so you can stop hoping for offers and start choosing them.",
   },
 
   {
     id: "legacy-builder",
     title: "Legacy Builder System™",
     value: "₦600,000 Value",
-    subtitle:"Turn Your Cloud Career Into a Lasting Personal Brand and Become Recognized as a Top 1% Engineer.",
+    subtitle:
+      "Turn Your Cloud Career Into a Lasting Personal Brand and Become Recognized as a Top 1% Engineer.",
     description:
       "Most engineers stay hidden behind their skills — talented, but invisible.",
     cta: "Build My Cloud Legacy",
     span: "The Legacy Builder System™ helps you change that by building a personal brand that showcases your expertise, authority, and results. You’ll get mentor guidance on storytelling, profile optimization, and content creation that position you as a standout professional in your field.",
-    span2: "By the end, you won’t just have a job — you’ll have a name that opens doors and builds long-term credibility.",
+    span2:
+      "By the end, you won’t just have a job — you’ll have a name that opens doors and builds long-term credibility.",
   },
   {
     id: "shadow-pro",
     title: "Shadow-the-Pro Experience™",
     value: "₦600,000 Value",
-    subtitle:"Watch How Top Engineers Think, Decide & Deliver Under Pressure — and Learn to Do the Same.",
+    subtitle:
+      "Watch How Top Engineers Think, Decide & Deliver Under Pressure — and Learn to Do the Same.",
     description:
       "Most learners only see tutorials — not how real engineers solve problems in the wild.",
     cta: "Join the Shadow-the-Pro Experience",
     span: "With the Shadow-the-Pro Experience™, you’ll sit front-row as senior engineers build and troubleshoot live systems, explaining every move and decision.",
-    span2: "You’ll see how experts think under pressure and learn to apply those same patterns in your own projects — so you don’t just follow steps, you start thinking like a pro.",
+    span2:
+      "You’ll see how experts think under pressure and learn to apply those same patterns in your own projects — so you don’t just follow steps, you start thinking like a pro.",
   },
 ];
 
@@ -261,7 +278,7 @@ export const lessons = [
       {
         type: "PDF",
         name: "Beginner Guide to Cloud Engineering",
-        link: "https://file.notion.so/f/f/f90e59a7-e640-4353-8809-3612d3d2bc8b/ba030655-fafc-4069-be57-c3e152343032/Beginners_Guide_to_Cloud_Engineering.pdf?table=block&id=2b1f756e-be1b-804f-85f5-ed088bf143b1&spaceId=f90e59a7-e640-4353-8809-3612d3d2bc8b&expirationTimestamp=1764050400000&signature=54sHhfWWDDBAWOPIHo1SaHKzH2LTR0HcdBZ421G76Yw&downloadName=Beginners%E2%80%99+Guide+to+Cloud+Engineering.pdf",
+        link: "https://file.notion.so/f/f/f90e59a7-e640-4353-8809-3612d3d2bc8b/ba030655-fafc-4069-be57-c3e152343032/Beginners_Guide_to_Cloud_Engineering.pdf?table=block&id=2b1f756e-be1b-804f-85f5-ed088bf143b1&spaceId=f90e59a7-e640-4353-8809-3612d3d2bc8b&expirationTimestamp=1764352800000&signature=ejmMSzpdYFqGP7XUT0cwFfHHE3opPmh6SVs-iZL8mdY&downloadName=Beginners%E2%80%99+Guide+to+Cloud+Engineering.pdf",
         icon: FileText,
       },
     ],
@@ -637,5 +654,48 @@ export const faqs = [
   {
     q: "How do I pay the tuition fee?",
     a: "To make your experience seamless and stress-free, tuition payment becomes available once your admission has been confirmed on the Cloud Top G platform. From there, you’ll receive clear instructions and access to complete your payment securely through the student portal.",
+  },
+];
+
+export const programNotice = [
+  {
+    question: "Certificate",
+    answer: "Diploma",
+  },
+  {
+    question: "Seats",
+    answer: "Limited",
+  },
+  {
+    question: "Application Fee",
+    answer: "₦20,000.00",
+  },
+  {
+    question: "Program Length",
+    answer: "12 months",
+  },
+  {
+    question: "Start",
+    answer: "17/02/2026",
+  },
+  {
+    question: "Location",
+    answer: "Online",
+  },
+  {
+    question: "Live Classes",
+    answer: "Yes",
+  },
+  {
+    question: "Skill Level",
+    answer: "Beginner",
+  },
+  {
+    question: "Application Opens",
+    answer: "Nov 10, 2025",
+  },
+  {
+    question: "Class begins",
+    answer: "Jan 8, 2026",
   },
 ];

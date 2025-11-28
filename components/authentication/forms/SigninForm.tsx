@@ -33,7 +33,7 @@ const SigninForm = () => {
     },
   });
 
-  const { mutate, isPending } = useSignin("student");
+  const { mutate, isProcessing } = useSignin("student");
 
   function onSubmit(values: SigninFormValues) {
     mutate(values);
@@ -107,7 +107,7 @@ const SigninForm = () => {
               <SubmitButton
                 label="Proceed to Dashboard"
                 loadingLabel="Signing in..."
-                isPending={isPending}
+                isPending={isProcessing}
               />
             </div>
           </form>

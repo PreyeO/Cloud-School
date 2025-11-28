@@ -8,7 +8,6 @@ import { formatDate } from "@/lib/utils";
 import { User } from "@/types/auth";
 import { PaginatedTable } from "@/components/dashboard-screens/share-components/PaginatedTable";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { RowActions } from "../share-components/RowAction";
 import LoadingState from "@/components/ui/loaders/loading-state";
 
 export default function SuperAdminSettings() {

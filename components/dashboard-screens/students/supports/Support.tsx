@@ -14,7 +14,7 @@ import Title from "@/components/ui/typography/title";
 
 const SupportScreen = () => {
   return (
-    <section className="min-h-screen px-6 md:px-12 pt-20 pb-32 bg-gray-50">
+    <section className="min-h-screen px-6 md:px-12 pt-20 pb-32 ">
       {/* ================= HERO ================= */}
       <motion.div
         initial={{ opacity: 0, y: -15 }}
@@ -42,9 +42,9 @@ const SupportScreen = () => {
           </button>
 
           <button
-            onClick={() =>
-              (window.location.href = "mailto:support@cloudtopg.com")
-            }
+            onClick={() => {
+              window.open(`mailto:support@cloudtopg.com`, "_self");
+            }}
             className="flex items-center gap-2 bg-gray-900 text-white px-5 py-3 rounded-xl shadow-sm hover:bg-black transition"
           >
             <Mail size={18} /> Email Us

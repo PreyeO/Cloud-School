@@ -43,7 +43,7 @@ const Header = () => {
   if (!user) return null;
 
   return (
-    <header className="sticky bg-sidebar top-0 z-50 w-full h-16  backdrop-blur-xl px-6 flex items-center justify-between shadow-sm">
+    <header className="sticky bg-white top-0 z-50 w-full h-16  backdrop-blur-xl px-6 flex items-center justify-between shadow-sm">
       {/* Left Section */}
       <div className="flex items-center gap-3">
         <SidebarTrigger className="cursor-pointer" />

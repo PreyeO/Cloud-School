@@ -1,16 +1,13 @@
 "use client";
 import React, { useMemo } from "react";
-import { Users, CreditCard, BookOpen, Wallet } from "lucide-react";
+import { Users, CreditCard, Wallet } from "lucide-react";
 import { StatCard } from "./StatCard";
-import { LineChartCard } from "./LineChartCard";
 import { FunnelCard } from "./FunnelCard";
-import { RecentActivityCard } from "./RecentActivity";
 import { useGetAllUsers } from "@/hooks/useGetAllUsers";
 import { useGetAllPayments } from "@/hooks/useGetAllPayment";
 import { useGetAllMarketingFunnel } from "@/hooks/useGetAllMarketingFunnels";
 import { useGetAllAdmissionFunnel } from "@/hooks/useGetAllAdmissionFunnel";
 import { MarketingFunnelItem } from "@/types/admin";
-import { completionData, recentActivities } from "@/data/admin";
 import LoadingState from "@/components/ui/loaders/loading-state";
 import { TrendCard } from "../payments/TrendCard";
 

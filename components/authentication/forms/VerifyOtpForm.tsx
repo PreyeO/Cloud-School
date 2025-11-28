@@ -26,15 +26,15 @@ const VerifyOtpForm = () => {
     defaultValues: { otp: ["", "", "", "", "", ""] },
   });
 
-  const { mutate, isPending } = useVerifyOtp();
+  const { mutate, isProcessing } = useVerifyOtp();
   const { mutate: resend, isPending: isResending } = useResendVerification();
   const { email } = useAuthFlowStore();
 
   const onSubmit = (values: VerifyOtpFormValues) => mutate(values);
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-full max-w-[588px] items-center flex flex-col">
+    <div className="flex">
+      <div className="w-full max-w-[588px]  flex flex-col">
         <AuthTitle
           title="Verify OTP"
           subtitle="Enter the 6-digit code sent to your email"
@@ -58,7 +58,7 @@ const VerifyOtpForm = () => {
                           type="text"
                           maxLength={1}
                           id={`otp-${index}`}
-                          className="w-10 md:h-12 h-12 text-center border rounded-md outline-none focus:ring-2 focus:ring-[#E51919] text-lg font-semibold"
+                          className="md:w-12 w-10 md:h-12 h-12 text-center border rounded-md outline-none focus:ring-2 focus:ring-[#E51919] text-lg font-semibold"
                           value={char}
                           onChange={(e) => {
                             const newOtp = [...field.value];
@@ -113,7 +113,7 @@ const VerifyOtpForm = () => {
             <SubmitButton
               label="Verify OTP"
               loadingLabel="Verifying..."
-              isPending={isPending}
+              isPending={isProcessing}
             />
           </form>
         </Form>

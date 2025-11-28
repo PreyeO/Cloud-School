@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic"; // optional safety line
 
 const VerifyOtpPage = () => {
   return (
-    <AuthLayout showTabs={false} className="h-[500px]">
+    <AuthLayout showTabs={false} className=" items-center justify-center">
       <Suspense fallback={<div>Loading verification form...</div>}>
         <VerifyOtpForm />
       </Suspense>

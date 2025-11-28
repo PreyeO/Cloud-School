@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, CalendarDays } from "lucide-react";
+import { Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePayApplicationFee } from "@/hooks/usePayApplicationFee";
 import {
@@ -10,7 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { bonuses, systems } from "@/data/students";
+import { bonuses, programNotice, systems } from "@/data/students";
 import Title from "@/components/ui/typography/title";
 import Paragraph from "@/components/ui/typography/paragraph";
 import dynamic from "next/dynamic";
@@ -84,46 +84,34 @@ export default function ProgramDetails() {
               consistent, unblock you fast, and make your results{" "}
               <strong>visible, credible, and hireable</strong>.
             </Paragraph>
-            <PaymentButton
-              label="Apply Before Cohort Allocation Fills"
-              loadingLabel="Applying..."
-              isPending={isPending}
-              onClick={() => handlePay()}
-              className="w-full mt-3"
-            />
           </div>
 
           {/* SIDEBAR CARD */}
           <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#111111] border border-gray-200 dark:border-gray-800 shadow-sm space-y-5">
             <div className="space-y-3">
-              <h3 className="font-semibold text-[#E51919] text-lg">
+              <h3 className="font-semibold text-[#E51919] md:text-lg text-base">
                 Cohort 2026 - The Next Gen
               </h3>
-
-              <Paragraph className="text-sm">
-                <strong>Certificate:</strong> Diploma <br />
-                <strong>Seats:</strong> Limited <br />
-                <strong>Application Fee:</strong>{" "}
-                <span className="">₦20,000.00</span> <br />
-                <strong>Program Length:</strong> 12 months (4 semesters) <br />
-                <strong>Start:</strong> 17/02/2026 <br />
-                <strong>Location:</strong> Online <br />
-                <strong>Live Classes:</strong> Yes <br />
-                <strong>Skill Level:</strong> Beginner
-              </Paragraph>
+              <div className="flex flex-col gap-2">
+                {programNotice.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex justify-between  font-bold text-sm md:text-base"
+                  >
+                    <h3>{item.question}</h3>
+                    <h3>{item.answer}</h3>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <CalendarDays className="w-5 h-5 text-[#E51919]" />
-              <h4 className="font-semibold text-[#E51919]">
-                Enrollment Timeline
-              </h4>
-            </div>
-            <Paragraph className="text-sm">
-              <span className="font-semibold">Application Opens:</span> Nov 10,
-              2025 <br />
-              <span className="font-semibold">Classes Begin:</span> Jan 8, 2026
-            </Paragraph>
+            <PaymentButton
+              label="Apply Before Slots Fill"
+              loadingLabel="Applying..."
+              isPending={isPending}
+              onClick={() => handlePay()}
+              className="w-full mt-10"
+            />
           </div>
         </motion.div>
 

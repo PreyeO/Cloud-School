@@ -57,9 +57,10 @@ const EnrollmentScreen = () => {
                 </span>
 
                 <div className="mt-4 space-y-1">
-                  <Paragraph className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+                  <p className="md:text-2xl text-xl font-bold text-gray-900 dark:text-gray-100">
+                    {" "}
                     {plan.price}
-                  </Paragraph>
+                  </p>
                   <div className="flex gap-1 flex-wrap justify-center sm:justify-start">
                     <Paragraph className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                       {plan.total}

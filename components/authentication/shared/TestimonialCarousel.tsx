@@ -10,17 +10,13 @@ const TestimonialCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   // 30 minutes
-  const displayTime = 30 * 60 * 1000; // 1,800,000 ms
-
   useEffect(() => {
     if (!emblaApi) return;
 
-    const interval = setInterval(() => {
-      emblaApi.scrollNext();
-    }, displayTime);
-
-    return () => clearInterval(interval);
-  }, [emblaApi, displayTime]);
+    // Change testimonial on every refresh
+    const randomIndex = Math.floor(Math.random() * testimonials.length);
+    emblaApi.scrollTo(randomIndex);
+  }, [emblaApi]);
 
   return (
     <div className="relative flex-col justify-center items-center w-full overflow-hidden rounded-r-3xl bg-[#F9BABA] lg:flex hidden">
@@ -33,7 +29,7 @@ const TestimonialCarousel = () => {
             >
               <div className="flex gap-2 mb-6">
                 <Quote className="text-black" />
-                <p className="text-4xl text-black italic max-w-[500px]">
+                <p className="text-3xl text-black italic max-w-[500px]">
                   {testimonial.quote}
                 </p>
               </div>

@@ -49,7 +49,8 @@ const SignupForm = () => {
     },
   });
 
-  const { mutate, isPending } = useSignup();
+  const { mutate, isProcessing } = useSignup();
+
   const { data: marketOptions = [], isLoading: optionsLoading } =
     useMarketFunnels();
 
@@ -251,7 +252,7 @@ const SignupForm = () => {
               <SubmitButton
                 label="Sign Up"
                 loadingLabel="Signing up..."
-                isPending={isPending}
+                isPending={isProcessing}
               />
             </div>
           </form>

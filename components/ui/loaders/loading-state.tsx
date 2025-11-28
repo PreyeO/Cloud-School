@@ -2,7 +2,7 @@ import { Spinner } from "@/components/ui/spinner";
 
 const LoadingState = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center">
+    <section className="h-screen flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <Spinner className="size-8 text-[#E51919]" />
         <p className="text-gray-600 text-sm sm:text-base font-medium">

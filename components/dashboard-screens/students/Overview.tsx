@@ -15,7 +15,7 @@ const Overview = () => {
   const { user } = useAuthStore();
 
   return (
-    <section className="md:px-10 min-h-screen">
+    <section className="md:px-10 min-h-screen ">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Header Section */}
         <div>
