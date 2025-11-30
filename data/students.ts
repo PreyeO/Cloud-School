@@ -692,10 +692,10 @@ export const programNotice = [
   },
   {
     question: "Application Opens",
-    answer: "Nov 10, 2025",
+    answer: "Nov 1st, 2025",
   },
   {
     question: "Class begins",
-    answer: "Jan 8, 2026",
+    answer: "Feb 20th, 2026",
   },
 ];

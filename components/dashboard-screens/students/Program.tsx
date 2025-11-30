@@ -327,31 +327,22 @@ export default function ProgramDetails() {
             <SubTitle>Your Advantage Becomes Your Proof</SubTitle>
 
             <Paragraph>
-              Everything you’ve seen so far — the systems, mentorship, and
-              bonuses — was designed for one purpose:
-              <br /> <br />
-              <strong>to make your success inevitable.</strong>
-              <br />
-              <br />
-              When you join <strong>Cloud Top G Cohort 2026</strong>, you’re not
-              just getting training.
-              <br />
-              <br />
-              You’re stepping into an ecosystem where every obstacle has a
+              Everything you’ve seen, the systems, mentorship, and bonuses, was
+              built for one purpose:{" "}
+              <strong>to make your success inevitable.</strong> When you join{" "}
+              <strong>Cloud Top G Cohort 2026</strong>, you’re not just getting
+              training; you’re entering an ecosystem where every obstacle has a
               system, every question has an answer, and every effort leads to
               proof.
               <br />
               <br />
-              That’s why Cloud Top G graduates don’t just learn — they win.
-              <br />
-              <br />
-              And right now, you can still join before bonuses worth over
-              <strong> ₦6 million</strong> disappear when registration closes.
+              That’s why Cloud Top G graduates don’t just learn, they win. And
+              right now, you can still join before bonuses worth over{" "}
+              <strong>₦6 million</strong> disappear when registration closes.
               <br />
               <br />
               <strong>
-                {" "}
-                Next Cohort Begins February 2026 — Limited Slots Available.
+                Next Cohort Begins February 2026. Limited Slots Available.
               </strong>
             </Paragraph>
 

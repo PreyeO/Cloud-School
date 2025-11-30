@@ -20,7 +20,6 @@ import { useSignup } from "@/hooks/useSignup";
 import SubmitButton from "@/components/ui/btns/submit-button";
 import AuthTitle from "@/components/ui/typography/auth-title";
 import AuthSpan from "@/components/ui/typography/auth-span";
-import Link from "next/link";
 import { MarketOption, SignUpFormValues } from "@/types/auth";
 import {
   Select,
@@ -233,17 +232,17 @@ const SignupForm = () => {
             <div className="md:col-span-2">
               <AuthSpan>
                 By clicking signup, I agree to{" "}
-                <Link href="/auth/reset">
+                <a href="https://cloudtopg.com/terms-of-service">
                   <span className="text-[#E51919] underline cursor-pointer">
                     Terms of use
                   </span>
-                </Link>{" "}
+                </a>{" "}
                 and acknowledge that I have read the{" "}
-                <Link href="/auth/reset">
+                <a href="https://cloudtopg.com/privacy-policy/">
                   <span className="text-[#E51919] underline cursor-pointer">
                     privacy policy.
                   </span>
-                </Link>
+                </a>
               </AuthSpan>
             </div>
 
